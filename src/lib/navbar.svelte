@@ -19,6 +19,13 @@
 		height: 30px;
 	}
 
+	.nav-title a {
+		text-decoration: none;
+		color: rgb(46, 46, 46);
+		font-size: large;
+		font-weight: bold;
+	}
+
 	ul {
 		list-style: none;
 	}
