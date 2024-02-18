@@ -31,12 +31,12 @@
 	.branch {
 		font-weight: bold;
 		font-size: 2vw;
-		margin: auto;
+		margin: 6px;
 	}
 
 	.description {
 		font-size: 1vw;
-		margin: auto;
+		margin: 6px;
 	}
 	@media only screen and (hover: none) and (pointer: coarse) {
 		.branch {
