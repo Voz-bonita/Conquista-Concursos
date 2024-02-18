@@ -17,11 +17,10 @@
 		justify-content: center;
 	}
 	main {
-		max-width: 70%;
+		min-width: 100%;
 		/* Altura da tela - navbar - footer - padding do slot */
-		min-height: calc(100vh - 60px - 60px - 40px);
+		min-height: calc(100vh - 60px - 60px);
 		margin: auto;
-		padding: 20px;
 	}
 	footer {
 		height: 60px;

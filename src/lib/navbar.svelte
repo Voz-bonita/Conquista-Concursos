@@ -4,7 +4,7 @@
 	</div>
 	<ul>
 		<li><a href="/">Começar</a></li>
-		<li><a href="/">Cadernos</a></li>
+		<li><a href="/simulados">Cadernos</a></li>
 		<li><a href="/sobre">Sobre</a></li>
 	</ul>
 </div>

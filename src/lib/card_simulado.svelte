@@ -8,13 +8,13 @@
 <div class="card">
 	<img src={icon_path} alt="" style={icon_style} width="20%" height="20%" />
 	<p class="branch">{branch}</p>
-	<p>{description}</p>
+	<p class="description">{description}</p>
 </div>
 
 <style>
 	.card {
-		height: 400px;
-		width: 200px;
+		height: 80%;
+		width: 90%;
 		background-color: rgb(51, 51, 51);
 		border-radius: 7px;
 		padding: 5px;
@@ -30,6 +30,20 @@
 	}
 	.branch {
 		font-weight: bold;
-		font-size: 1.5em;
+		font-size: 2vw;
+		margin: auto;
+	}
+
+	.description {
+		font-size: 1vw;
+		margin: auto;
+	}
+	@media only screen and (hover: none) and (pointer: coarse) {
+		.branch {
+			font-size: 5vw;
+		}
+		.description {
+			font-size: 3vw;
+		}
 	}
 </style>
