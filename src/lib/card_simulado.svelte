@@ -38,6 +38,11 @@
 		font-size: 1vw;
 		margin: 6px;
 	}
+
+	.card:hover {
+		cursor: pointer;
+		box-shadow: 0 0 0 2px black;
+	}
 	@media only screen and (hover: none) and (pointer: coarse) {
 		.branch {
 			font-size: 5vw;
