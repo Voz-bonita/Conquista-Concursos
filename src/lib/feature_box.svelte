@@ -4,28 +4,28 @@
 </script>
 
 <div class="box">
-	<img src={path} alt="" />
-	<p>{feature}</p>
+	<img src={path} alt="" width="20%" height="20%" />
+	<p class="description">{feature}</p>
 </div>
 
 <style>
 	.box {
-		height: 100px;
-		width: 100px;
-		background-color: rgb(51, 51, 51);
+		height: min(200px, 15vw);
+		width: min(200px, 15vw);
 		border-radius: 7px;
-		padding: 5px;
-		/* border: 3px solid; */
-		/* border-color: rgba(168, 175, 168, 0.5); */
+		border: 2px solid;
+		border-color: black;
 		justify-content: center;
 		align-items: center;
 		display: flex;
 		flex-direction: column;
 		font-size: 0.6em;
 		text-align: center;
-		color: whitesmoke;
+		color: black;
 	}
-	.box img {
-		filter: invert(94%) sepia(6%) saturate(0%) hue-rotate(113deg) brightness(105%) contrast(108%);
+
+	.description {
+		font-size: 1vw;
+		margin: 6px;
 	}
 </style>
