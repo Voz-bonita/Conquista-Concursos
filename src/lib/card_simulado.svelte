@@ -15,18 +15,17 @@
 	.card {
 		height: 80%;
 		width: 90%;
-		background-color: rgb(51, 51, 51);
-		border-radius: 7px;
+		border-radius: 20px;
 		padding: 5px;
-		/* border: 3px solid; */
-		/* border-color: rgba(168, 175, 168, 0.5); */
+		border: 2px solid;
+		border-color: black;
 		justify-content: center;
 		align-items: center;
 		display: flex;
 		flex-direction: column;
 		font-size: 0.6em;
 		text-align: center;
-		color: whitesmoke;
+		color: black;
 	}
 	.branch {
 		font-weight: bold;
@@ -41,7 +40,7 @@
 
 	.card:hover {
 		cursor: pointer;
-		box-shadow: 0 0 0 2px black;
+		box-shadow: 0 0 0 1px black;
 	}
 	@media only screen and (hover: none) and (pointer: coarse) {
 		.branch {

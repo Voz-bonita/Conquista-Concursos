@@ -16,74 +16,75 @@
 		'filter: invert(97%) sepia(28%) saturate(7146%) hue-rotate(312deg) brightness(93%) contrast(98%)';
 </script>
 
-<section class="grid-template main_theme">
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 1"
-			description="Infraestrutura, exatas e engenharia"
-			icon_path="engineer.svg"
-			icon_style={white_icon}
-		/>
-	</div>
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 2"
-			description="Tecnologia, dados e informação"
-			icon_path="query_stats.svg"
-			icon_style={blue_icon}
-		/>
-	</div>
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 3"
-			description="Ambiental, agrário e biológicas"
-			icon_path="nature.svg"
-			icon_style={green_icon}
-		/>
-	</div>
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 4"
-			description="Trabalho e saúde do servidor"
-			icon_path="conditions.svg"
-			icon_style={red_icon}
-		/>
-	</div>
-</section>
-<section class="grid-template secondary_theme">
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 5"
-			description="Educação, saúde, desenvolvimento social e direitos humanos"
-			icon_path="medical_information.svg"
-			icon_style={red_icon}
-		/>
-	</div>
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 6"
-			description="Setores econômicos e regulação"
-			icon_path="money_report.svg"
-			icon_style={money_green_icon}
-		/>
-	</div>
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 7"
-			description="Gestão governamental e administração pública"
-			icon_path="government.svg"
-			icon_style={beige_icon}
-		/>
-	</div>
-	<div class="grid-item">
-		<CardSimulado
-			branch="Bloco 8"
-			description="Nível intermediário"
-			icon_path="school.svg"
-			icon_style={yellow_icon}
-		/>
-	</div>
-</section>
+<div>
+	<section class="grid-template">
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 1"
+				description="Infraestrutura, exatas e engenharia"
+				icon_path="engineer.svg"
+			/>
+		</div>
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 2"
+				description="Tecnologia, dados e informação"
+				icon_path="query_stats.svg"
+				icon_style={blue_icon}
+			/>
+		</div>
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 3"
+				description="Ambiental, agrário e biológicas"
+				icon_path="nature.svg"
+				icon_style={green_icon}
+			/>
+		</div>
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 4"
+				description="Trabalho e saúde do servidor"
+				icon_path="conditions.svg"
+				icon_style={red_icon}
+			/>
+		</div>
+	</section>
+	<section class="grid-template">
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 5"
+				description="Educação, saúde, desenvolvimento social e direitos humanos"
+				icon_path="medical_information.svg"
+				icon_style={red_icon}
+			/>
+		</div>
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 6"
+				description="Setores econômicos e regulação"
+				icon_path="money_report.svg"
+				icon_style={money_green_icon}
+			/>
+		</div>
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 7"
+				description="Gestão governamental e administração pública"
+				icon_path="government.svg"
+				icon_style={beige_icon}
+			/>
+		</div>
+		<div class="grid-item">
+			<CardSimulado
+				branch="Bloco 8"
+				description="Nível intermediário"
+				icon_path="school.svg"
+				icon_style={yellow_icon}
+			/>
+		</div>
+	</section>
+</div>
 
 <style>
 	.grid-template {
@@ -91,19 +92,12 @@
 		grid-template-columns: 40% 40%;
 		min-height: 50vh;
 		justify-content: center;
+		background: linear-gradient(90deg, #2be4ad, #eaecc6);
 	}
 
 	.grid-item {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-	}
-
-	.main_theme {
-		background: linear-gradient(to right, #2be4ad, #eaecc6);
-	}
-
-	.secondary_theme {
-		background: linear-gradient(to right, #eaecc6, #8b2be4);
 	}
 </style>
