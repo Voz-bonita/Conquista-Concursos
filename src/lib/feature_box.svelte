@@ -1,17 +1,19 @@
 <script>
 	export let path = '';
 	export let feature = '';
+	export let description = '';
 </script>
 
 <div class="box">
 	<img src={path} alt="" width="20%" height="20%" />
-	<p class="description">{feature}</p>
+	<p class="feature-title">{feature}</p>
+	<p class="feature-description">{description}</p>
 </div>
 
 <style>
 	.box {
-		height: min(200px, 15vw);
-		width: min(200px, 15vw);
+		height: 15vw;
+		width: 20vw;
 		border-radius: 7px;
 		border: 2px solid;
 		border-color: black;
@@ -22,10 +24,29 @@
 		font-size: 0.6em;
 		text-align: center;
 		color: black;
+		margin: 25px;
 	}
 
-	.description {
+	.feature-title {
 		font-size: 1vw;
 		margin: 6px;
+		font-weight: bold;
+	}
+	.feature-description {
+		font-size: 0.8vw;
+	}
+
+	@media only screen and (hover: none) and (pointer: coarse) {
+		.box {
+			height: 30vh;
+			width: 90vw;
+		}
+		.feature-title {
+			font-size: 6vw;
+		}
+
+		.feature-description {
+			font-size: 3.8vw;
+		}
 	}
 </style>

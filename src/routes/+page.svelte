@@ -3,29 +3,28 @@
 </script>
 
 <div class="feature-display">
-	<section class="grid-template features">
+	<section class="grid-template">
 		<div class="grid-item">
-			<FeatureBox path="explore.svg" feature="+2 mil questões para você treinar" />
+			<FeatureBox
+				path="bolt.svg"
+				feature="Acelere seus estudos com IA"
+				description="Contamos com inteligência artificial aplicada para criar exercícios inéditos que pareçam tão fidedignos quanto no dia da prova, além de te ajudar a entender as soluções"
+			/>
 		</div>
 		<div class="grid-item">
-			<FeatureBox path="medal.svg" feature="Conquiste a vaga dos seus sonhos" />
+			<FeatureBox
+				path="explore.svg"
+				feature="+2 mil questões para você treinar"
+				description="Acreditamos que a melhor forma de treinar exercícios é com exercícios da banca que vai elaborar a prova, atualmente nosso foco é no CNU"
+			/>
 		</div>
 		<div class="grid-item">
-			<FeatureBox path="settings_heart.svg" feature="Caderno de questões do seu jeitinho" />
+			<FeatureBox
+				path="medal.svg"
+				feature="Conquiste a vaga dos seus sonhos"
+				description="Se o que te faltava para conquistar esse sonho era um bom simulado, então chegou a sua vez!"
+			/>
 		</div>
-		<div class="grid-item">
-			<FeatureBox path="explore.svg" feature="+2 mil questões para você treinar" />
-		</div>
-		<div class="grid-item">
-			<FeatureBox path="medal.svg" feature="Conquiste a vaga dos seus sonhos" />
-		</div>
-		<div class="grid-item">
-			<FeatureBox path="bolt.svg" feature="Acelere seus estudos com IA" />
-		</div>
-	</section>
-	<section class="call">
-		<p>Tá esperando o quê?</p>
-		<button>Comece a conquistar</button>
 	</section>
 </div>
 
@@ -45,7 +44,7 @@
 	}
 	.feature-display {
 		display: flex;
-		flex-direction: row;
+		flex-direction: column;
 	}
 
 	.features {
@@ -57,7 +56,6 @@
 		padding: 15px;
 		background: linear-gradient(90deg, #eaecc6, #7b2be4);
 		color: black;
-		border-radius: 7px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -75,5 +73,33 @@
 		border-radius: 7px;
 		font-size: 24px;
 		cursor: pointer;
+	}
+
+	@media only screen and (hover: none) and (pointer: coarse) {
+		.grid-template {
+			display: grid;
+			grid-template-columns: 100%;
+			min-height: 50vh;
+			justify-content: center;
+			background: linear-gradient(90deg, #2be4ad, #eaecc6);
+		}
+		.call button {
+			font-size: 3vw;
+		}
+		.features {
+			width: 60%;
+		}
+
+		.call {
+			width: 40%;
+			padding: 15px;
+			background: linear-gradient(90deg, #eaecc6, #7b2be4);
+			color: black;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+		}
 	}
 </style>
