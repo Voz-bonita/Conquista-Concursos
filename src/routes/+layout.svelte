@@ -1,5 +1,6 @@
 <script>
 	import Navbar from '../lib/navbar.svelte';
+	import '../globals.css';
 </script>
 
 <header>
