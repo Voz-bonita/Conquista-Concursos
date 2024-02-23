@@ -1,9 +1,11 @@
 .green-theme {
     background: linear-gradient(90deg, #2be4ad, #eaecc6);
+    color: black;
 }
 
 .purple-theme {
-    background: linear-gradient(90deg, #5e12eb, #a92be4)
+    background: linear-gradient(90deg, #5e12eb, #a92be4);
+    color: rgb(189, 189, 189);
 }
 
 .basic-theme {
