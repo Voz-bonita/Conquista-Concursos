@@ -6,8 +6,9 @@
     background: linear-gradient(90deg, #5e12eb, #a92be4)
 }
 
-.teal-theme {
-    background: linear-gradient(90deg, teal, rgb(1, 216, 216));
+.basic-theme {
+    background: rgb(61, 61, 61);
+    color: white;
 }
 
 .white-theme {

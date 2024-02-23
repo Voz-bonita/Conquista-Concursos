@@ -29,7 +29,7 @@
 	</section>
 	<section class="grid-pricing white-theme">
 		<div class="grid-item">
-			<PricingCard plan_class="teal-theme" name="Iniciante" price="R$0,00" />
+			<PricingCard plan_class="basic-theme" name="Iniciante" price="R$0,00" />
 		</div>
 		<div class="grid-item">
 			<PricingCard plan_class="purple-theme" />
