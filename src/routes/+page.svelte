@@ -1,9 +1,10 @@
 <script>
 	import FeatureBox from '../lib/feature_box.svelte';
+	import PricingCard from '../lib/pricing_card.svelte';
 </script>
 
 <div class="feature-display">
-	<section class="grid-template">
+	<section class="grid-template green-theme">
 		<div class="grid-item">
 			<FeatureBox
 				path="bolt.svg"
@@ -26,6 +27,17 @@
 			/>
 		</div>
 	</section>
+	<section class="grid-pricing white-theme">
+		<div class="grid-item">
+			<PricingCard plan_class="teal-theme" name="Iniciante" price="R$0,00" />
+		</div>
+		<div class="grid-item">
+			<PricingCard plan_class="purple-theme" />
+		</div>
+		<div class="grid-item">
+			<PricingCard plan_class="green-theme" />
+		</div>
+	</section>
 </div>
 
 <style>
@@ -34,9 +46,15 @@
 		grid-template-columns: 33% 33% 33%;
 		min-height: 50vh;
 		justify-content: center;
-		background: linear-gradient(90deg, #2be4ad, #eaecc6);
 	}
 
+	.grid-pricing {
+		display: grid;
+		grid-template-columns: 25% 25% 25%;
+		min-height: 50vh;
+		justify-content: center;
+		align-items: center;
+	}
 	.grid-item {
 		display: flex;
 		justify-content: center;
