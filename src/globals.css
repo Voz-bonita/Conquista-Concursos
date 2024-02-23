@@ -2,6 +2,14 @@
     background: linear-gradient(90deg, #2be4ad, #eaecc6);
 }
 
+.purple-theme {
+    background: linear-gradient(90deg, #5e12eb, #a92be4)
+}
+
+.teal-theme {
+    background: linear-gradient(90deg, teal, rgb(1, 216, 216));
+}
+
 .white-theme {
     background: rgb(241, 241, 241);
 }
