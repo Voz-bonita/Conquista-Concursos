@@ -35,10 +35,35 @@
 	}
 
 	.plan-description {
-		font-size: 1.6vw;
+		font-size: 1.2vw;
+		text-align: justify;
+		margin: 0 3% 0 3%;
 	}
 
 	.plan-price {
-		font-size: 1vw;
+		font-size: 1.4vw;
+		font-weight: bolder;
+	}
+
+	@media only screen and (hover: none) and (pointer: coarse) {
+		div {
+			width: 80vw;
+			height: 50vh;
+		}
+
+		.plan-name {
+			font-weight: bold;
+			font-size: 10vw;
+		}
+
+		.plan-description {
+			font-size: 4vw;
+			text-align: justify;
+			margin: 0 3% 0 3%;
+		}
+
+		.plan-price {
+			font-size: 6.5vw;
+		}
 	}
 </style>

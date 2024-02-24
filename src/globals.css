@@ -8,9 +8,14 @@
     color: rgb(189, 189, 189);
 }
 
-.basic-theme {
+.basic-black-theme {
     background: rgb(61, 61, 61);
     color: white;
+}
+
+.basic-white-theme {
+    background: #ebecda;
+    color: rgb(61, 61, 61);
 }
 
 .white-theme {

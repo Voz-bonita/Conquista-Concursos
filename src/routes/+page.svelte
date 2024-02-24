@@ -29,13 +29,28 @@
 	</section>
 	<section class="grid-pricing white-theme">
 		<div class="grid-item">
-			<PricingCard plan_class="basic-theme" name="Iniciante" price="R$0,00" />
+			<PricingCard
+				plan_class="basic-black-theme"
+				name="Básico"
+				price="R$0,00"
+				description="Pensado para quem quer fazer um test drive na plataforma"
+			/>
 		</div>
 		<div class="grid-item">
-			<PricingCard plan_class="purple-theme" />
+			<PricingCard
+				plan_class="basic-white-theme"
+				name="Concurseiro"
+				price="R$5,00"
+				description="Se você pretende fazer mais de 1 simulado, esse pode ser o plano certo pra você"
+			/>
 		</div>
 		<div class="grid-item">
-			<PricingCard plan_class="green-theme" />
+			<PricingCard
+				plan_class="green-theme"
+				name="Conquistador"
+				price="R$20,00"
+				description="Perfeito para quem tem fome de conquistar e deseja utilizar os melhores recursos"
+			/>
 		</div>
 	</section>
 </div>
@@ -65,59 +80,19 @@
 		flex-direction: column;
 	}
 
-	.features {
-		width: 70%;
-	}
-
-	.call {
-		width: 30%;
-		padding: 15px;
-		background: linear-gradient(90deg, #eaecc6, #7b2be4);
-		color: black;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-	}
-
-	.call p {
-		font-size: 20px;
-	}
-	.call button {
-		width: 50%;
-		background: transparent;
-		/* background: linear-gradient(90deg, #eaecc6, #7b2be4); */
-		border-radius: 7px;
-		font-size: 24px;
-		cursor: pointer;
-	}
-
 	@media only screen and (hover: none) and (pointer: coarse) {
 		.grid-template {
 			display: grid;
 			grid-template-columns: 100%;
 			min-height: 50vh;
 			justify-content: center;
-			background: linear-gradient(90deg, #2be4ad, #eaecc6);
-		}
-		.call button {
-			font-size: 3vw;
-		}
-		.features {
-			width: 60%;
 		}
 
-		.call {
-			width: 40%;
-			padding: 15px;
-			background: linear-gradient(90deg, #eaecc6, #7b2be4);
-			color: black;
-			display: flex;
-			flex-direction: column;
+		.grid-pricing {
+			display: grid;
+			grid-template-columns: 100%;
+			min-height: 50vh;
 			justify-content: center;
-			align-items: center;
-			text-align: center;
 		}
 	}
 </style>
