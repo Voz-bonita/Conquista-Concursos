@@ -17,7 +17,7 @@
 </script>
 
 <div>
-	<section class="grid-template">
+	<section class="grid-template green-theme">
 		<div class="grid-item">
 			<CardSimulado
 				branch="Bloco 1"
@@ -92,7 +92,6 @@
 		grid-template-columns: 40% 40%;
 		min-height: 50vh;
 		justify-content: center;
-		background: linear-gradient(90deg, #2be4ad, #eaecc6);
 	}
 
 	.grid-item {
