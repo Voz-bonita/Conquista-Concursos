@@ -35,6 +35,9 @@
 				price="R$0,00"
 				description="Pensado para quem quer fazer um test drive na plataforma"
 				n_tests="1"
+				ai="Questões inéditas"
+				performance="Nenhum"
+				call="Teste"
 			/>
 		</div>
 		<div class="grid-item">
@@ -44,6 +47,9 @@
 				price="R$5,00"
 				description="Se você pretende fazer mais de 1 simulado, esse pode ser o plano certo pra você"
 				n_tests="10"
+				ai="Questões inéditas e comentadas"
+				performance="Rankeamento por média"
+				call="Estude"
 			/>
 		</div>
 		<div class="grid-item">
@@ -53,6 +59,9 @@
 				price="R$20,00"
 				description="Perfeito para quem tem fome de conquistar e deseja utilizar os melhores recursos"
 				n_tests="Ilimitado"
+				ai="Todos"
+				performance="Completa"
+				call="Conquiste"
 			/>
 		</div>
 	</section>

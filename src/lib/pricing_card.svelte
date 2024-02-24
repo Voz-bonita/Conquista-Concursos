@@ -5,6 +5,8 @@
 	export let call = '';
 	export let plan_class = '';
 	export let n_tests = '1';
+	export let ai = '';
+	export let performance = '';
 </script>
 
 <div class="card">
@@ -22,18 +24,26 @@
 				<li class="item-value">{n_tests}</li>
 			</div>
 			<div class="plan-item">
+				<li class="item-name">Recursos de IA</li>
+				<li class="item-value">{ai}</li>
+			</div>
+			<div class="plan-item">
+				<li class="item-name">Análise de desempenho</li>
+				<li class="item-value">{performance}</li>
+			</div>
+			<div class="plan-item">
 				<li class="item-name">Objetivo</li>
 				<li class="item-value">{description}</li>
 			</div>
 		</ul>
-		<!-- <button class="plan-call">{call}</button> -->
 	</div>
+	<button class="{plan_class} call-btn">{call}</button>
 </div>
 
 <style>
 	.card {
-		width: 15vw;
-		height: 30vw;
+		min-width: 15vw;
+		min-height: 30vh;
 		border: 1px solid;
 		border-color: black;
 		/* border-style: inset; */
@@ -42,6 +52,10 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+	}
+
+	.card:hover {
+		box-shadow: 0 0 0 1px black;
 	}
 
 	.name {
@@ -65,6 +79,7 @@
 		border-style: none none solid none;
 		border-width: 1px;
 		border-color: black;
+		margin: 5%;
 	}
 
 	.item-name {
@@ -81,10 +96,26 @@
 		margin: 4%;
 	}
 
+	.call-btn {
+		margin-top: auto;
+		margin-bottom: 4%;
+		min-width: 40%;
+		min-height: 4vh;
+		border-radius: 20px;
+		border-width: 1px;
+		border-color: black;
+		cursor: pointer;
+		font-size: 1vw;
+	}
+
+	.call-btn:hover {
+		box-shadow: 0 0 0 1px black;
+	}
+
 	@media only screen and (hover: none) and (pointer: coarse) {
 		.card {
 			width: 70vw;
-			height: 60vh;
+			min-height: 60vh;
 		}
 		.plan-item li {
 			display: inline-block;
@@ -101,6 +132,11 @@
 			font-weight: bold;
 			font-size: 4.5vw;
 			margin: 4%;
+		}
+
+		.call-btn {
+			font-size: 4vw;
+			width: 35%;
 		}
 	}
 </style>
