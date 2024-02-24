@@ -8,6 +8,10 @@
     color: rgb(189, 189, 189);
 }
 
+.black-white-gradient-theme {
+    background: linear-gradient(90deg, black, rgb(95, 95, 80));
+    color: white;
+}
 .basic-black-theme {
     background: rgb(61, 61, 61);
     color: white;

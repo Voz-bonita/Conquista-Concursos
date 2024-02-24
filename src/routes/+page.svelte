@@ -30,18 +30,20 @@
 	<section class="grid-pricing white-theme">
 		<div class="grid-item">
 			<PricingCard
-				plan_class="basic-black-theme"
+				plan_class="black-white-gradient-theme"
 				name="Básico"
 				price="R$0,00"
 				description="Pensado para quem quer fazer um test drive na plataforma"
+				n_tests="1"
 			/>
 		</div>
 		<div class="grid-item">
 			<PricingCard
-				plan_class="basic-white-theme"
+				plan_class="purple-theme"
 				name="Concurseiro"
 				price="R$5,00"
 				description="Se você pretende fazer mais de 1 simulado, esse pode ser o plano certo pra você"
+				n_tests="10"
 			/>
 		</div>
 		<div class="grid-item">
@@ -50,6 +52,7 @@
 				name="Conquistador"
 				price="R$20,00"
 				description="Perfeito para quem tem fome de conquistar e deseja utilizar os melhores recursos"
+				n_tests="Ilimitado"
 			/>
 		</div>
 	</section>
@@ -65,7 +68,7 @@
 
 	.grid-pricing {
 		display: grid;
-		grid-template-columns: 25% 25% 25%;
+		grid-template-columns: 20% 20% 20%;
 		min-height: 50vh;
 		justify-content: center;
 		align-items: center;
