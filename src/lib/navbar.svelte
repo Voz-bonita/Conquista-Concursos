@@ -18,9 +18,11 @@
 	.top-nav {
 		display: flex;
 		justify-content: space-between;
+		flex-direction: row;
 		align-items: center;
 		background: rgb(241, 241, 241);
 		height: 8vh;
+		padding: 0 3vw 0 3vw;
 	}
 
 	.nav-title a {
@@ -43,6 +45,7 @@
 		text-decoration: none;
 		color: black;
 		padding: 1vh 2.5vw;
+		margin-left: 0.5vw;
 		border-radius: 20px;
 		transition: 0.3s;
 		cursor: pointer;
@@ -50,9 +53,7 @@
 	}
 
 	ul li a:hover {
-		box-shadow: 0 0 0 0.1rem black;
-		color: black;
-		background-color: #a5c599;
+		box-shadow: 0 0 0 1px black;
 	}
 
 	.simulado {
@@ -63,17 +64,6 @@
 	.simulado:hover {
 		color: black;
 		background-color: steelblue;
-		/* box-shadow: 0 0 0 0.03 black; */
-	}
-
-	.top-nav {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-between;
-		background: rgb(241, 241, 241);
-		/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-		padding: 0 3vw 0 3vw;
 	}
 
 	.nav-menu {
