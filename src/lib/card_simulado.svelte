@@ -26,6 +26,7 @@
 		font-size: 0.6em;
 		text-align: center;
 		color: black;
+		background: rgb(241, 241, 241);
 	}
 	.branch {
 		font-weight: bold;
@@ -42,7 +43,7 @@
 		cursor: pointer;
 		box-shadow: 0 0 0 1px black;
 	}
-	@media only screen and (hover: none) and (pointer: coarse) {
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
 		.branch {
 			font-size: 5vw;
 		}
