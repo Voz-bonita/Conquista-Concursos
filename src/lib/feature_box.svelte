@@ -5,7 +5,7 @@
 </script>
 
 <div class="box">
-	<img src={path} alt="" width="20%" height="20%" />
+	<img src={path} alt="" width="15%" height="15%" />
 	<p class="feature-title">{feature}</p>
 	<p class="feature-description">{description}</p>
 </div>
@@ -36,9 +36,9 @@
 		font-size: 0.8vw;
 	}
 
-	@media only screen and (hover: none) and (pointer: coarse) {
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
 		.box {
-			height: 30vh;
+			height: auto;
 			width: 90vw;
 		}
 		.feature-title {
