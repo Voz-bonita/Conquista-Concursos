@@ -3,15 +3,17 @@
 		<img src="award_star.svg" alt="" width="10%" height="10%" />
 		<a href="/">Conquista Concursos</a>
 	</div>
-	<input id="menu-toggle" type="checkbox" />
-	<label class="menu-button-container" for="menu-toggle">
-		<div class="menu-button"></div>
-	</label>
-	<ul class="nav-menu">
-		<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
-		<li><a href="/sobre">Sobre</a></li>
-		<li><a href="/">Login</a></li>
-	</ul>
+	<div class="nav-nav">
+		<input id="menu-toggle" type="checkbox" />
+		<label class="menu-button-container" for="menu-toggle">
+			<div class="menu-button"></div>
+		</label>
+		<ul class="nav-menu">
+			<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
+			<li><a href="/sobre">Sobre</a></li>
+			<li><a href="/">Login</a></li>
+		</ul>
+	</div>
 </nav>
 
 <style>
@@ -21,8 +23,15 @@
 		flex-direction: row;
 		align-items: center;
 		background: rgb(241, 241, 241);
-		height: 8vh;
+		min-height: 8vh;
 		padding: 0 3vw 0 3vw;
+	}
+
+	.nav-title,
+	.nav-nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-around;
 	}
 
 	.nav-title a {
@@ -33,17 +42,8 @@
 		font-size: 2vh;
 	}
 
-	ul {
-		list-style: none;
-	}
-
-	ul li {
-		display: inline-block;
-	}
-
-	ul li a {
+	.nav-menu a {
 		text-decoration: none;
-		color: black;
 		padding: 1vh 2.5vw;
 		margin-left: 0.5vw;
 		border-radius: 20px;
@@ -94,20 +94,20 @@
 		display: block;
 		background-color: black;
 		position: absolute;
-		height: min(4px, 1vh);
-		width: 25px;
+		height: 0.2vh;
+		width: 6vw;
 		transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
 		border-radius: 2px;
 	}
 
 	.menu-button::before {
 		content: '';
-		margin-top: max(-8px, -2vh);
+		margin-top: -20%;
 	}
 
 	.menu-button::after {
 		content: '';
-		margin-top: min(8px, 2vh);
+		margin-top: 20%;
 	}
 
 	#menu-toggle:checked + .menu-button-container .menu-button::before {
@@ -124,7 +124,7 @@
 		transform: rotate(-405deg);
 	}
 
-	@media (max-width: 700px) {
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
 		.menu-button-container {
 			display: flex;
 		}
