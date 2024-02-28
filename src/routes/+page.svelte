@@ -92,7 +92,7 @@
 		flex-direction: column;
 	}
 
-	@media only screen and (hover: none) and (pointer: coarse) {
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
 		.grid-template {
 			display: grid;
 			grid-template-columns: 100%;
