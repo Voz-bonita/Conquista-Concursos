@@ -49,8 +49,6 @@
 				icon_style={red_icon}
 			/>
 		</div>
-	</section>
-	<section class="grid-template">
 		<div class="grid-item">
 			<CardSimulado
 				branch="Bloco 5"
