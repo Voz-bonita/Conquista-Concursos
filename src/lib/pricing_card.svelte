@@ -112,7 +112,7 @@
 		box-shadow: 0 0 0 1px black;
 	}
 
-	@media only screen and (hover: none) and (pointer: coarse) {
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
 		.card {
 			width: 70vw;
 			min-height: 60vh;
