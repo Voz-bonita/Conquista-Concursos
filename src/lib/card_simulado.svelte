@@ -50,5 +50,9 @@
 		.description {
 			font-size: 3vw;
 		}
+
+		.card {
+			height: 90%;
+		}
 	}
 </style>
