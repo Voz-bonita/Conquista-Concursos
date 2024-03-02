@@ -88,7 +88,7 @@
 	.grid-template {
 		display: grid;
 		grid-template-columns: 40% 40%;
-		min-height: 50vh;
+		min-height: calc(100vh - 8vh - 8vh);
 		justify-content: center;
 	}
 

@@ -20,11 +20,11 @@
 	main {
 		min-width: 100%;
 		/* Altura da tela - navbar - footer - padding do slot */
-		min-height: calc(100vh - 60px - 60px);
+		min-height: calc(100vh - 8vh -8vh);
 		margin: auto;
 	}
 	footer {
-		height: 60px;
+		min-height: 8vh;
 		width: 100%;
 		display: flex;
 		justify-content: center;
