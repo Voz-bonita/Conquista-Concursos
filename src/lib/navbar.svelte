@@ -11,7 +11,7 @@
 		<ul class="nav-menu">
 			<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
 			<li><a href="/sobre">Sobre</a></li>
-			<li><a href="/">Login</a></li>
+			<li><a href="/login">Login</a></li>
 		</ul>
 	</div>
 </nav>
