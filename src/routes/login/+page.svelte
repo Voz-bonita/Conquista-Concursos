@@ -9,8 +9,13 @@
 			<input type="password" name="password" placeholder="*******" />
 		</div>
 		<div class="login-interaction">
-			<button type="button">Criar conta</button>
-			<button type="submit">Logar</button>
+			<div class="login-alternatives">
+				<a href="/">Esqueci minha senha</a>
+			</div>
+			<div class="login-buttons">
+				<button type="button">Criar conta</button>
+				<button type="submit">Logar</button>
+			</div>
 		</div>
 	</form>
 </section>
@@ -19,6 +24,7 @@
 	.login-section {
 		display: flex;
 		justify-content: center;
+		font-size: 1vw;
 	}
 	.login-form {
 		display: flex;
@@ -35,9 +41,16 @@
 		justify-content: center;
 	}
 
-	.login-interaction {
+	.login-buttons {
 		display: flex;
 		justify-content: space-evenly;
+	}
+
+	.login-alternatives {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 1vh;
 	}
 
 	form > div > input {
@@ -48,12 +61,31 @@
 		border-radius: 20px;
 	}
 
-	form > div > button {
+	button {
 		width: 10vw;
 		height: 5vh;
 		border-radius: 20px;
 		background: rgb(55, 55, 55);
 		color: white;
 		cursor: pointer;
+		font-size: 1vw;
+	}
+
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.login-section {
+			font-size: 3.4vw;
+		}
+		.login-form {
+			width: 80vw;
+		}
+
+		form > div > input {
+			width: 70vw;
+		}
+
+		button {
+			width: 30vw;
+			font-size: 3.4vw;
+		}
 	}
 </style>
