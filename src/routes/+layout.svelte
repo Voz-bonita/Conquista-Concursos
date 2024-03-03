@@ -20,7 +20,7 @@
 	main {
 		min-width: 100%;
 		/* Altura da tela - navbar - footer - padding do slot */
-		min-height: calc(100vh - 8vh -8vh);
+		min-height: 84vh;
 		margin: auto;
 	}
 	footer {
