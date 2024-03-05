@@ -4,6 +4,14 @@
 
 <section class="green-theme login-section">
 	<form on:submit|preventDefault={FirebaseCreateUserWithEmailAndPassword} class="login-form">
+		<div class="provider-div">
+			<button type="button" class="provider-btn"
+				><div class="provider-login">
+					<img src="gmail.svg" alt="" width="100%" height="60%" />
+					<span class="provider-text"> Login com Google </span>
+				</div></button
+			>
+		</div>
 		<div class="login-data">
 			<input type="email" name="email" placeholder="exemplo@email.com" />
 			<input type="password" name="password" placeholder="*******" />
@@ -69,6 +77,28 @@
 		color: white;
 		cursor: pointer;
 		font-size: 1vw;
+	}
+
+	.provider-btn {
+		background: whitesmoke;
+		color: black;
+		width: 15vw;
+		height: 7vh;
+	}
+
+	.provider-login {
+		display: grid;
+		grid-template-columns: 20% 80%;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.provider-text {
+		font-size: 1.2vw;
+	}
+	.provider-div {
+		display: flex;
+		justify-content: center;
 	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
