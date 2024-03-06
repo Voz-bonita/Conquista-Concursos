@@ -1,13 +1,16 @@
 <script>
-	import { FirebaseCreateUserWithEmailAndPassword } from '../../firebase.js';
+	import {
+		FirebaseCreateUserWithEmailAndPassword,
+		FirebaseLoginWithGoogle
+	} from '../../firebase.js';
 </script>
 
 <section class="green-theme login-section">
 	<form on:submit|preventDefault={FirebaseCreateUserWithEmailAndPassword} class="login-form">
 		<div class="provider-div">
-			<button type="button" class="provider-btn"
+			<button type="button" class="provider-btn" on:click={FirebaseLoginWithGoogle}
 				><div class="provider-login">
-					<img src="gmail.svg" alt="" width="100%" height="60%" />
+					<img src="gmail.svg" alt="" width="100%" height="70%" />
 					<span class="provider-text"> Login com Google </span>
 				</div></button
 			>
