@@ -1,6 +1,17 @@
 <script>
-	import Navbar from '../lib/navbar.svelte';
+	import Navbar from '$lib/navbar.svelte';
 	import '../globals.css';
+	import { onMount } from 'svelte';
+	import { onAuthStateChanged } from 'firebase/auth';
+	import { authStore } from '../stores/authSotre';
+
+	onMount(() => {
+		const unsubscribe = onAuthStateChanged((user) => {
+			authStore.update((curr) => {
+				return { ...curr, isLoading: false, currentUser: user };
+			});
+		});
+	});
 </script>
 
 <header>

@@ -7,7 +7,9 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 	signInWithRedirect,
-	getRedirectResult
+	getRedirectResult,
+	setPersistence,
+	browserLocalPersistence
 } from 'firebase/auth';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -74,25 +76,19 @@ export const FirebaseLoginWithGoogle = (e) => {
 				// ...
 			});
 	} else {
-		signInWithPopup(auth, provider)
-			.then((result) => {
-				// This gives you a Google Access Token. You can use it to access the Google API.
-				const credential = GoogleAuthProvider.credentialFromResult(result);
-				const token = credential.accessToken;
-				// The signed-in user info.
-				const user = result.user;
-				// IdP data available using getAdditionalUserInfo(result)
+		setPersistence(auth, browserLocalPersistence)
+			.then(() => {
+				// Existing and future Auth states are now persisted in the current
+				// session only. Closing the window would clear any existing state even
+				// if a user forgets to sign out.
 				// ...
+				// New sign-in will be persisted with session persistence.
+				return signInWithPopup(auth, provider);
 			})
 			.catch((error) => {
 				// Handle Errors here.
 				const errorCode = error.code;
 				const errorMessage = error.message;
-				// The email of the user's account used.
-				const email = error.customData.email;
-				// The AuthCredential type that was used.
-				const credential = GoogleAuthProvider.credentialFromError(error);
-				// ...
 			});
 	}
 };
