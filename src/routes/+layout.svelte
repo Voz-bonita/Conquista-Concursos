@@ -3,7 +3,7 @@
 	import '../globals.css';
 	import { onMount } from 'svelte';
 	import { onAuthStateChanged } from 'firebase/auth';
-	import { authStore } from '../stores/authSotre';
+	import { authStore } from '../stores/authStore';
 
 	onMount(() => {
 		const unsubscribe = onAuthStateChanged((user) => {
