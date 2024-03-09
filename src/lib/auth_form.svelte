@@ -37,31 +37,24 @@
 				/>
 			{/if}
 			{#if !passwordMatch}
-				<p class="wrong-password-match">Senhas não conferem</p>
+				<p class="error-message">Senhas não conferem</p>
 			{/if}
 		</div>
 		<div class="login-interaction">
-			<div class="login-alternatives">
-				<a href="/">Esqueci minha senha</a>
-			</div>
+			{#if !register}
+				<div class="login-alternatives">
+					<a href="/">Esqueci minha senha</a>
+				</div>
+			{/if}
 			<div class="login-buttons">
-				{#if register}
-					<button
-						type="button"
-						on:click|preventDefault={() => {
-							register = false;
-							passwordMatch = true;
-						}}>Já tenho uma conta</button
-					>
-				{:else}
-					<button
-						type="button"
-						on:click|preventDefault={() => {
-							register = true;
-						}}>Criar conta</button
-					>
-				{/if}
-				<button type="submit">Logar</button>
+				<button
+					type="button"
+					on:click|preventDefault={() => {
+						register = !register;
+						passwordMatch = true;
+					}}>{register ? 'Já tenho uma conta' : 'Criar conta'}</button
+				>
+				<button type="submit">{register ? 'Finalizar cadastro' : 'Logar'}</button>
 			</div>
 		</div>
 	</form>
@@ -139,7 +132,7 @@
 		display: flex;
 		justify-content: center;
 	}
-	.wrong-password-match {
+	.error-message {
 		font-size: 1.1vw;
 		color: red;
 		text-decoration: underline;
