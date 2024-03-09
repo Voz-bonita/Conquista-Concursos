@@ -7,6 +7,9 @@
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
+	if ($authStore.currentUser) {
+		window.location.href = redirectHref;
+	}
 	async function handleSubmit() {
 		if (register && email && password) {
 			if (password === confirmPassword) {
@@ -37,8 +40,6 @@
 			anyError = true;
 			errorMessage = 'Preencha todos os campos';
 		}
-
-		console.log($authStore.currentUser);
 		if ($authStore.currentUser) {
 			window.location.href = redirectHref;
 		}
