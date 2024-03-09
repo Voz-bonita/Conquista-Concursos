@@ -2,6 +2,8 @@
 	import { authHandlers, authStore } from '../stores/authStore';
 	export let redirectHref = '/perfil';
 	let register = false;
+	let recover = false;
+	let recoverMessage = '';
 	var anyError = false;
 	var errorMessage = '';
 	let email = '';
@@ -11,7 +13,7 @@
 		window.location.href = redirectHref;
 	}
 	async function handleSubmit() {
-		if (register && email && password) {
+		if (register && !recover && email && password) {
 			if (password === confirmPassword) {
 				await authHandlers.signUp(email, password).catch((error) => {
 					const code = error.code;
@@ -26,7 +28,7 @@
 				anyError = true;
 				errorMessage = 'Senhas não coincidem';
 			}
-		} else if (!register && email && password) {
+		} else if (!register && !recover && email && password) {
 			await authHandlers.signIn(email, password).catch((error) => {
 				const code = error.code;
 				anyError = true;
@@ -36,6 +38,9 @@
 						break;
 				}
 			});
+		} else if (recover && email) {
+			await authHandlers.resetPassword(email);
+			recoverMessage = 'E-mail de recuperação enviado';
 		} else {
 			anyError = true;
 			errorMessage = 'Preencha todos os campos';
@@ -56,9 +61,12 @@
 				</div></button
 			>
 		</div> -->
+
 		<div class="login-data">
 			<input bind:value={email} type="email" name="email" placeholder="exemplo@email.com" />
-			<input bind:value={password} type="password" name="password" placeholder="Senha" />
+			{#if !recover}
+				<input bind:value={password} type="password" name="password" placeholder="Senha" />
+			{/if}
 			{#if register}
 				<input
 					bind:value={confirmPassword}
@@ -72,12 +80,35 @@
 			{/if}
 		</div>
 		<div class="login-interaction">
-			{#if !register}
-				<div class="login-alternatives">
-					<a href="/">Esqueci minha senha</a>
-				</div>
-			{/if}
+			<div class="login-alternatives">
+				{#if !register && !recover}
+					<button
+						type="button"
+						class="forgot-password"
+						on:click={() => {
+							recover = true;
+							register = false;
+						}}
+					>
+						Esqueci minha senha
+					</button>
+				{/if}
+				{#if recover}
+					<p class="recover-sent">{recoverMessage}</p>
+				{/if}
+			</div>
+
 			<div class="login-buttons">
+				{#if recover}
+					<button
+						type="button"
+						on:click|preventDefault={() => {
+							register = false;
+							recover = false;
+							anyError = false;
+						}}>Voltar ao login</button
+					>
+				{/if}
 				<button
 					type="button"
 					on:click|preventDefault={() => {
@@ -85,7 +116,9 @@
 						anyError = false;
 					}}>{register ? 'Já tenho uma conta' : 'Criar conta'}</button
 				>
-				<button type="submit">{register ? 'Finalizar cadastro' : 'Logar'}</button>
+				<button type="submit"
+					>{register ? 'Finalizar cadastro' : recover ? 'Recuperar' : 'Login'}</button
+				>
 			</div>
 		</div>
 	</form>
@@ -166,6 +199,21 @@
 	.error-message {
 		font-size: 1.1vw;
 		color: red;
+		text-decoration: underline;
+	}
+
+	.forgot-password {
+		background-color: transparent;
+		text-decoration: underline;
+		color: peru;
+		border: none;
+		cursor: pointer;
+		min-width: 20vw;
+	}
+
+	.recover-sent {
+		color: rgb(0, 0, 0);
+		font-size: 1vw;
 		text-decoration: underline;
 	}
 
