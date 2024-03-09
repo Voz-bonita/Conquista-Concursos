@@ -25,7 +25,7 @@ export const authHandlers = {
 		await signOut(auth);
 	},
 	resetPassword: async (email) => {
-		await sendPasswordResetEmail(email);
+		await sendPasswordResetEmail(auth, email);
 	},
 	updateEmail: async (email) => {
 		await updateEmail(email);
