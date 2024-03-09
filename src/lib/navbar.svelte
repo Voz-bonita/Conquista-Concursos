@@ -1,10 +1,16 @@
 <script>
-	import { authStore } from '../stores/authStore';
+	import { authStore, authHandlers } from '../stores/authStore';
 
 	let name;
 	authStore.subscribe((curr) => {
 		name = curr?.currentUser?.email;
 	});
+
+	async function handleLogout() {
+		await authHandlers.signOut();
+		window.location.href = '/login';
+		return;
+	}
 </script>
 
 <nav class="top-nav">
@@ -23,7 +29,9 @@
 				<li><a href="/sobre">Sobre</a></li>
 				{#if $authStore.currentUser}
 					<li><a href="/perfil"><img src="account.svg" alt="" class="account-icon" />{name}</a></li>
-					<li><a href="/login" class="logout-btn">Sair</a></li>
+					<li>
+						<a href="/" class="logout-btn" on:click|preventDefault={handleLogout}>Sair</a>
+					</li>
 				{:else}
 					<li><a href="/login">Login</a></li>
 				{/if}
