@@ -12,6 +12,7 @@
 				return { ...curr, isLoading: false, currentUser: user };
 			});
 		});
+		return unsubscribe;
 	});
 </script>
 
