@@ -32,6 +32,9 @@
 						break;
 				}
 			});
+		} else {
+			anyError = true;
+			errorMessage = 'Preencha todos os campos';
 		}
 	}
 </script>
