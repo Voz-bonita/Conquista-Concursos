@@ -1,3 +1,12 @@
+<script>
+	import { authStore } from '../stores/authStore';
+
+	let name;
+	authStore.subscribe((curr) => {
+		name = curr?.currentUser?.email;
+	});
+</script>
+
 <nav class="top-nav">
 	<div class="nav-title">
 		<img src="award_star.svg" alt="" width="10%" height="10%" />
@@ -8,11 +17,18 @@
 		<label class="menu-button-container" for="menu-toggle">
 			<div class="menu-button"></div>
 		</label>
-		<ul class="nav-menu">
-			<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
-			<li><a href="/sobre">Sobre</a></li>
-			<li><a href="/login">Login</a></li>
-		</ul>
+		<div class="nav-utils">
+			<ul class="nav-menu">
+				<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
+				<li><a href="/sobre">Sobre</a></li>
+				{#if $authStore.currentUser}
+					<li><a href="/perfil"><img src="account.svg" alt="" class="account-icon" />{name}</a></li>
+					<li><a href="/login" class="logout-btn">Sair</a></li>
+				{:else}
+					<li><a href="/login">Login</a></li>
+				{/if}
+			</ul>
+		</div>
 	</div>
 </nav>
 
@@ -52,6 +68,11 @@
 		font-size: 1.8vh;
 	}
 
+	ul li a {
+		display: flex;
+		color: black;
+	}
+
 	ul li a:hover {
 		box-shadow: 0 0 0 1px black;
 	}
@@ -64,6 +85,11 @@
 	.simulado:hover {
 		color: black;
 		background-color: steelblue;
+	}
+
+	.logout-btn {
+		background: rgb(184, 0, 0);
+		color: white;
 	}
 
 	.nav-menu {
@@ -167,6 +193,9 @@
 		}
 		.nav-menu > li:not(:last-child) {
 			border-bottom: 1px solid #444;
+		}
+		.account-icon {
+			filter: invert(94%) sepia(6%) saturate(0%) hue-rotate(113deg) brightness(105%) contrast(108%);
 		}
 	}
 </style>
