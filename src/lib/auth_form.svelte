@@ -1,15 +1,23 @@
 <script>
 	import { authHandlers } from '../stores/authStore';
 	let register = false;
-	let passwordMatch = true;
+	var anyError = false;
+	var errorMessage = '';
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
 	async function handleSubmit() {
 		if (register && password === confirmPassword) {
-			authHandlers.signUp(email, password);
+			await authHandlers.signUp(email, password).catch((error) => {
+				const code = error.code;
+				if (code === 'auth/email-already-in-use') {
+					anyError = true;
+					errorMessage = 'E-mail já cadastrado';
+				}
+			});
 		} else if (register && password != confirmPassword) {
-			passwordMatch = false;
+			anyError = true;
+			errorMessage = 'Senhas não coincidem';
 		} else {
 		}
 	}
@@ -36,8 +44,8 @@
 					placeholder="Confirme a senha"
 				/>
 			{/if}
-			{#if !passwordMatch}
-				<p class="error-message">Senhas não conferem</p>
+			{#if anyError}
+				<p class="error-message">{errorMessage}</p>
 			{/if}
 		</div>
 		<div class="login-interaction">
@@ -51,7 +59,7 @@
 					type="button"
 					on:click|preventDefault={() => {
 						register = !register;
-						passwordMatch = true;
+						error = false;
 					}}>{register ? 'Já tenho uma conta' : 'Criar conta'}</button
 				>
 				<button type="submit">{register ? 'Finalizar cadastro' : 'Logar'}</button>
