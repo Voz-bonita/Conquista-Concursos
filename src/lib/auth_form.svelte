@@ -75,7 +75,7 @@
 					type="button"
 					on:click|preventDefault={() => {
 						register = !register;
-						error = false;
+						anyError = false;
 					}}>{register ? 'Já tenho uma conta' : 'Criar conta'}</button
 				>
 				<button type="submit">{register ? 'Finalizar cadastro' : 'Logar'}</button>
