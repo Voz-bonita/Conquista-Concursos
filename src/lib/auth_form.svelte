@@ -7,18 +7,31 @@
 	let password = '';
 	let confirmPassword = '';
 	async function handleSubmit() {
-		if (register && password === confirmPassword) {
-			await authHandlers.signUp(email, password).catch((error) => {
-				const code = error.code;
-				if (code === 'auth/email-already-in-use') {
+		if (register && email && password) {
+			if (password === confirmPassword) {
+				await authHandlers.signUp(email, password).catch((error) => {
+					const code = error.code;
 					anyError = true;
-					errorMessage = 'E-mail já cadastrado';
+					switch (code) {
+						case 'auth/email-already-in-use':
+							errorMessage = 'E-mail já cadastrado';
+							break;
+					}
+				});
+			} else {
+				anyError = true;
+				errorMessage = 'Senhas não coincidem';
+			}
+		} else if (!register && email && password) {
+			await authHandlers.signIn(email, password).catch((error) => {
+				const code = error.code;
+				anyError = true;
+				switch (code) {
+					case 'auth/invalid-credential':
+						errorMessage = 'E-mail e/ou senha inválida';
+						break;
 				}
 			});
-		} else if (register && password != confirmPassword) {
-			anyError = true;
-			errorMessage = 'Senhas não coincidem';
-		} else {
 		}
 	}
 </script>
