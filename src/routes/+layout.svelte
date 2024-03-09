@@ -2,11 +2,12 @@
 	import Navbar from '$lib/navbar.svelte';
 	import '../globals.css';
 	import { onMount } from 'svelte';
+	import { auth } from '$lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
 	import { authStore } from '../stores/authStore';
 
 	onMount(() => {
-		const unsubscribe = onAuthStateChanged((user) => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			authStore.update((curr) => {
 				return { ...curr, isLoading: false, currentUser: user };
 			});

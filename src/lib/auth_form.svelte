@@ -1,5 +1,6 @@
 <script>
-	import { authHandlers } from '../stores/authStore';
+	import { authHandlers, authStore } from '../stores/authStore';
+	export let redirectHref = '/perfil';
 	let register = false;
 	var anyError = false;
 	var errorMessage = '';
@@ -35,6 +36,11 @@
 		} else {
 			anyError = true;
 			errorMessage = 'Preencha todos os campos';
+		}
+
+		console.log($authStore.currentUser);
+		if ($authStore.currentUser) {
+			window.location.href = redirectHref;
 		}
 	}
 </script>
