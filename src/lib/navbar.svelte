@@ -3,7 +3,7 @@
 
 	let name;
 	authStore.subscribe((curr) => {
-		name = curr?.currentUser?.email;
+		name = curr?.currentUser?.displayName;
 	});
 
 	async function handleLogout() {

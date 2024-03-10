@@ -9,7 +9,8 @@ import {
 	updatePassword,
 	GoogleAuthProvider,
 	signInWithPopup,
-	signInWithRedirect
+	signInWithRedirect,
+	updateProfile
 } from 'firebase/auth';
 
 const provider = new GoogleAuthProvider();
@@ -19,8 +20,14 @@ export const authStore = writable({
 });
 
 export const authHandlers = {
-	signUp: async (email, password) => {
-		await createUserWithEmailAndPassword(auth, email, password);
+	signUp: async (name, email, password) => {
+		try {
+			await createUserWithEmailAndPassword(auth, email, password);
+			await updateProfile(auth.currentUser, { displayName: name });
+			return '200';
+		} catch (err) {
+			return err;
+		}
 	},
 	signIn: async (email, password) => {
 		await signInWithEmailAndPassword(auth, email, password);

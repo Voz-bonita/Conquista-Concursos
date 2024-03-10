@@ -6,6 +6,8 @@
 	let recoverMessage = '';
 	var anyError = false;
 	var errorMessage = '';
+	let name = '';
+	let surname = '';
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
@@ -13,17 +15,18 @@
 		window.location.href = redirectHref;
 	}
 	async function handleSubmit() {
-		if (register && !recover && email && password) {
+		if (register && !recover && email && password && name && surname) {
 			if (password === confirmPassword) {
-				await authHandlers.signUp(email, password).catch((error) => {
-					const code = error.code;
+				const fullName = `${name} ${surname}`;
+				const signUpResult = await authHandlers.signUp(fullName, email, password);
+				if (signUpResult !== '200') {
 					anyError = true;
-					switch (code) {
+					switch (signUpResult.code) {
 						case 'auth/email-already-in-use':
 							errorMessage = 'E-mail já cadastrado';
 							break;
 					}
-				});
+				}
 			} else {
 				anyError = true;
 				errorMessage = 'Senhas não coincidem';
@@ -70,6 +73,22 @@
 		</div>
 
 		<div class="login-data">
+			{#if register}
+				<input
+					bind:value={name}
+					type="text"
+					minlength="2"
+					name="name"
+					placeholder="Primeiro mome"
+				/>
+				<input
+					bind:value={surname}
+					type="text"
+					minlength="2"
+					name="surname"
+					placeholder="Último nome"
+				/>
+			{/if}
 			<input bind:value={email} type="email" name="email" placeholder="exemplo@email.com" />
 			{#if !recover}
 				<input bind:value={password} type="password" name="password" placeholder="Senha" />
