@@ -18,26 +18,24 @@
 		<img src="award_star.svg" alt="" width="10%" height="10%" />
 		<a href="/">Conquista Concursos</a>
 	</div>
-	<div class="nav-nav">
-		<input id="menu-toggle" type="checkbox" />
-		<label class="menu-button-container" for="menu-toggle">
-			<div class="menu-button"></div>
-		</label>
-		<div class="nav-utils">
-			<ul class="nav-menu">
-				<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
-				<li><a href="/sobre">Sobre</a></li>
-				{#if $authStore.currentUser}
-					<li><a href="/perfil"><img src="account.svg" alt="" class="account-icon" />{name}</a></li>
-					<li>
-						<a href="/" class="logout-btn" on:click|preventDefault={handleLogout}>Sair</a>
-					</li>
-				{:else}
-					<li><a href="/login">Login</a></li>
-				{/if}
-			</ul>
-		</div>
-	</div>
+	<input id="menu-toggle" type="checkbox" />
+	<label class="menu-button-container" for="menu-toggle">
+		<div class="menu-button"></div>
+	</label>
+	<ul class="nav-menu">
+		<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
+		<li><a href="/sobre">Sobre</a></li>
+		{#if $authStore.currentUser}
+			<li><a href="/perfil"><img src="account.svg" alt="" class="account-icon" />{name}</a></li>
+			<li>
+				<a href="/" class="logout-btn" on:click|preventDefault={handleLogout}
+					><img src="logout.svg" alt="" />Sair</a
+				>
+			</li>
+		{:else}
+			<li><a href="/login">Login</a></li>
+		{/if}
+	</ul>
 </nav>
 
 <style>
@@ -47,12 +45,11 @@
 		flex-direction: row;
 		align-items: center;
 		background: rgb(241, 241, 241);
-		min-height: 8vh;
+		height: 8vh;
 		padding: 0 3vw 0 3vw;
 	}
 
-	.nav-title,
-	.nav-nav {
+	.nav-title {
 		display: flex;
 		align-items: center;
 		justify-content: space-around;
@@ -96,8 +93,10 @@
 	}
 
 	.logout-btn {
-		background: rgb(184, 0, 0);
-		color: white;
+		color: red;
+	}
+	.logout-btn > img {
+		filter: invert(17%) sepia(71%) saturate(4452%) hue-rotate(348deg) brightness(92%) contrast(100%);
 	}
 
 	.nav-menu {
@@ -128,7 +127,7 @@
 		display: block;
 		background-color: black;
 		position: absolute;
-		height: 0.2vh;
+		height: 0.4vh;
 		width: 6vw;
 		transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
 		border-radius: 2px;
@@ -136,12 +135,12 @@
 
 	.menu-button::before {
 		content: '';
-		margin-top: -20%;
+		margin-top: -30%;
 	}
 
 	.menu-button::after {
 		content: '';
-		margin-top: 20%;
+		margin-top: 30%;
 	}
 
 	#menu-toggle:checked + .menu-button-container .menu-button::before {
@@ -198,6 +197,10 @@
 		.nav-menu > li > a {
 			margin-right: 3vw;
 			color: white;
+		}
+
+		.logout-btn {
+			color: red !important;
 		}
 		.nav-menu > li:not(:last-child) {
 			border-bottom: 1px solid #444;
