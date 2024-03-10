@@ -2,11 +2,11 @@
 	export let branch = '';
 	export let description = '';
 	export let icon_path = '';
-	export let icon_style = '';
+	export let icon_class = '';
 </script>
 
 <div class="card">
-	<img src={icon_path} alt="" style={icon_style} width="20%" height="20%" />
+	<img src={icon_path} alt="" class={icon_class} width="20%" height="20%" />
 	<p class="branch">{branch}</p>
 	<p class="description">{description}</p>
 </div>

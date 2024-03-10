@@ -29,7 +29,7 @@
 			<li><a href="/perfil"><img src="account.svg" alt="" class="account-icon" />{name}</a></li>
 			<li>
 				<a href="/" class="logout-btn" on:click|preventDefault={handleLogout}
-					><img src="logout.svg" alt="" />Sair</a
+					><img src="logout.svg" alt="" class="red-icon" />Sair</a
 				>
 			</li>
 		{:else}
@@ -94,9 +94,6 @@
 
 	.logout-btn {
 		color: red;
-	}
-	.logout-btn > img {
-		filter: invert(17%) sepia(71%) saturate(4452%) hue-rotate(348deg) brightness(92%) contrast(100%);
 	}
 
 	.nav-menu {
