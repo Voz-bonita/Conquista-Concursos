@@ -82,5 +82,14 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		margin: 1vh 0 1vh 0;
+	}
+
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.grid-template {
+			grid-template-columns: 75%;
+			min-height: calc(100vh - 8vh - 8vh);
+			justify-content: center;
+		}
 	}
 </style>
