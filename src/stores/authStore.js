@@ -6,9 +6,13 @@ import {
 	signInWithEmailAndPassword,
 	signOut,
 	updateEmail,
-	updatePassword
+	updatePassword,
+	GoogleAuthProvider,
+	signInWithPopup,
+	signInWithRedirect
 } from 'firebase/auth';
 
+const provider = new GoogleAuthProvider();
 export const authStore = writable({
 	isLoading: true,
 	currentUser: null
@@ -32,5 +36,11 @@ export const authHandlers = {
 	},
 	updatePassword: async (email) => {
 		await updatePassword(auth, email);
+	},
+	GoogleSignIn: async () => {
+		await signInWithPopup(auth, provider);
+	},
+	GoogleMobileSignIn: async () => {
+		await signInWithRedirect(auth, provider);
 	}
 };

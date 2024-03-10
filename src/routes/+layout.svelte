@@ -11,6 +11,9 @@
 			authStore.update((curr) => {
 				return { ...curr, isLoading: false, currentUser: user };
 			});
+			if (window.location.pathname === '/login' && $authStore?.currentUser) {
+				window.location.href = '/perfil';
+			}
 		});
 		return unsubscribe;
 	});

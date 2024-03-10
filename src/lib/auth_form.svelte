@@ -45,22 +45,29 @@
 			anyError = true;
 			errorMessage = 'Preencha todos os campos';
 		}
-		if ($authStore.currentUser) {
-			window.location.href = redirectHref;
+	}
+	async function handleProviderLogin() {
+		if (window.outerWidth <= 700) {
+			window.sessionStorage.setItem('pending', 1);
+			await authHandlers.GoogleMobileSignIn();
+		} else {
+			await authHandlers.GoogleSignIn().catch((error) => {
+				console.log(error.code);
+			});
 		}
 	}
 </script>
 
 <section class="green-theme login-section">
 	<form on:submit|preventDefault={handleSubmit} class="login-form">
-		<!-- <div class="provider-div">
-			<button type="button" class="provider-btn" on:click={FirebaseLoginWithGoogle}
+		<div class="provider-div">
+			<button type="button" class="provider-btn" on:click={handleProviderLogin}
 				><div class="provider-login">
 					<img src="gmail.svg" alt="" width="100%" height="70%" />
 					<span class="provider-text"> Login com Google </span>
 				</div></button
 			>
-		</div> -->
+		</div>
 
 		<div class="login-data">
 			<input bind:value={email} type="email" name="email" placeholder="exemplo@email.com" />
