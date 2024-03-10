@@ -1,5 +1,5 @@
 <script>
-	import CardSimulado from '../../lib/card_simulado.svelte';
+	import CardSimulado from '$lib/components/card_simulado.svelte';
 	let white_icon =
 		'filter: invert(94%) sepia(6%) saturate(0%) hue-rotate(113deg) brightness(105%) contrast(108%)';
 	let blue_icon =

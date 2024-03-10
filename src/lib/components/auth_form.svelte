@@ -1,5 +1,5 @@
 <script>
-	import { authHandlers, authStore } from '../stores/authStore';
+	import { authHandlers, authStore } from '$lib/stores/authStore';
 	export let redirectHref = '/perfil';
 	let register = false;
 	let recover = false;

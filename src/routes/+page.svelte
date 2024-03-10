@@ -1,6 +1,6 @@
 <script>
-	import FeatureBox from '../lib/feature_box.svelte';
-	import PricingCard from '../lib/pricing_card.svelte';
+	import FeatureBox from '$lib/components/feature_box.svelte';
+	import PricingCard from '$lib/components/pricing_card.svelte';
 </script>
 
 <div class="feature-display">

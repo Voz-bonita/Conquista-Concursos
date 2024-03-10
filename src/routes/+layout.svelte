@@ -1,10 +1,10 @@
 <script>
-	import Navbar from '$lib/navbar.svelte';
+	import Navbar from '$lib/components/navbar.svelte';
 	import '../globals.css';
 	import { onMount } from 'svelte';
 	import { auth } from '$lib/firebase';
 	import { onAuthStateChanged } from 'firebase/auth';
-	import { authStore } from '../stores/authStore';
+	import { authStore } from '$lib/stores/authStore';
 
 	onMount(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {

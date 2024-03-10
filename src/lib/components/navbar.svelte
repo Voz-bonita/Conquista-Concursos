@@ -1,5 +1,5 @@
 <script>
-	import { authStore, authHandlers } from '../stores/authStore';
+	import { authStore, authHandlers } from '$lib/stores/authStore';
 
 	let name;
 	authStore.subscribe((curr) => {
