@@ -1,15 +1,25 @@
 <script>
+	import { databaseHandler } from '$lib/stores/databaseStore'
+
 	export let branch = '';
 	export let description = '';
 	export let icon_path = '';
 	export let icon_class = '';
+	export let contestId = ''
+
+	const goToContest = () => {
+		databaseHandler.updateContest(contestId)
+		window.location=`/simulados/${contestId}`;
+	}
 </script>
 
-<div class="card">
+
+<button class="card" on:click|preventDefault={goToContest}>
 	<img src={icon_path} alt="" class={icon_class} width="20%" height="20%" />
 	<p class="branch">{branch}</p>
 	<p class="description">{description}</p>
-</div>
+</button>
+
 
 <style>
 	.card {
