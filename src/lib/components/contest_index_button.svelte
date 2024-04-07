@@ -1,11 +1,12 @@
 <script>
     export let index = "";
-    export let checked = false;
-    let btnClass = "index clickable";
-    if (checked) {btnClass = btnClass + " checked"}
 </script>
 
-<button class={btnClass}>Simulado {index}</button>
+<label for={index} class="index clickable">
+    <input id={index} type="radio" name="contest_index" style="display: none;"/>
+    <label for={index} class="contest-option-name">Simulado {index}</label>
+</label>
+
 
 <style>
     .index {
@@ -22,8 +23,8 @@
         font-size: 1.2vw;
     }
 
-    .checked {
-        background-color: steelblue;
+    label:has(>input[type="radio"]:checked) {
+        background: rgb(26, 25, 25);
         color: white;
     }
 
