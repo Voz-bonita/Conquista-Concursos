@@ -8,7 +8,6 @@
 	export let contestId = ''
 
 	const goToContest = () => {
-		databaseHandler.updateContest(contestId)
 		window.location=`/simulados/${contestId}`;
 	}
 </script>

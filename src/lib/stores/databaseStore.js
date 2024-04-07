@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 import { db } from '$lib/firebase';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 
 export const databaseStore = writable({
 	constestsCollection: null,
@@ -27,17 +27,8 @@ export const databaseHandler = {
 	getCollection: (collectionName) => {
 		return collection(db, collectionName);
 	},
-	getContestById: async (id) => {
-		const col = databaseStore.currentContestCollection;
-		console.log('aaaaaaaa');
-		const temp = await col.get(id).data();
-		console.log(temp);
-	},
-
-	updateContest: (contestId) => {
-		const newData = contestCollection.get(contestId).data();
-		databaseStore.update((curr) => {
-			return { ...curr, currentContestData: newData };
-		});
+	getContestById: async (collectionName, id) => {
+		const docReference = doc(db, `${collectionName}/${id}`);
+		return await getDoc(docReference);
 	}
 };
