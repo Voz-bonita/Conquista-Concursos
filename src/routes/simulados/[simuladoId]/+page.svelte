@@ -19,7 +19,7 @@
                 <ContestOption name={key} numberOfQuestions={contestData.objective_steps[key]}/>
             {/each}
             {#each nonObjectiveKeys as key}
-                <ContestOption name={key}/>
+                <ContestOption name={key} numberOfQuestions=1/>
             {/each}
         </div>
         <div class="contest-option-row">
