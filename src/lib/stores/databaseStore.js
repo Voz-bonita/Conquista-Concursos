@@ -11,11 +11,12 @@ export const databaseStore = writable({
 
 export const databaseHandler = {
 	getAllContests: async (contestsCollection) => {
-		const newData = {};
+		const newData = [];
 		const allDocs = await getDocs(contestsCollection);
 		allDocs.forEach((doc) => {
-			console.log(doc);
-			newData[doc.id] = doc.data();
+			const auxData = doc.data();
+			auxData['id'] = doc.id;
+			newData.push(auxData);
 		});
 		databaseStore.update((curr) => {
 			return { ...curr, contestsData: newData };

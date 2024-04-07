@@ -16,5 +16,5 @@ export async function load() {
 		});
 	}
 
-	return { contestsData };
+	return { contests: contestsData };
 }
