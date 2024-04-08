@@ -1,27 +1,30 @@
 <script>
 	import FeatureBox from '$lib/components/feature_box.svelte';
 	import PricingCard from '$lib/components/pricing_card.svelte';
+	import bolt from '$lib/assets/bolt.svg'
+	import explore from '$lib/assets/explore.svg'
+	import medal from '$lib/assets/medal.svg'
 </script>
 
 <div class="feature-display">
 	<section class="grid-template green-theme">
 		<div class="grid-item">
 			<FeatureBox
-				path="bolt.svg"
+				path={bolt}
 				feature="Acelere seus estudos com IA"
 				description="Contamos com inteligência artificial aplicada para criar exercícios inéditos que pareçam tão fidedignos quanto no dia da prova, além de te ajudar a entender as soluções"
 			/>
 		</div>
 		<div class="grid-item">
 			<FeatureBox
-				path="explore.svg"
+				path={explore}
 				feature="+2 mil questões para você treinar"
 				description="Acreditamos que a melhor forma de treinar exercícios é com exercícios da banca que vai elaborar a prova, atualmente nosso foco é no CNU"
 			/>
 		</div>
 		<div class="grid-item">
 			<FeatureBox
-				path="medal.svg"
+				path={medal}
 				feature="Conquiste a vaga dos seus sonhos"
 				description="Se o que te faltava para conquistar esse sonho era um bom simulado, então chegou a sua vez!"
 			/>

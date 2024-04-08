@@ -2,6 +2,10 @@
 	import CardSimulado from '$lib/components/card_simulado.svelte';
 	export let data;
 	const { contests } = data;
+
+	contests.forEach((contest) => {
+		contest.icon = new URL(`../../lib/assets/${contest.icon}`, import.meta.url).href
+	});
 </script>
 
 <div>
