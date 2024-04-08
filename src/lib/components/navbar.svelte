@@ -1,4 +1,5 @@
 <script>
+	import award_star from '$lib/assets/award_star.svg'
 	import { authStore, authHandlers } from '$lib/stores/authStore';
 
 	let name;
@@ -15,7 +16,7 @@
 
 <nav class="top-nav">
 	<div class="nav-title">
-		<img src="award_star.svg" alt="" width="10%" height="10%" />
+		<img src={award_star} alt="" width="10%" height="10%" />
 		<a href="/">Conquista Concursos</a>
 	</div>
 	<input id="menu-toggle" type="checkbox" />

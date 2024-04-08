@@ -1,6 +1,6 @@
 import { databaseHandler, databaseStore } from '$lib/stores/databaseStore.js';
 
-export async function load({ fetch, params }) {
+export async function load({ params }) {
 	const id = params.simuladoId;
 	let singleContestData;
 	await databaseHandler.getContestById('available_contests', id).then((snapshot) => {

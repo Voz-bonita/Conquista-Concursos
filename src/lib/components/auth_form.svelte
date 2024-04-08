@@ -1,5 +1,6 @@
 <script>
 	import { authHandlers, authStore } from '$lib/stores/authStore';
+	import gmailLogo from '$lib/assets/gmail.svg'
 	export let redirectHref = '/perfil';
 	let register = false;
 	let recover = false;
@@ -61,12 +62,18 @@
 	}
 </script>
 
+<!-- TODO
+	Prettify the Frontend
+	Add responsiveness by media query
+	Send e-mail verification
+	Add general error message
+ -->
 <section class="green-theme login-section">
 	<form on:submit|preventDefault={handleSubmit} class="login-form">
 		<div class="provider-div">
 			<button type="button" class="provider-btn" on:click={handleProviderLogin}
 				><div class="provider-login">
-					<img src="gmail.svg" alt="" width="100%" height="70%" />
+					<img src={gmailLogo} alt="" width="80%" height="80%" />
 					<span class="provider-text"> Login com Google </span>
 				</div></button
 			>
