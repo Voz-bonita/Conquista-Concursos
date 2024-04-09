@@ -1,9 +1,13 @@
 <script>
-    export let index = "";
+    export let index = 0;
 </script>
 
 <label for={index} class="index clickable">
-    <input id={index} type="radio" name="contest_index" style="display: none;"/>
+    {#if index == 1}
+        <input id={index} type="radio" name="contest_index" style="display: none;" checked/>
+    {:else}
+        <input id={index} type="radio" name="contest_index" style="display: none;"/>
+    {/if}
     <label for={index} class="contest-option-name">Simulado {index}</label>
 </label>
 

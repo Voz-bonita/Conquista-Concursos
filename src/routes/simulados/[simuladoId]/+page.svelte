@@ -1,12 +1,10 @@
 <script>
     import ContestOption from '$lib/components/contest_option.svelte'
     import ContestIndexButton from '$lib/components/contest_index_button.svelte'
-    
     export let data;
     const { contestData } = data
     const contests = [1, 2, 3, 4, 5]
-    const objectiveKeys = Object.keys(contestData.objective_steps)
-    const nonObjectiveKeys = contestData.nonobjective_steps
+    const stepCount = contestData.steps.length
     const iconUrl = new URL(`../../../lib/assets/${contestData.icon}`, import.meta.url).href
 </script>
 
@@ -17,11 +15,14 @@
         <p class="contest-title">{contestData.title}</p>
         <p class="contest-subtitle">{contestData.subtitle}</p>
         <div class="contest-option-row">
-            {#each objectiveKeys as key}
-                <ContestOption name={key} numberOfQuestions={contestData.objective_steps[key]}/>
-            {/each}
-            {#each nonObjectiveKeys as key}
-                <ContestOption name={key} numberOfQuestions=1/>
+            {#each contestData.steps as contestStep, i (i)}
+                <ContestOption 
+                    id={contestStep.id}
+                    name={contestStep.name} 
+                    numberOfQuestions={contestStep.question_count} 
+                    numberOfCards={stepCount}
+                    index={i}
+                />
             {/each}
         </div>
         <div class="contest-option-row">

@@ -1,5 +1,7 @@
 <script>
     export let name = "";
+    export let databaseId = "";
+    export let index = 0;
     export let numberOfQuestions = 1;
     export let numberOfCards = 4;
     const widthPercent = 0.8/numberOfCards*100;
@@ -8,7 +10,11 @@
 </script>
 
 <label for={name} class="card clickable" style={styleWidth}>
-    <input id={name} type="radio" name="contest_kind" style="display: none;"/>
+    {#if index == 0}
+        <input id={name} type="radio" name="contest_kind" style="display: none;" value={databaseId} checked/>
+    {:else}
+        <input id={name} type="radio" name="contest_kind" style="display: none;" value={databaseId}/>
+    {/if}
     <label for={name} class="contest-option-name">{name}</label>
     <label for={name} class="extra-info">{numberOfQuestions} {numberOfQuestions > 1 ? "Questões": "Questão"}</label>
 </label>
