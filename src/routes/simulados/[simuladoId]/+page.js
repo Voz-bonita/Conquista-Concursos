@@ -1,6 +1,6 @@
 import { databaseHandler, databaseStore } from '$lib/stores/databaseStore.js';
 
-export async function load({ params }) {
+export async function load({ params, route, url }) {
 	const id = params.simuladoId;
 	let singleContestData;
 	await databaseHandler.getContestById('available_contests', id).then((snapshot) => {
@@ -10,5 +10,7 @@ export async function load({ params }) {
 	databaseStore.update((curr) => {
 		return { ...curr, currentContestCollection: singleContestData };
 	});
+
+	singleContestData['route'] = url.pathname;
 	return { contestData: singleContestData };
 }

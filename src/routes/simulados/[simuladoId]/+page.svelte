@@ -1,11 +1,18 @@
 <script>
-    import ContestOption from '$lib/components/contest_option.svelte'
+    import ContestRadio from '$lib/components/contest_radio.svelte'
     import ContestIndexButton from '$lib/components/contest_index_button.svelte'
+    import { redirect } from '@sveltejs/kit'
     export let data;
     const { contestData } = data
     const contests = [1, 2, 3, 4, 5]
-    const stepCount = contestData.steps.length
+
     const iconUrl = new URL(`../../../lib/assets/${contestData.icon}`, import.meta.url).href
+    let contestId;
+
+    const startContest = () => {
+        const contestUrl = `${contestData.route}/${contestId}+simulado1`
+        throw redirect(302, contestUrl)
+    }
 </script>
 
 <div class="green-theme container">
@@ -14,22 +21,16 @@
         <img src={iconUrl} class={contestData.icon_style} alt="" width="4%" height="4%">
         <p class="contest-title">{contestData.title}</p>
         <p class="contest-subtitle">{contestData.subtitle}</p>
-        <div class="contest-option-row">
-            {#each contestData.steps as contestStep, i (i)}
-                <ContestOption 
-                    id={contestStep.id}
-                    name={contestStep.name} 
-                    numberOfQuestions={contestStep.question_count} 
-                    numberOfCards={stepCount}
-                    index={i}
-                />
-            {/each}
-        </div>
+        <ContestRadio steps={contestData.steps} bind:userSelected={contestId}/>
         <div class="contest-option-row">
             {#each contests as i}
                 <ContestIndexButton index={i}/>
             {/each}
         </div>
+    </div>
+
+    <div class="directional-btns-div">
+        <button class="start-button clickable" on:click|preventDefault={startContest}>Começar</button>
     </div>
 </div>
 
@@ -79,5 +80,18 @@
     .contest-subtitle {
         font-size: 1.4vw;
 		margin: 6px;
+    }
+    .start-button {
+        font-size: 1.2vw;
+        background: steelblue;
+        color: white;
+        border-radius: 20px;
+        border: 1px solid black;
+        padding: 10px 40px 10px 40px;
+        float: right;
+    }
+    .directional-btns-div {
+        margin-top: 1vh;
+        width: 80%;
     }
 </style>
