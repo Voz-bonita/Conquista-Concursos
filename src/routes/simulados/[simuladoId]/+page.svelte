@@ -9,9 +9,9 @@
 </script>
 
 <div class="green-theme container">
+    <p class="contest-general">{contestData.short_name} - {contestData.full_name}</p>
     <div class="contest-frame">
-        <p class="contest-general">{contestData.contest}</p>
-        <img src={iconUrl} class={contestData.icon_style} alt="" width="5%" height="5%">
+        <img src={iconUrl} class={contestData.icon_style} alt="" width="4%" height="4%">
         <p class="contest-title">{contestData.title}</p>
         <p class="contest-subtitle">{contestData.subtitle}</p>
         <div class="contest-option-row">
@@ -51,6 +51,7 @@
         width: 80%;
         margin-top: 2vh;
         padding-bottom: 2vh;
+        padding-top: 2vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -72,10 +73,11 @@
         font-weight: bold;
 		font-size: 2vw;
 		margin: 6px;
-        color: steelblue;
+        color: rgb(71, 126, 117);
+        margin-top: 2vh;
     }
     .contest-subtitle {
-        font-size: 1.2vw;
+        font-size: 1.4vw;
 		margin: 6px;
     }
 </style>
