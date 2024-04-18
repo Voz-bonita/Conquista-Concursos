@@ -1,18 +1,20 @@
 <script>
     import ContestRadio from '$lib/components/contest_radio.svelte'
     import ContestIndexButton from '$lib/components/contest_index_button.svelte'
-    import { redirect } from '@sveltejs/kit'
+    import { goto } from '$app/navigation'
+    
     export let data;
-    const { contestData } = data
-    const contests = [1, 2, 3, 4, 5]
-
-    const iconUrl = new URL(`../../../lib/assets/${contestData.icon}`, import.meta.url).href
     let contestId;
-
     const startContest = () => {
         const contestUrl = `${contestData.route}/${contestId}+simulado1`
-        throw redirect(302, contestUrl)
+        goto(contestUrl)
     }
+
+    const { contestData } = data
+    const contests = [1, 2, 3, 4, 5]
+    
+    const iconUrl = new URL(`../../../lib/assets/${contestData.icon}`, import.meta.url).href
+
 </script>
 
 <div class="green-theme container">
