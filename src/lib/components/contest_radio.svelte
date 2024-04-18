@@ -37,6 +37,11 @@
     .contest-option-name {
         font-size: 1vw;
         font-weight: bold;
+        cursor: pointer;
+    }
+    .extra-info {
+        font-size: 0.9vw;
+        cursor: pointer;
     }
     label:has(>input[type="radio"]:checked) {
         background: linear-gradient(90deg, #5e12eb, #a92be4);
