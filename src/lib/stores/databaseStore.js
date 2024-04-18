@@ -30,5 +30,8 @@ export const databaseHandler = {
 	getContestById: async (collectionName, id) => {
 		const docReference = doc(db, `${collectionName}/${id}`);
 		return await getDoc(docReference);
+	},
+	getAllDocs: async (collectionReference) => {
+		return await getDocs(collectionReference);
 	}
 };
