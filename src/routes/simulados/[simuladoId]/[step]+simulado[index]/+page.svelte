@@ -8,10 +8,9 @@
     let currentAnswer = "";
     
     const next_question = () => {
-        questionIndex++
         answers[questionIndex] = currentAnswer
-        console.log(answers)
-        currentAnswer = ""
+        currentAnswer = answers[questionIndex+1]
+        questionIndex++
     }
 </script>
 
