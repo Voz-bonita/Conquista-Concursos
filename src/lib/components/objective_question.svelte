@@ -1,7 +1,6 @@
 <script>
     export let question;
     export let question_index;
-    const alternatives = question.alternatives
     let userSelected = "";
 </script>
 
@@ -9,7 +8,7 @@
     <p class="question-index">Questão {question_index + 1}</p>
     <p class="question-body">{question.body}</p>
     <div class="radio-group" role="radiogroup">
-    {#each alternatives as alternative, i (i)}
+    {#each question.alternatives as alternative, i (i)}
         <label for={i} class="alternative-frame">
             <input type="radio" id={i} style="display: none;" value={alternative.slice(0, 3)} bind:group={userSelected}>
             <label class="alternative-index" for={i}>{alternative.slice(0, 3)}</label>
@@ -28,8 +27,8 @@
         background-color: whitesmoke;
         border: 1px solid black;
         border-radius: 20px;
-        padding: 0 2vw 0 2vw;
-        margin: 5vh 0 5vh 0;
+        padding: 0 2vw 3vh 2vw;
+        margin: 5vh 0 1vh 0;
     }
     .question-index {
         font-weight: bold;
