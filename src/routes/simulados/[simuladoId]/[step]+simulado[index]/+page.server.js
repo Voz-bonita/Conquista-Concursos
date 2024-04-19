@@ -10,7 +10,7 @@ export async function load({ params }) {
 	questionDocs.forEach((doc) => {
 		questions.push(doc.data());
 	});
-	console.log(questions[0]);
+
 	return {
 		questionsData: {
 			questions: questions,
