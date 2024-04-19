@@ -7,6 +7,12 @@
     const answers = Array.apply(null, Array(questions.length)).map(function () { return "" })
     let currentAnswer = "";
     
+    const previous_question = () => {
+        answers[questionIndex] = currentAnswer
+        currentAnswer = answers[questionIndex-1]
+        questionIndex--
+    }
+
     const next_question = () => {
         answers[questionIndex] = currentAnswer
         currentAnswer = answers[questionIndex+1]
@@ -17,6 +23,7 @@
 <div class="page-body green-theme">
     <ObjectiveQuestion question={questions[questionIndex]} question_index={questionIndex} bind:userSelected={currentAnswer}/>
     <div class="directional-btns-div">
+        <button class="next-button clickable" on:click|preventDefault={previous_question}>Anterior</button>
         <button class="next-button clickable" on:click|preventDefault={next_question}>Próxima</button>
     </div>
 </div>
@@ -37,11 +44,13 @@
         border-radius: 20px;
         border: 1px solid black;
         padding: 10px 40px 10px 40px;
-        float: right;
-        margin-bottom: 1vh;
+        margin-left: 1vw;
     }
     .directional-btns-div {
         margin-top: 1vh;
+        margin-bottom: 2vh;
         width: 80%;
+        display: flex;
+        justify-content: flex-end;
     }
 </style>
