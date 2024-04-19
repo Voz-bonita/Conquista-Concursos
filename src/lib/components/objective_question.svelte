@@ -1,7 +1,7 @@
 <script>
     export let question;
     export let question_index;
-    let userSelected = "";
+    export let userSelected = "";
 </script>
 
 <div class="question-frame">
