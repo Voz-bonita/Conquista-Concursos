@@ -1,6 +1,6 @@
 import { databaseHandler } from '$lib/stores/databaseStore.js';
 
-export async function load({ params }) {
+export async function load({ params, url }) {
 	const step = params.step;
 	const index = params.index;
 	const collectionName = `${step}${Number(index) - 1}`;
@@ -15,7 +15,8 @@ export async function load({ params }) {
 		questionsData: {
 			questions: questions,
 			step: step,
-			index: index
+			index: index,
+			path: url.pathname
 		}
 	};
 }
