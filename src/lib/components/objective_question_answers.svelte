@@ -1,36 +1,37 @@
 <script>
     export let questions;
+    export let index = 0;
+    const question = questions[index]
 </script>
 
 
-{#each questions as question, i (i)}
-    <div class="question-frame">
-        <p class="question-index">Questão {i + 1}</p>
-        <p class="question-body">{question.body}</p>
-        <div class="alternatives-group">
-            {#each question.alternatives as alternative}
-            {#if alternative.slice(1, 2) == question.answer}
-                <div class="alternative-container green-theme">
-                    <p class="alternative-index" for={i}>{alternative.slice(0, 3)}</p>
-                    <p class="alternative-body" for={i}>{alternative.slice(3)}</p>
-                </div>
-            {:else if alternative.slice(1, 2) == question.userAnswer}
-                <div class="alternative-container wrong-choice">
-                    <p class="alternative-index" for={i}>{alternative.slice(0, 3)}</p>
-                    <p class="alternative-body" for={i}>{alternative.slice(3)}</p>
-                </div>
-            {:else}
-                <div class="alternative-container">
-                    <p class="alternative-index" for={i}>{alternative.slice(0, 3)}</p>
-                    <p class="alternative-body" for={i}>{alternative.slice(3)}</p>
-                </div>
-            {/if}
-            {/each}
-        </div>
-        <p class="question-index">Resposta da IA:</p>
-        <p class="full-answer">{question.full_answer}</p>
+<div class="question-frame">
+    <p class="question-index">Questão {index + 1}</p>
+    <p class="question-body">{question.body}</p>
+    <div class="alternatives-group">
+        {#each question.alternatives as alternative}
+        {#if alternative.slice(1, 2) == question.answer}
+            <div class="alternative-container green-theme">
+                <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
+                <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
+            </div>
+        {:else if alternative.slice(1, 2) == question.userAnswer}
+            <div class="alternative-container wrong-choice">
+                <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
+                <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
+            </div>
+        {:else}
+            <div class="alternative-container">
+                <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
+                <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
+            </div>
+        {/if}
+        {/each}
     </div>
-{/each}
+    <p class="question-index">Resposta da IA:</p>
+    <p class="full-answer">{question.full_answer}</p>
+</div>
+
 
 <style>
     .question-frame {

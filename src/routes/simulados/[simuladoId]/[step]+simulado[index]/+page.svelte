@@ -1,12 +1,13 @@
 <script>
     import ObjectiveQuestion from '$lib/components/objective_question.svelte';
     import ObjectiveQuestionAnswers from '$lib/components/objective_question_answers.svelte';
+    import QuestionNavigationRadio from '$lib/components/question_navigation_radio.svelte';
     import { goto } from '$app/navigation'
 
     export let data
     const { questionsData } = data
     const questions = questionsData.questions
-    let questionIndex = 0;
+    let questionIndex = 49;
     const answers = Array.apply(null, Array(questions.length)).map(function () { return "" })
     let currentAnswer = "";
     let score = 0;
@@ -36,10 +37,12 @@
             question.userAnswer = answers[i]
         });
         doingContest = false
+        questionIndex = 0
     }
 </script>
 
 <div class="page-body green-theme">
+    <QuestionNavigationRadio questions={questions} bind:currentQuestionIndex={questionIndex}/>
     {#if doingContest}
         <ObjectiveQuestion question={questions[questionIndex]} question_index={questionIndex} bind:userSelected={currentAnswer}/>
         <div class="directional-btns-div">
@@ -56,7 +59,7 @@
         </div>
     {:else}
         <div class="contest-result"><h1>Você acertou {score}/{questions.length} questões</h1></div>
-        <ObjectiveQuestionAnswers questions={questions}/>
+        <ObjectiveQuestionAnswers questions={questions} index={questionIndex}/>
     {/if}
     
 </div>
