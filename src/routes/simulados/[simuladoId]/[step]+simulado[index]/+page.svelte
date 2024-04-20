@@ -34,7 +34,6 @@
         answers[questionIndex] = currentAnswer
         questions.forEach((question, i) => {
             score += Number(question.answer == answers[i])
-            question.userAnswer = answers[i]
         });
         doingContest = false
         questionIndex = 0
@@ -59,7 +58,7 @@
         </div>
     {:else}
         <div class="contest-result"><h1>Você acertou {score}/{questions.length} questões</h1></div>
-        <ObjectiveQuestionAnswers questions={questions} index={questionIndex}/>
+        <ObjectiveQuestionAnswers questions={questions} index={questionIndex} answers={answers}/>
     {/if}
     
 </div>

@@ -1,6 +1,7 @@
 <script>
     export let questions;
     export let index;
+    export let answers;
 </script>
 
 
@@ -14,7 +15,7 @@
                 <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
                 <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
             </div>
-        {:else if alternative.slice(1, 2) == questions[index].userAnswer}
+        {:else if alternative.slice(1, 2) == answers[index]}
             <div class="alternative-container wrong-choice">
                 <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
                 <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
@@ -73,7 +74,7 @@
         cursor: pointer;
     }
     .wrong-choice {
-        background-color: linear-gradient(90deg, #eb3312, #e4942b);
+        background: linear-gradient(90deg, #eb3312, #e4942b);
     }
     .full-answer {
         font-size: 1.3vw;
