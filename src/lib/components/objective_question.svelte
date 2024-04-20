@@ -10,7 +10,7 @@
     <div class="radio-group" role="radiogroup">
     {#each question.alternatives as alternative, i (i)}
         <label for={i} class="alternative-frame">
-            <input type="radio" id={i} style="display: none;" value={alternative.slice(0, 3)} bind:group={userSelected}>
+            <input type="radio" id={i} style="display: none;" value={alternative.slice(1, 2)} bind:group={userSelected}>
             <label class="alternative-index" for={i}>{alternative.slice(0, 3)}</label>
             <label class="alternative-body" for={i}>{alternative.slice(3)}</label>
         </label>

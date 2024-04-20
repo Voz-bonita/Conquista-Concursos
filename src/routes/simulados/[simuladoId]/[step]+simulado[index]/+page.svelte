@@ -8,6 +8,8 @@
     let questionIndex = 0;
     const answers = Array.apply(null, Array(questions.length)).map(function () { return "" })
     let currentAnswer = "";
+    let score = 0;
+    let doingContest = true;
     
     const previous_question = () => {
         answers[questionIndex] = currentAnswer
@@ -27,24 +29,32 @@
     }
 
     const submit_results = () => {
-        
+        answers[questionIndex] = currentAnswer
+        questions.forEach((question, i) => {
+            score += Number(question.answer == answers[i])
+        });
+        doingContest = false
     }
 </script>
 
 <div class="page-body green-theme">
-    <ObjectiveQuestion question={questions[questionIndex]} question_index={questionIndex} bind:userSelected={currentAnswer}/>
-    <div class="directional-btns-div">
-        {#if questionIndex == 0}
-            <button class="navigattion-btn cancel-btn clickable" on:click|preventDefault={cancel_contest}>Cancelar</button>
-        {:else}
-            <button class="navigattion-btn back-btn clickable" on:click|preventDefault={previous_question}>Anterior</button>
-        {/if}
-        {#if questionIndex == questions.length - 1}
-            <button class="navigattion-btn end-btn clickable" on:click|preventDefault={submit_results}>Finalizar</button>
-        {:else}
-            <button class="navigattion-btn next-btn clickable" on:click|preventDefault={next_question}>Próxima</button>
-        {/if}
-    </div>
+    {#if doingContest}
+        <ObjectiveQuestion question={questions[questionIndex]} question_index={questionIndex} bind:userSelected={currentAnswer}/>
+        <div class="directional-btns-div">
+            {#if questionIndex == 0}
+                <button class="navigattion-btn cancel-btn clickable" on:click|preventDefault={cancel_contest}>Cancelar</button>
+            {:else}
+                <button class="navigattion-btn back-btn clickable" on:click|preventDefault={previous_question}>Anterior</button>
+            {/if}
+            {#if questionIndex == questions.length - 1}
+                <button class="navigattion-btn end-btn clickable" on:click|preventDefault={submit_results}>Finalizar</button>
+            {:else}
+                <button class="navigattion-btn next-btn clickable" on:click|preventDefault={next_question}>Próxima</button>
+            {/if}
+        </div>
+    {:else}
+        <div class="contest-result"><h1>Você acertou {score}/{questions.length} questões</h1></div>
+    {/if}
 </div>
 
 
@@ -83,5 +93,12 @@
         width: 80%;
         display: flex;
         justify-content: flex-end;
+    }
+    .contest-result {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        background-color: whitesmoke;
+        border-radius: 20px;
     }
 </style>
