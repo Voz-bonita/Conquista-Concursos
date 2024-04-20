@@ -1,5 +1,6 @@
 <script>
     import ObjectiveQuestion from '$lib/components/objective_question.svelte';
+    import ObjectiveQuestionAnswers from '$lib/components/objective_question_answers.svelte';
     import { goto } from '$app/navigation'
 
     export let data
@@ -32,6 +33,7 @@
         answers[questionIndex] = currentAnswer
         questions.forEach((question, i) => {
             score += Number(question.answer == answers[i])
+            question.userAnswer = answers[i]
         });
         doingContest = false
     }
@@ -54,7 +56,9 @@
         </div>
     {:else}
         <div class="contest-result"><h1>Você acertou {score}/{questions.length} questões</h1></div>
+        <ObjectiveQuestionAnswers questions={questions}/>
     {/if}
+    
 </div>
 
 
