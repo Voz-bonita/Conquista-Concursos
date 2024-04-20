@@ -1,21 +1,20 @@
 <script>
     export let questions;
-    export let index = 0;
-    const question = questions[index]
+    export let index;
 </script>
 
 
 <div class="question-frame">
     <p class="question-index">Questão {index + 1}</p>
-    <p class="question-body">{question.body}</p>
+    <p class="question-body">{questions[index].body}</p>
     <div class="alternatives-group">
-        {#each question.alternatives as alternative}
-        {#if alternative.slice(1, 2) == question.answer}
+        {#each questions[index].alternatives as alternative}
+        {#if alternative.slice(1, 2) == questions[index].answer}
             <div class="alternative-container green-theme">
                 <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
                 <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
             </div>
-        {:else if alternative.slice(1, 2) == question.userAnswer}
+        {:else if alternative.slice(1, 2) == questions[index].userAnswer}
             <div class="alternative-container wrong-choice">
                 <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
                 <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
@@ -29,7 +28,7 @@
         {/each}
     </div>
     <p class="question-index">Resposta da IA:</p>
-    <p class="full-answer">{question.full_answer}</p>
+    <p class="full-answer">{questions[index].full_answer}</p>
 </div>
 
 
