@@ -107,5 +107,7 @@
         justify-content: center;
         background-color: whitesmoke;
         border-radius: 20px;
+        margin-top: 2vh;
+        border: 1px solid black;
     }
 </style>
