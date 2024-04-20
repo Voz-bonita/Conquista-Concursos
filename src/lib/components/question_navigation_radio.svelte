@@ -14,11 +14,8 @@
 
 <style>
     .navigation {
-        display: flex;
-        flex-direction: row;
-        /* align-items: center; */
-        /* justify-content: center; */
         max-width: 80%;
+        margin-top: 2vh;
     }
     .indexing-btn {
         background-color: whitesmoke;
@@ -33,6 +30,7 @@
         border: 1px solid black;
         min-width: 1.6vw;
         max-height: 3vh;
+        display: inline-block;
     }
     label:has(>input[type="radio"]:checked) {
         background: rgb(26, 25, 25);
