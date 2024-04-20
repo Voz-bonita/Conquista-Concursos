@@ -7,7 +7,7 @@
     {#each questions as question, i (i)}
         <label for={`Q${i}`} class="indexing-btn clickable">
             <input id={`Q${i}`} style="display: none;" type="radio" value={i} bind:group={currentQuestionIndex}>
-            <label for={`Q${i}`} class="index">{i}</label>
+            <label for={`Q${i}`} class="index">{i + 1}</label>
         </label>
     {/each}
 </div>

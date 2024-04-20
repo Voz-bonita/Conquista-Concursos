@@ -1,11 +1,11 @@
 <script>
     export let question;
-    export let question_index;
+    export let questionIndex;
     export let userSelected = "";
 </script>
 
 <div class="question-frame">
-    <p class="question-index">Questão {question_index + 1}</p>
+    <p class="question-index">Questão {questionIndex + 1}</p>
     <p class="question-body">{question.body}</p>
     <div class="radio-group" role="radiogroup">
     {#each question.alternatives as alternative, i (i)}

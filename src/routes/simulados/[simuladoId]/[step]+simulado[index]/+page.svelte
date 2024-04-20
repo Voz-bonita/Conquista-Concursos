@@ -7,20 +7,18 @@
     export let data
     const { questionsData } = data
     const questions = questionsData.questions
-    let questionIndex = 49;
+    let questionIndex = 0;
     const answers = Array.apply(null, Array(questions.length)).map(function () { return "" })
     let currentAnswer = "";
     let score = 0;
     let doingContest = true;
     
     const previous_question = () => {
-        answers[questionIndex] = currentAnswer
         currentAnswer = answers[questionIndex-1]
         questionIndex--
     }
 
     const next_question = () => {
-        answers[questionIndex] = currentAnswer
         currentAnswer = answers[questionIndex+1]
         questionIndex++
     }
@@ -31,7 +29,6 @@
     }
 
     const submit_results = () => {
-        answers[questionIndex] = currentAnswer
         questions.forEach((question, i) => {
             score += Number(question.answer == answers[i])
         });
@@ -43,7 +40,7 @@
 <div class="page-body green-theme">
     <QuestionNavigationRadio questions={questions} bind:currentQuestionIndex={questionIndex}/>
     {#if doingContest}
-        <ObjectiveQuestion question={questions[questionIndex]} question_index={questionIndex} bind:userSelected={currentAnswer}/>
+        <ObjectiveQuestion question={questions[questionIndex]} questionIndex={questionIndex} bind:userSelected={answers[questionIndex]}/>
         <div class="directional-btns-div">
             {#if questionIndex == 0}
                 <button class="navigattion-btn cancel-btn clickable" on:click|preventDefault={cancel_contest}>Cancelar</button>
