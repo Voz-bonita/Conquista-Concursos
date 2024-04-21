@@ -1,5 +1,7 @@
 <script>
 	import award_star from '$lib/assets/award_star.svg'
+	import account_icon from '$lib/assets/account.svg'
+	import logout_icon from '$lib/assets/logout.svg'
 	import { authStore, authHandlers } from '$lib/stores/authStore';
 
 	let name;
@@ -27,10 +29,10 @@
 		<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
 		<li><a href="/sobre">Sobre</a></li>
 		{#if $authStore.currentUser}
-			<li><a href="/perfil"><img src="account.svg" alt="" class="account-icon" />{name}</a></li>
+			<li><a href="/perfil"><img src={account_icon} alt="" class="account-icon" />{name}</a></li>
 			<li>
 				<a href="/" class="logout-btn" on:click|preventDefault={handleLogout}
-					><img src="logout.svg" alt="" class="red-icon" />Sair</a
+					><img src={logout_icon} alt="" class="red-icon" />Sair</a
 				>
 			</li>
 		{:else}
