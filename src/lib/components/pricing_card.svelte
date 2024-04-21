@@ -1,43 +1,17 @@
 <script>
 	export let name = '';
-	export let description = '';
-	export let price = '';
-	export let call = '';
 	export let plan_class = '';
-	export let n_tests = '1';
-	export let ai = '';
-	export let performance = '';
 </script>
 
 <div class="card">
 	<div class="name {plan_class}">
 		<h2 class="plan-name">{name}</h2>
 	</div>
-	<div class="info">
-		<ul>
-			<div class="plan-item">
-				<li class="item-name">Mensalidade</li>
-				<li class="item-value">{price}</li>
-			</div>
-			<div class="plan-item">
-				<li class="item-name">Quantidade de simulados</li>
-				<li class="item-value">{n_tests}</li>
-			</div>
-			<div class="plan-item">
-				<li class="item-name">Recursos de IA</li>
-				<li class="item-value">{ai}</li>
-			</div>
-			<div class="plan-item">
-				<li class="item-name">Análise de desempenho</li>
-				<li class="item-value">{performance}</li>
-			</div>
-			<div class="plan-item">
-				<li class="item-name">Objetivo</li>
-				<li class="item-value">{description}</li>
-			</div>
-		</ul>
-	</div>
-	<button class="{plan_class} call-btn">{call}</button>
+	<ul>
+		<slot>
+		</slot>
+	</ul>
+	<a href="/simulados" class="anchor-contest-page"><button class="{plan_class} call-btn">Simulados</button></a>
 </div>
 
 <style>
@@ -51,7 +25,6 @@
 		margin: 20px;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 	}
 
 	.card:hover {
@@ -66,11 +39,7 @@
 		border-radius: max(1vw, 10px);
 		align-items: center;
 	}
-
-	.info li {
-		list-style: none;
-	}
-	.info ul {
+	ul {
 		margin: 3%;
 		padding: 2px;
 	}
@@ -96,10 +65,14 @@
 		margin: 4%;
 	}
 
+	.anchor-contest-page {
+		margin: auto auto 0px auto;
+		width: 70%;
+	}
+
 	.call-btn {
-		margin-top: auto;
 		margin-bottom: 4%;
-		min-width: 40%;
+		width: 100%;
 		min-height: 4vh;
 		border-radius: 20px;
 		border-width: 1px;
@@ -117,9 +90,7 @@
 			width: 70vw;
 			min-height: 60vh;
 		}
-		.plan-item li {
-			display: inline-block;
-		}
+
 		.item-name {
 			font-size: 3.5vw;
 		}

@@ -1,6 +1,7 @@
 <script>
 	import FeatureBox from '$lib/components/feature_box.svelte';
 	import PricingCard from '$lib/components/pricing_card.svelte';
+	import PricingField from '$lib/components/pricing_field.svelte';
 	import bolt from '$lib/assets/bolt.svg'
 	import explore from '$lib/assets/explore.svg'
 	import medal from '$lib/assets/medal.svg'
@@ -34,38 +35,35 @@
 		<div class="grid-item">
 			<PricingCard
 				plan_class="black-white-gradient-theme"
-				name="Básico"
-				price="R$0,00"
-				description="Pensado para quem quer fazer um test drive na plataforma"
-				n_tests="1"
-				ai="Questões inéditas"
-				performance="Nenhum"
-				call="Teste"
-			/>
+				name="Conhecimentos Gerais"
+			>
+				<PricingField name="Preço">R$10,00</PricingField>
+				<PricingField name="Tipo de Questão">Múltipla escolha de (A) a (E)</PricingField>
+				<PricingField name="Uso de IA">Questões inéditas e suas soluções</PricingField>
+				<PricingField name="Análise de Preformance">Número de acertos (Há planos de incluir um leaderboard dos usuários)</PricingField>
+			</PricingCard>
 		</div>
 		<div class="grid-item">
 			<PricingCard
 				plan_class="purple-theme"
-				name="Concurseiro"
-				price="R$5,00"
-				description="Se você pretende fazer mais de 1 simulado, esse pode ser o plano certo pra você"
-				n_tests="10"
-				ai="Questões inéditas e comentadas"
-				performance="Rankeamento por média"
-				call="Estude"
-			/>
+				name="Conhecimentos Específicos"
+			>
+				<PricingField name="Preço">R$20,00</PricingField>
+				<PricingField name="Tipo de Questão">Múltipla escolha de (A) a (E)</PricingField>
+				<PricingField name="Uso de IA">Questões inéditas e suas soluções</PricingField>
+				<PricingField name="Análise de Preformance">Número de acertos (Há planos de incluir um leaderboard dos usuários)</PricingField>
+			</PricingCard>
 		</div>
 		<div class="grid-item">
 			<PricingCard
-				plan_class="green-theme"
-				name="Conquistador"
-				price="R$20,00"
-				description="Perfeito para quem tem fome de conquistar e deseja utilizar os melhores recursos"
-				n_tests="Ilimitado"
-				ai="Todos"
-				performance="Completa"
-				call="Conquiste"
-			/>
+			plan_class="green-theme"
+			name="Discursiva/Redação"
+		>
+			<PricingField name="Preço">R$50,00/Submissão</PricingField>
+			<PricingField name="Tipo de Questão">Discursiva com limite de 45 linhas</PricingField>
+			<PricingField name="Uso de IA">Questões inéditas, padrão de resposta e correção da sua submissão</PricingField>
+			<PricingField name="Análise de Preformance">Correção da IA</PricingField>
+		</PricingCard>
 		</div>
 	</section>
 </div>
