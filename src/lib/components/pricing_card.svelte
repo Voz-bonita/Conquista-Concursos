@@ -107,7 +107,7 @@
 
 		.call-btn {
 			font-size: 4vw;
-			width: 35%;
+			width: 100%;
 		}
 	}
 </style>
