@@ -4,11 +4,11 @@
 	export let description = '';
 	export let icon_path = '';
 	export let icon_class = '';
-	export let contestId;
+	export let contestIndex;
 
 	function updateContest() {
 		currentContest.update(() => {
-			return {id: contestId}
+			return {index: contestIndex}
 		})
 	}
 </script>

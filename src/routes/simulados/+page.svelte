@@ -1,6 +1,7 @@
 <script>
 	import { currentContest } from '$lib/stores/databaseStore.js'
 	import ContestList from '$lib/components/contest_list.svelte';
+	import ContestStepPicking from '$lib/components/contest_step_picking.svelte';
 	export let data;
 	const { contests } = data;
 	
@@ -9,19 +10,21 @@
 	});
 	let pageCurrentState = "contestList";
 	let choosenContest;
+
 	const unsubscribe = currentContest.subscribe((current) => {
-		if (current.id != null) {
-			choosenContest = current.id;
+		if (current.index != null) {
+			choosenContest = contests[current.index];
 			pageCurrentState = "contestStepForm"
 		}
 	})
+	
 </script>
 
 <div class="green-theme main-div">
 	{#if pageCurrentState == "contestList"}
 		<ContestList contests={contests} choosenContest={choosenContest}/>
 	{:else if pageCurrentState == "contestStepForm"}
-		<h1>{choosenContest}</h1>
+		<ContestStepPicking contest={choosenContest}/>
 	{/if}
 </div>
 

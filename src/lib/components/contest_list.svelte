@@ -4,10 +4,10 @@
 </script>
 
 <section class="grid-template">
-    {#each contests as contest}
+    {#each contests as contest, i (i)}
         <div class="grid-item">
             <ContestCard
-                contestId={contest.id}
+                contestIndex={i}
                 branch={contest.title}
                 description={contest.subtitle}
                 icon_path={contest.icon}

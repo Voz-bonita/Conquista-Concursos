@@ -3,7 +3,7 @@ import { db } from '$lib/firebase';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 
 export const currentContest = writable({
-	id: null
+	index: null
 });
 
 export const databaseStore = writable({
