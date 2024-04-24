@@ -4,7 +4,7 @@
 </script>
 
 <div class="navigation" role="radiogroup">
-    {#each questions as question, i (i)}
+    {#each questions as _, i (i)}
         <label for={`Q${i}`} class="indexing-btn clickable">
             <input id={`Q${i}`} style="display: none;" type="radio" value={i} bind:group={currentQuestionIndex}>
             <label for={`Q${i}`} class="index">{i + 1}</label>

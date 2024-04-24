@@ -1,7 +1,9 @@
 <script>
     import ContestRadio from '$lib/components/contest_radio.svelte'
 	import ContestIndexRadio from '$lib/components/contest_index_radio.svelte';
-    
+    import { enhance } from '$app/forms'
+    import { databaseHandler, currentContest } from '$lib/stores/databaseStore.js';
+
     export let contest;
     export let questionListId;
     export let version;
@@ -9,7 +11,18 @@
     const contestReplicates = 5;
 </script>
 
-<form class="container" method="POST">
+<form class="container" method="POST" use:enhance={() => {
+    return async ({ result }) => {
+        const contestDocument = result.data.document
+        databaseHandler.getContestById(contestDocument).then((snapshot) => {
+            const formData = snapshot.data();
+            currentContest.update((current) => {
+                return {...current, questions: formData.questions}
+            })
+        })
+    }
+    }}
+>
     <p class="contest-general">{contest.short_name} - {contest.full_name}</p>
         <div class="contest-frame">
             <img src={contest.icon} class={contest.icon_style} alt="" width="4%" height="4%">

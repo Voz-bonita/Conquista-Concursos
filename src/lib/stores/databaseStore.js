@@ -3,7 +3,8 @@ import { db } from '$lib/firebase';
 import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
 
 export const currentContest = writable({
-	index: null
+	index: null,
+	questions: null
 });
 
 export const databaseStore = writable({
@@ -31,8 +32,8 @@ export const databaseHandler = {
 	getCollection: (collectionName) => {
 		return collection(db, collectionName);
 	},
-	getContestById: async (collectionName, id) => {
-		const docReference = doc(db, `${collectionName}/${id}`);
+	getContestById: async (id) => {
+		const docReference = doc(db, `contests_questions/${id}`);
 		return await getDoc(docReference);
 	},
 	getAllDocs: async (collectionReference) => {

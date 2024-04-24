@@ -3,6 +3,8 @@ export const actions = {
 		const formData = await request.formData();
 		const step = formData.get('step');
 		const version = formData.get('version');
-		const query = `${step}_${version}`;
+		const document = `${step}_${version - 1}`;
+
+		return { document };
 	}
 };
