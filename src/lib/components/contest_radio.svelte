@@ -8,7 +8,7 @@
 <div class="contest-option-row" role="radiogroup">
     {#each steps as step}
         <label for={step.name} class="card clickable" style={styleWidth}>
-            <input id={step.name} type="radio" name="contest_kind" style="display: none;" value={step.id} bind:group={userSelected}/>
+            <input id={step.name} type="radio" name="step" style="display: none;" value={step.id} bind:group={userSelected}/>
             <label for={step.name} class="contest-option-name">{step.name}</label>
             <label for={step.name} class="extra-info">{step.question_count} {step.question_count > 1 ? "Questões": "Questão"}</label>
         </label>
