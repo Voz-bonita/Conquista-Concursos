@@ -1,32 +1,28 @@
 <script>
     import ContestRadio from '$lib/components/contest_radio.svelte'
-    import ContestIndexButton from '$lib/components/contest_index_button.svelte'
+	import ContestIndexRadio from '$lib/components/contest_index_radio.svelte';
     
     export let contest;
     export let questionListId;
+    export let version;
     
     const contestReplicates = 5;
-    const contests = Array.apply(null, Array(contestReplicates)).map(function (_, i) { return i + 1})
 </script>
 
-<div class="container">
+<form class="container" method="POST">
     <p class="contest-general">{contest.short_name} - {contest.full_name}</p>
-    <div class="contest-frame">
-        <img src={contest.icon} class={contest.icon_style} alt="" width="4%" height="4%">
-        <p class="contest-title">{contest.title}</p>
-        <p class="contest-subtitle">{contest.subtitle}</p>
-        <ContestRadio steps={contest.steps} bind:userSelected={questionListId}/>
-        <div class="contest-option-row">
-            {#each contests as i}
-                <ContestIndexButton index={i}/>
-            {/each}
+        <div class="contest-frame">
+            <img src={contest.icon} class={contest.icon_style} alt="" width="4%" height="4%">
+            <p class="contest-title">{contest.title}</p>
+            <p class="contest-subtitle">{contest.subtitle}</p>
+            <ContestRadio steps={contest.steps} bind:userSelected={questionListId}/>
+            <ContestIndexRadio {contestReplicates} bind:userSelected={version}/>
         </div>
-    </div>
 
-    <div class="directional-btns-div">
-        <button class="start-button clickable" on:click|preventDefault={() => {}}>Começar</button>
-    </div>
-</div>
+        <div class="directional-btns-div">
+            <button class="start-button clickable">Começar</button>
+        </div>
+</form>
 
 
 
