@@ -3,6 +3,7 @@
 	import ContestIndexRadio from '$lib/components/contest_index_radio.svelte';
     import { enhance } from '$app/forms'
     import { databaseHandler, currentContest } from '$lib/stores/databaseStore.js';
+    import { sanitizeQuestions } from '$lib/index.js'
 
     export let contest;
     export let questionListId;
@@ -16,8 +17,9 @@
         const contestDocument = result.data.document
         databaseHandler.getContestById(contestDocument).then((snapshot) => {
             const formData = snapshot.data();
+            const questions = sanitizeQuestions(formData.questions)
             currentContest.update((current) => {
-                return {...current, questions: formData.questions}
+                return {...current, questions: questions}
             })
         })
     }
