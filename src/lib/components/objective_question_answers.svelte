@@ -10,22 +10,9 @@
     <p class="question-body">{questions[index].body}</p>
     <div class="alternatives-group">
         {#each questions[index].alternatives as alternative}
-        {#if alternative.slice(1, 2) == questions[index].answer}
-            <div class="alternative-container green-theme">
-                <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
-                <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
+            <div class="alternative-container {alternative.slice(1, 2) == questions[index].answer ? 'green-theme' : (alternative.slice(1, 2) == answers[index] ? 'wrong-choice': '')}">
+                <p class="alternative-body" for={index}><strong>{alternative.slice(0, 3)}</strong> {alternative.slice(3)}</p>
             </div>
-        {:else if alternative.slice(1, 2) == answers[index]}
-            <div class="alternative-container wrong-choice">
-                <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
-                <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
-            </div>
-        {:else}
-            <div class="alternative-container">
-                <p class="alternative-index" for={index}>{alternative.slice(0, 3)}</p>
-                <p class="alternative-body" for={index}>{alternative.slice(3)}</p>
-            </div>
-        {/if}
         {/each}
     </div>
     <p class="question-index">Resposta da IA:</p>
@@ -63,11 +50,6 @@
         border-radius: 20px;
         border: 1px solid black;
         margin: 5px;
-    }
-    .alternative-index {
-        font-size: 1.2vw;
-        font-weight: bold;
-        cursor: pointer;
     }
     .alternative-body {
         font-size: 1.2vw;
