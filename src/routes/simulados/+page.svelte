@@ -15,13 +15,18 @@
 	let questions;
 
 	const unsubscribe = currentContest.subscribe((current) => {
+		if (current.index === null) {
+			questions = null;
+			choosenContest = null;
+			pageCurrentState = "contestList";
+		}
 		if (current.index != null) {
 			choosenContest = contests[current.index];
-			pageCurrentState = "contestStepForm"
+			pageCurrentState = "contestStepForm";
 		}
 		if (current.questions != null) {
 			questions = current.questions;
-			pageCurrentState = "contestOnGoing"
+			pageCurrentState = "contestOnGoing";
 		}
 	})
 	

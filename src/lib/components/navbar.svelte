@@ -3,6 +3,7 @@
 	import account_icon from '$lib/assets/account.svg'
 	import logout_icon from '$lib/assets/logout.svg'
 	import { authStore, authHandlers } from '$lib/stores/authStore';
+	import { currentContest } from '$lib/stores/databaseStore.js';
 
 	let name;
 	authStore.subscribe((curr) => {
@@ -13,6 +14,12 @@
 		await authHandlers.signOut();
 		window.location.href = '/login';
 		return;
+	}
+
+	function resetContest() {
+		currentContest.update(() => {
+			return {index: null, questions: null}
+		})
 	}
 </script>
 
@@ -26,7 +33,7 @@
 		<div class="menu-button"></div>
 	</label>
 	<ul class="nav-menu">
-		<li><a href="/simulados" class="simulado">Simulados do CNU</a></li>
+		<li><a href="/simulados" class="simulado" on:click|preventDefault={resetContest}>Simulados do CNU</a></li>
 		<li><a href="/sobre">Sobre</a></li>
 		{#if $authStore.currentUser}
 			<li><a href="/perfil"><img src={account_icon} alt="" class="account-icon" />{name}</a></li>

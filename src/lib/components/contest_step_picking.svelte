@@ -8,6 +8,12 @@
     export let contest;
     export let questionListId;
     export let version;
+
+    function backToListing() {
+        currentContest.update(() => {
+            return {index: null, questions: null}
+        })
+    }
     
     const contestReplicates = 5;
 </script>
@@ -35,7 +41,8 @@
         </div>
 
         <div class="directional-btns-div">
-            <button class="start-button clickable">Começar</button>
+            <button class="back-button directional-btn clickable" on:click|preventDefault={backToListing}>Voltar</button>
+            <button class="start-button directional-btn clickable">Começar</button>
         </div>
 </form>
 
@@ -87,16 +94,23 @@
 		margin: 6px;
     }
     .start-button {
-        font-size: 1.2vw;
         background: steelblue;
         color: white;
-        border-radius: 20px;
+    }
+    .back-button {
+        background: lightgray;
+    }
+    .directional-btn {
+        font-size: 1.2vw;
         border: 1px solid black;
         padding: 10px 40px 10px 40px;
-        float: right;
+        border-radius: 20px;
+        margin-left: 1vw;
     }
     .directional-btns-div {
         margin-top: 1vh;
         width: 80%;
+        display: flex;
+        justify-content: right;
     }
 </style>

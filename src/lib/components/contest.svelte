@@ -2,6 +2,7 @@
     import ObjectiveQuestion from '$lib/components/objective_question.svelte';
     import ObjectiveQuestionAnswers from '$lib/components/objective_question_answers.svelte';
     import QuestionNavigationRadio from '$lib/components/question_navigation_radio.svelte';
+    import { currentContest } from '$lib/stores/databaseStore.js';
 
     export let questions;
 
@@ -22,7 +23,9 @@
     }
 
     const cancel_contest = () => {
-
+        currentContest.update((current) => {
+            return {index: current.index, questions: null}
+        })
     }
 
     const submit_results = () => {
