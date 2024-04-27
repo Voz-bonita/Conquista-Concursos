@@ -7,7 +7,7 @@
 
 <div class="question-frame">
     <p class="question-index">Questão {index + 1}</p>
-    <p class="question-body">{questions[index].body}</p>
+    <span class="question-body">{@html questions[index].body}</span>
     <div class="alternatives-group">
         {#each questions[index].alternatives as alternative}
             <div class="alternative-container {alternative.slice(1, 2) == questions[index].answer ? 'green-theme' : (alternative.slice(1, 2) == answers[index] ? 'wrong-choice': '')}">
@@ -16,7 +16,7 @@
         {/each}
     </div>
     <p class="question-index">Resposta da IA:</p>
-    <p class="full-answer">{questions[index].full_answer}</p>
+    <span class="full-answer">{@html questions[index].full_answer}</span>
 </div>
 
 
@@ -38,6 +38,7 @@
     }
     .question-body {
         font-size: 1.3vw;
+        white-space: pre-line
     }
     .alternatives-group {
         display: flex;
@@ -60,6 +61,6 @@
     }
     .full-answer {
         font-size: 1.3vw;
+        white-space: pre-line
     }
-    
 </style>

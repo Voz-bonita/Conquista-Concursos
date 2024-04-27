@@ -6,7 +6,7 @@
 
 <div class="question-frame">
     <p class="question-index">Questão {questionIndex + 1}</p>
-    <p class="question-body">{question.body}</p>
+    <span class="question-body">{@html question.body}</span>
     <div class="radio-group" role="radiogroup">
     {#each question.alternatives as alternative, i (i)}
         <label for={i} class="alternative-frame">
@@ -36,6 +36,7 @@
     }
     .question-body {
         font-size: 1.5vw;
+        white-space: pre-line
     }
     .alternative-frame {
         cursor: pointer;

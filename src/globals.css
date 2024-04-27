@@ -38,3 +38,29 @@
 .money-green-icon {filter: invert(47%) sepia(62%) saturate(467%) hue-rotate(66deg) brightness(95%) contrast(91%)}
 .beige-icon {filter: invert(68%) sepia(50%) saturate(390%) hue-rotate(345deg) brightness(85%) contrast(91%)}
 .yellow-icon {filter: invert(97%) sepia(28%) saturate(7146%) hue-rotate(312deg) brightness(93%) contrast(98%)}
+
+.table-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.question-table {
+    border-collapse: collapse;
+}
+
+.question-table-field, .question-table-header {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.question-table tr:nth-child(even){background-color: #d6d4d4;}
+
+.question-table-row:hover {background-color: #ddd;}
+
+.question-table-header {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #04AA6D;
+    color: white;
+}
