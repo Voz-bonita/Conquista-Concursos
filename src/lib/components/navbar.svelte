@@ -33,7 +33,7 @@
 		<div class="menu-button"></div>
 	</label>
 	<ul class="nav-menu">
-		<li><a href="/simulados" class="simulado" on:click|preventDefault={resetContest}>Simulados do CNU</a></li>
+		<li><a href="/simulados" class="simulado" on:click={resetContest}>Simulados do CNU</a></li>
 		<li><a href="/sobre">Sobre</a></li>
 		{#if $authStore.currentUser}
 			<li><a href="/perfil"><img src={account_icon} alt="" class="account-icon" />{name}</a></li>
