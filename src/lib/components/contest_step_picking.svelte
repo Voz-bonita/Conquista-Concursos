@@ -23,9 +23,8 @@
         const contestDocument = result.data.document
         databaseHandler.getContestById(contestDocument).then((snapshot) => {
             const formData = snapshot.data();
-            const questions = sanitizeQuestions(formData.questions)
             currentContest.update((current) => {
-                return {...current, questions: questions}
+                return {...current, questions: formData.questions}
             })
         })
     }
