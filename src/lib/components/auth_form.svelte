@@ -1,6 +1,6 @@
 <script>
 	import { authHandlers, authStore } from '$lib/stores/authStore';
-	import gmailLogo from '$lib/assets/gmail.svg'
+	import gmailLogo from '$lib/assets/gmail.svg';
 	export let redirectHref = '/perfil';
 	let register = false;
 	let recover = false;

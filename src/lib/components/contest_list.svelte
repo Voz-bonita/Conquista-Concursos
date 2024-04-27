@@ -1,24 +1,24 @@
 <script>
 	import ContestCard from '$lib/components/contest_card.svelte';
-    export let contests;
+	export let contests;
 </script>
 
 <section class="grid-template">
-    {#each contests as contest, i (i)}
-        <div class="grid-item">
-            <ContestCard
-                contestIndex={i}
-                branch={contest.title}
-                description={contest.subtitle}
-                icon_path={contest.icon}
-                icon_class={contest.icon_style}
-            />
-        </div>
-    {/each}
+	{#each contests as contest, i (i)}
+		<div class="grid-item">
+			<ContestCard
+				contestIndex={i}
+				branch={contest.title}
+				description={contest.subtitle}
+				icon_path={contest.icon}
+				icon_class={contest.icon_style}
+			/>
+		</div>
+	{/each}
 </section>
 
 <style>
-    .grid-template {
+	.grid-template {
 		display: grid;
 		grid-template-columns: 40% 40%;
 		justify-content: center;

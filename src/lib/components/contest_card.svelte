@@ -1,5 +1,5 @@
 <script>
-	import { currentContest } from '$lib/stores/databaseStore.js'
+	import { currentContest } from '$lib/stores/databaseStore.js';
 	export let branch = '';
 	export let description = '';
 	export let icon_path = '';
@@ -8,8 +8,8 @@
 
 	function updateContest() {
 		currentContest.update(() => {
-			return {index: contestIndex}
-		})
+			return { index: contestIndex };
+		});
 	}
 </script>
 

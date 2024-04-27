@@ -1,66 +1,85 @@
 .clickable:hover {
-    cursor: pointer;
+	cursor: pointer;
 	box-shadow: 0 0 0 1px black;
 }
 
 .green-theme {
-    background: linear-gradient(90deg, #2be4ad, #eaecc6);
-    color: black;
+	background: linear-gradient(90deg, #2be4ad, #eaecc6);
+	color: black;
 }
 
 .purple-theme {
-    background: linear-gradient(90deg, #5e12eb, #a92be4);
-    color: #eaecc6;
+	background: linear-gradient(90deg, #5e12eb, #a92be4);
+	color: #eaecc6;
 }
 
 .black-white-gradient-theme {
-    background: linear-gradient(90deg, black, rgb(95, 95, 80));
-    color: white;
+	background: linear-gradient(90deg, black, rgb(95, 95, 80));
+	color: white;
 }
 .basic-black-theme {
-    background: rgb(61, 61, 61);
-    color: white;
+	background: rgb(61, 61, 61);
+	color: white;
 }
 
 .basic-white-theme {
-    background: #ebecda;
-    color: rgb(61, 61, 61);
+	background: #ebecda;
+	color: rgb(61, 61, 61);
 }
 
 .white-theme {
-    background: rgb(241, 241, 241);
+	background: rgb(241, 241, 241);
 }
 
-.white-icon {filter: invert(94%) sepia(6%) saturate(0%) hue-rotate(113deg) brightness(105%) contrast(108%)}
-.blue-icon {filter: invert(31%) sepia(66%) saturate(551%) hue-rotate(143deg) brightness(90%) contrast(92%)}
-.green-icon {filter: invert(51%) sepia(88%) saturate(398%) hue-rotate(21deg) brightness(103%) contrast(100%)}
-.red-icon {filter: invert(17%) sepia(71%) saturate(4452%) hue-rotate(348deg) brightness(92%) contrast(100%)}
-.money-green-icon {filter: invert(47%) sepia(62%) saturate(467%) hue-rotate(66deg) brightness(95%) contrast(91%)}
-.beige-icon {filter: invert(68%) sepia(50%) saturate(390%) hue-rotate(345deg) brightness(85%) contrast(91%)}
-.yellow-icon {filter: invert(97%) sepia(28%) saturate(7146%) hue-rotate(312deg) brightness(93%) contrast(98%)}
+.white-icon {
+	filter: invert(94%) sepia(6%) saturate(0%) hue-rotate(113deg) brightness(105%) contrast(108%);
+}
+.blue-icon {
+	filter: invert(31%) sepia(66%) saturate(551%) hue-rotate(143deg) brightness(90%) contrast(92%);
+}
+.green-icon {
+	filter: invert(51%) sepia(88%) saturate(398%) hue-rotate(21deg) brightness(103%) contrast(100%);
+}
+.red-icon {
+	filter: invert(17%) sepia(71%) saturate(4452%) hue-rotate(348deg) brightness(92%) contrast(100%);
+}
+.money-green-icon {
+	filter: invert(47%) sepia(62%) saturate(467%) hue-rotate(66deg) brightness(95%) contrast(91%);
+}
+.beige-icon {
+	filter: invert(68%) sepia(50%) saturate(390%) hue-rotate(345deg) brightness(85%) contrast(91%);
+}
+.yellow-icon {
+	filter: invert(97%) sepia(28%) saturate(7146%) hue-rotate(312deg) brightness(93%) contrast(98%);
+}
 
-.table-container{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.table-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 .question-table {
-    border-collapse: collapse;
+	border-collapse: collapse;
 }
 
-.question-table-field, .question-table-header {
-    border: 1px solid #ddd;
-    padding: 8px;
+.question-table-field,
+.question-table-header {
+	border: 1px solid #ddd;
+	padding: 8px;
 }
 
-.question-table tr:nth-child(even){background-color: #d6d4d4;}
+.question-table tr:nth-child(even) {
+	background-color: #d6d4d4;
+}
 
-.question-table-row:hover {background-color: #ddd;}
+.question-table-row:hover {
+	background-color: #ddd;
+}
 
 .question-table-header {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: #04AA6D;
-    color: white;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #04aa6d;
+	color: white;
 }

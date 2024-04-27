@@ -8,10 +8,11 @@
 		<h2 class="plan-name">{name}</h2>
 	</div>
 	<ul>
-		<slot>
-		</slot>
+		<slot />
 	</ul>
-	<a href="/simulados" class="anchor-contest-page"><button class="{plan_class} call-btn">Simulados</button></a>
+	<a href="/simulados" class="anchor-contest-page"
+		><button class="{plan_class} call-btn">Simulados</button></a
+	>
 </div>
 
 <style>

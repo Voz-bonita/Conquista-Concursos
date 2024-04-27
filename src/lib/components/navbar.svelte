@@ -1,7 +1,7 @@
 <script>
-	import award_star from '$lib/assets/award_star.svg'
-	import account_icon from '$lib/assets/account.svg'
-	import logout_icon from '$lib/assets/logout.svg'
+	import award_star from '$lib/assets/award_star.svg';
+	import account_icon from '$lib/assets/account.svg';
+	import logout_icon from '$lib/assets/logout.svg';
 	import { authStore, authHandlers } from '$lib/stores/authStore';
 	import { currentContest } from '$lib/stores/databaseStore.js';
 
@@ -18,8 +18,8 @@
 
 	function resetContest() {
 		currentContest.update(() => {
-			return {index: null, questions: null}
-		})
+			return { index: null, questions: null };
+		});
 	}
 </script>
 
