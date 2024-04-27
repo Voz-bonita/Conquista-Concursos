@@ -3,6 +3,9 @@ const { config } = require('firebase-functions');
 const { initializeApp } = require('firebase-admin/app');
 const { getDatabase } = require('firebase-admin/database');
 const { doc, setDoc } = require('firebase/firestore');
+const { setGlobalOptions } = require('firebase-functions/v2');
+
+setGlobalOptions({ region: 'southamerica-east1' });
 
 const admin_app = initializeApp();
 const db = getDatabase(admin_app);
