@@ -3,7 +3,6 @@
 	import ContestIndexRadio from '$lib/components/contest_index_radio.svelte';
     import { enhance } from '$app/forms'
     import { databaseHandler, currentContest } from '$lib/stores/databaseStore.js';
-    import { sanitizeQuestions } from '$lib/index.js'
 
     export let contest;
     export let questionListId;
