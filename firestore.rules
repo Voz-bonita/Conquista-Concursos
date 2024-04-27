@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+  	match /available_contests/{contests} {
+    	allow read: if true;
+      allow write: if false;
+    }
+    match /contests_questions/{contestId} {
+    	// allow read: if isSignedIn() && userPaidContestTry(contestId);
+      allow read: if isSignedIn();
+      // allow read: if userPaidContestTry(contestId);
+      // allow read: if true;
+    }
+    match /users/{userId} {
+    	allow read: if isSignedIn() && isOwnData(userId);
+    }
+    match /contests/{document=**} {
+    	allow write: if false;
+    }
+    
+    function isSignedIn() {
+    	return request.auth != null;
+    }
+    function isOwnData(userId) {
+    	return request.auth.uid == userId;
+    }
+    function userPaidContestTry(contestId) {
+    	 return get(/databases/$(database)/documents/users/$(request.auth.token.email)).data[contestId] == true;
+    }
+  }
+}
