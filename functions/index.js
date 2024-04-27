@@ -7,7 +7,7 @@ const { setGlobalOptions } = require('firebase-functions/v2');
 
 setGlobalOptions({ region: 'southamerica-east1' });
 
-const admin_app = initializeApp();
+const admin_app = initializeApp({ databaseURL: 'https://{default}.firebaseio.com/' });
 const db = getDatabase(admin_app);
 
 exports.createStripeCheckout = onCall(async (data, context) => {
