@@ -1,3 +1,4 @@
+import { db } from '$lib/firebase';
 import { getFunctions, httpsCallable } from 'firebase/functions';
 import Stripe from 'stripe';
 
