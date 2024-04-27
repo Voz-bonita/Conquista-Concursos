@@ -4,14 +4,18 @@ const { initializeApp } = require('firebase-admin/app');
 const { getDatabase } = require('firebase-admin/database');
 const { doc, setDoc } = require('firebase/firestore');
 const { setGlobalOptions } = require('firebase-functions/v2');
+const { defineSecret } = require('firebase-functions/params');
+
+const STRIPE_SECRET = defineSecret('STRIPE_SECRET');
 
 setGlobalOptions({ region: 'southamerica-east1' });
 
 const admin_app = initializeApp({ databaseURL: 'https://{default}.firebaseio.com/' });
 const db = getDatabase(admin_app);
 
-exports.createStripeCheckout = onCall(async (data, context) => {
-	const stripe = require('stripe')(config().stripe.secret);
+exports.createStripeCheckout = onCall({ secrets: [STRIPE_SECRET] }, async (request, response) => {
+	const stripe_module = require('stripe');
+	const stripe = stripe_module.Stripe(STRIPE_SECRET.value());
 	const session = await stripe.checkout.sessions.create({
 		payment_method_types: ['card'],
 		mode: 'payment',
