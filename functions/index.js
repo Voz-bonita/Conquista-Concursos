@@ -1,8 +1,7 @@
 const { onCall, onRequest } = require('firebase-functions/v2/https');
 const { config } = require('firebase-functions');
 const { initializeApp } = require('firebase-admin/app');
-const { getDatabase } = require('firebase-admin/database');
-const { doc, setDoc } = require('firebase/firestore');
+const { getFirestore } = require('firebase-admin/firestore');
 const { setGlobalOptions } = require('firebase-functions/v2');
 const { defineSecret } = require('firebase-functions/params');
 
@@ -10,8 +9,8 @@ const STRIPE_SECRET = defineSecret('STRIPE_SECRET');
 
 setGlobalOptions({ region: 'southamerica-east1' });
 
-const admin_app = initializeApp({ databaseURL: 'https://{default}.firebaseio.com/' });
-const db = getDatabase(admin_app);
+const admin_app = initializeApp();
+const db = getFirestore(admin_app);
 
 exports.createStripeCheckout = onCall({ secrets: [STRIPE_SECRET] }, async (request, response) => {
 	const stripe_module = require('stripe');
