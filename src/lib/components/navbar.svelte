@@ -12,7 +12,6 @@
 
 	async function handleLogout() {
 		await authHandlers.signOut();
-		window.location.href = '/login';
 		return;
 	}
 
@@ -38,7 +37,7 @@
 		{#if $authStore.currentUser}
 			<li><a href="/perfil"><img src={account_icon} alt="" class="account-icon" />{name}</a></li>
 			<li>
-				<a href="/" class="logout-btn" on:click|preventDefault={handleLogout}
+				<a href="/login" class="logout-btn" on:click={handleLogout}
 					><img src={logout_icon} alt="" class="red-icon" />Sair</a
 				>
 			</li>
