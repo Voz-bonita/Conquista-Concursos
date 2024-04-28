@@ -3,7 +3,7 @@ import { connectFunctionsEmulator, getFunctions, httpsCallable } from 'firebase/
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripe_public =
-	'pk_test_51P9vWcP079yRGsvd4LPSCgcmLqjFIj9DfViVD06LAaLc7Vjw920ZfylElsdNJwIhspN2h4dqZctlbouCXFXpSsSb00UwhgPnSa';
+	'pk_live_51P9vWcP079yRGsvdlS8iRz7C5lBHcLNbN7Ut1mq08raYsYDQhb0bImdDawcdaog0pFlx7ZnNV875rLlT19GdYR8W00heEIN7Z2';
 const stripe = await loadStripe(stripe_public);
 
 const functions = getFunctions();
