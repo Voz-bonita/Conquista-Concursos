@@ -22,9 +22,12 @@ export const authStore = writable({
 export const authHandlers = {
 	signUp: async (name, email, password) => {
 		try {
-			await createUserWithEmailAndPassword(auth, email, password);
-			await updateProfile(auth.currentUser, { displayName: name });
-			return '200';
+			await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
+				const user = userCredential.user;
+				updateProfile(user, { displayName: name }).then(() => {
+					return '200';
+				});
+			});
 		} catch (err) {
 			return err;
 		}
