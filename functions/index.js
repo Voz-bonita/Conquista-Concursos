@@ -12,7 +12,17 @@ setGlobalOptions({ region: 'southamerica-east1' });
 const admin_app = initializeApp();
 const db = getFirestore(admin_app);
 
-exports.createStripeCheckout = onCall({ secrets: [STRIPE_SECRET] }, async (request, response) => {
+exports.createStripeCheckout = onCall({ secrets: [STRIPE_SECRET] }, async ({ data, auth }) => {
+	let metadata;
+	const docPromisse = db.collection('contests_questions').doc(data.shoppingCart).get();
+	await docPromisse
+		.then((snapshot) => {
+			metadata = snapshot.data().metadata;
+		})
+		.catch((error) => {
+			console.log(error);
+		});
+
 	const stripe_module = require('stripe');
 	const stripe = stripe_module.Stripe(STRIPE_SECRET.value());
 	const session = await stripe.checkout.sessions.create({
@@ -25,9 +35,10 @@ exports.createStripeCheckout = onCall({ secrets: [STRIPE_SECRET] }, async (reque
 				quantity: 1,
 				price_data: {
 					currency: 'brl',
-					unit_amount: 20 * 100,
+					unit_amount: metadata.price,
 					product_data: {
-						name: 'Simulado 1'
+						name: metadata.name,
+						description: `Simulado com ${metadata.length} questões entregue por conquista-concursos.com, totalmente elaborado por IA (Pode conter alucinações).`
 					}
 				}
 			}
