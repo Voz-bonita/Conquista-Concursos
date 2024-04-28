@@ -4,6 +4,7 @@
 	import logout_icon from '$lib/assets/logout.svg';
 	import { authStore, authHandlers } from '$lib/stores/authStore';
 	import { currentContest } from '$lib/stores/databaseStore.js';
+	import { goto } from '$app/navigation';
 
 	let name;
 	authStore.subscribe((curr) => {
@@ -12,6 +13,7 @@
 
 	async function handleLogout() {
 		await authHandlers.signOut();
+		goto("/login")
 		return;
 	}
 
@@ -37,7 +39,7 @@
 		{#if $authStore.currentUser}
 			<li><a href="/perfil"><img src={account_icon} alt="" class="account-icon" />{name}</a></li>
 			<li>
-				<a href="/login" class="logout-btn" on:click={handleLogout}
+				<a href="/login" class="logout-btn" on:click|preventDefault={handleLogout}
 					><img src={logout_icon} alt="" class="red-icon" />Sair</a
 				>
 			</li>
