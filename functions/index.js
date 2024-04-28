@@ -78,7 +78,16 @@ exports.stripeWebhook = onRequest(
 				const session = await stripe.checkout.sessions.retrieve(dataObject.id);
 				const contestId = session.metadata.id;
 				const uid = session.metadata.customer_uid;
-
+				const permission = {};
+				permission[contestId] = true;
+				const docReference = db.collection('users').doc(uid);
+				await docReference.update(permission).catch((error) => {
+					if (error.code == 5) {
+						docReference.set(permission).catch((setError) => {
+							console.log(setError);
+						});
+					}
+				});
 				break;
 		}
 		response.sendStatus(200);
