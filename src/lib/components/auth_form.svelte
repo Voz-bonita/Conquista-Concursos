@@ -12,9 +12,11 @@
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
+	let checkTerms = false;
+	let checkPolitics = false;
 
 	async function handleSubmit() {
-		if (register && !recover && email && password && name && surname) {
+		if (register && !recover && email && password && name && surname && checkPolitics && checkTerms) {
 			if (password === confirmPassword) {
 				const fullName = `${name} ${surname}`;
 				const signUpResult = await authHandlers.signUp(fullName, email, password);
@@ -90,6 +92,25 @@
 					name="confirmPassword"
 					placeholder="Confirme a senha"
 				/>
+				<label class="terms" for="useTerms">
+					<input
+						type="checkbox"
+						id="useTerms"
+						name="useTerms"
+						bind:value={checkTerms}
+					>
+					<label for="useTerms">Declaro que li e concordo com os <a href="/termosDeUso" target="_blank" rel="noopener noreferrer">Termos de Uso e de Serviço</a></label>
+				</label>
+				<label class="terms" for="usePolitics">
+					<input
+						type="checkbox"
+						id="usePolitics"
+						name="usePolitics"
+						bind:value={checkPolitics}
+					>
+					<label for="usePolitics">Declaro que li e concordo com a <a href="/politicasDePrivacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></label>
+				</label>
+				
 			{/if}
 			{#if anyError}
 				<p class="error-message">{errorMessage}</p>
@@ -215,6 +236,13 @@
 		color: rgb(0, 0, 0);
 		font-size: 1vw;
 		text-decoration: underline;
+	}
+	.terms {
+		display: flex;
+		flex-direction: row;
+		font-size: 1vw;
+		margin-right: auto;
+		margin-left: 5vw;
 	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
