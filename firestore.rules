@@ -7,10 +7,8 @@ service cloud.firestore {
       allow write: if false;
     }
     match /contests_questions/{contestId} {
-    	// allow read: if isSignedIn() && userPaidContestTry(contestId);
-      allow read: if isSignedIn();
-      // allow read: if userPaidContestTry(contestId);
-      // allow read: if true;
+    	allow read: if isSignedIn() && userPaidContestTry(contestId);
+      allow write: if false;
     }
     match /users/{userId} {
     	allow read: if isSignedIn() && isOwnData(userId);
@@ -26,7 +24,7 @@ service cloud.firestore {
     	return request.auth.uid == userId;
     }
     function userPaidContestTry(contestId) {
-    	 return get(/databases/$(database)/documents/users/$(request.auth.token.email)).data[contestId] == true;
+    	 return get(/databases/$(database)/documents/users/$(request.auth.uid)).data[contestId] == true;
     }
   }
 }

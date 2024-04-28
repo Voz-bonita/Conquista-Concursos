@@ -10,12 +10,12 @@
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			if (user) {
 				authStore.update(() => {
-					return {currentUser: user, userLogged: true}
-				})
+					return { currentUser: user, userLogged: true };
+				});
 			} else {
 				authStore.update(() => {
-					return {currentUser: null, userLogged: false}
-				})
+					return { currentUser: null, userLogged: false };
+				});
 			}
 		});
 		return unsubscribe;

@@ -3,7 +3,7 @@
 	import ContestIndexRadio from '$lib/components/contest_index_radio.svelte';
 	import { enhance } from '$app/forms';
 	import { databaseHandler, currentContest } from '$lib/stores/databaseStore.js';
-	import { stripeHandler } from '$lib/stores/stripeStore.js'
+	import { stripeHandler } from '$lib/stores/stripeStore.js';
 
 	export let contest;
 	export let questionListId;
@@ -24,16 +24,19 @@
 	use:enhance={() => {
 		return async ({ result }) => {
 			const contestDocumentId = result.data.document;
-			await databaseHandler.getContestById(contestDocumentId).then((snapshot) => {
-				const formData = snapshot.data();
-				currentContest.update((current) => {
-					return { ...current, questions: formData.questions };
+			await databaseHandler
+				.getContestById(contestDocumentId)
+				.then((snapshot) => {
+					const formData = snapshot.data();
+					currentContest.update((current) => {
+						return { ...current, questions: formData.questions };
+					});
+				})
+				.catch((error) => {
+					if (error.code === 'permission-denied') {
+						stripeHandler.checkout(contestDocumentId);
+					}
 				});
-			}).catch((error) => {
-				if (error.code === "permission-denied") {
-					stripeHandler.checkout(contestDocumentId)
-				}
-			});
 		};
 	}}
 >

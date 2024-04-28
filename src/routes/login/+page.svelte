@@ -7,9 +7,9 @@
 
 	authStore.subscribe((current) => {
 		if (current.userLogged) {
-			goto(`/${data.origin}`)
-		} 
-	})
+			goto(`/${data.origin}`);
+		}
+	});
 </script>
 
 <AuthForm />

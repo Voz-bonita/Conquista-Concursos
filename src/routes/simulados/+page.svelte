@@ -8,9 +8,9 @@
 
 	authStore.subscribe((current) => {
 		if (!current.userLogged) {
-			goto('/login?q=simulados')
-		} 
-	})
+			goto('/login?q=simulados');
+		}
+	});
 
 	export let data;
 

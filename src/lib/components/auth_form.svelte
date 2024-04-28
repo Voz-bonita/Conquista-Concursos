@@ -16,7 +16,16 @@
 	let checkPolitics = false;
 
 	async function handleSubmit() {
-		if (register && !recover && email && password && name && surname && checkPolitics && checkTerms) {
+		if (
+			register &&
+			!recover &&
+			email &&
+			password &&
+			name &&
+			surname &&
+			checkPolitics &&
+			checkTerms
+		) {
 			if (password === confirmPassword) {
 				const fullName = `${name} ${surname}`;
 				const signUpResult = await authHandlers.signUp(fullName, email, password);
@@ -61,7 +70,7 @@
 <section class="green-theme login-section">
 	<form on:submit|preventDefault={handleSubmit} class="login-form">
 		<div class="provider-div">
-			<AuthProviderBtn/>
+			<AuthProviderBtn />
 		</div>
 
 		<div class="login-data">
@@ -93,24 +102,25 @@
 					placeholder="Confirme a senha"
 				/>
 				<label class="terms" for="useTerms">
-					<input
-						type="checkbox"
-						id="useTerms"
-						name="useTerms"
-						bind:value={checkTerms}
+					<input type="checkbox" id="useTerms" name="useTerms" bind:value={checkTerms} />
+					<label for="useTerms"
+						>Declaro que li e concordo com os <a
+							href="/termosDeUso"
+							target="_blank"
+							rel="noopener noreferrer">Termos de Uso e de Serviço</a
+						></label
 					>
-					<label for="useTerms">Declaro que li e concordo com os <a href="/termosDeUso" target="_blank" rel="noopener noreferrer">Termos de Uso e de Serviço</a></label>
 				</label>
 				<label class="terms" for="usePolitics">
-					<input
-						type="checkbox"
-						id="usePolitics"
-						name="usePolitics"
-						bind:value={checkPolitics}
+					<input type="checkbox" id="usePolitics" name="usePolitics" bind:value={checkPolitics} />
+					<label for="usePolitics"
+						>Declaro que li e concordo com a <a
+							href="/politicasDePrivacidade"
+							target="_blank"
+							rel="noopener noreferrer">Política de Privacidade</a
+						></label
 					>
-					<label for="usePolitics">Declaro que li e concordo com a <a href="/politicasDePrivacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a></label>
 				</label>
-				
 			{/if}
 			{#if anyError}
 				<p class="error-message">{errorMessage}</p>
