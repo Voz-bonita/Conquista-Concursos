@@ -30,7 +30,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@stripe/stripe-js": "^3.3.0",
 		"firebase": "^10.8.1",
+		"stripe": "^15.4.0",
 		"svelte-preprocess": "^5.1.4"
 	}
 }
