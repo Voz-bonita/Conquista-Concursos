@@ -15,8 +15,8 @@ import {
 
 const provider = new GoogleAuthProvider();
 export const authStore = writable({
-	isLoading: true,
-	currentUser: null
+	currentUser: null,
+	userLogged: false
 });
 
 export const authHandlers = {
