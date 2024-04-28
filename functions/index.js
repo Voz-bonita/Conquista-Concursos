@@ -33,8 +33,8 @@ exports.createStripeCheckout = onCall({ secrets: [STRIPE_SECRET] }, async ({ dat
 		customer_email: auth.token.email,
 		payment_method_types: ['card'],
 		mode: 'payment',
-		success_url: 'http://localhost:5173/',
-		cancel_url: 'http://localhost:5173/sobre',
+		success_url: 'https://conquista-concursos.com/simulados',
+		cancel_url: 'https://conquista-concursos.com/simulados',
 		metadata: { id: contestId, customer_uid: auth.token.uid },
 		line_items: [
 			{
