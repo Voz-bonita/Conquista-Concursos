@@ -1,5 +1,4 @@
-import { db } from '$lib/firebase';
-import { connectFunctionsEmulator, getFunctions, httpsCallable } from 'firebase/functions';
+import { getFunctions, httpsCallable } from 'firebase/functions';
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripe_public =
@@ -13,7 +12,6 @@ export const stripeHandler = {
 	checkout: function (constestId) {
 		createStripeCheckout({ shoppingCart: constestId }).then((response) => {
 			const sessionId = response.data.id;
-			console.log(sessionId);
 			stripe.redirectToCheckout({ sessionId: sessionId });
 		});
 	}
