@@ -3,6 +3,15 @@
 	import ContestList from '$lib/components/contest_list.svelte';
 	import ContestStepPicking from '$lib/components/contest_step_picking.svelte';
 	import Contest from '$lib/components/contest.svelte';
+	import { authStore } from '$lib/stores/authStore';
+	import { goto } from '$app/navigation';
+
+	authStore.subscribe((current) => {
+		if (!current.userLogged) {
+			goto('/login?q=simulados')
+		} 
+	})
+
 	export let data;
 
 	const { contests } = data;
