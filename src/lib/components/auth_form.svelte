@@ -194,6 +194,7 @@
 	.provider-div {
 		display: flex;
 		justify-content: center;
+		margin-bottom: 2vh;
 	}
 	.error-message {
 		font-size: 1.1vw;
