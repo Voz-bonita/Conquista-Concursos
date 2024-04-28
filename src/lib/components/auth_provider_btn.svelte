@@ -1,5 +1,5 @@
 <script>
-    import gmailLogo from '$lib/assets/google.svg';
+    import googleLogo from '$lib/assets/google.svg';
     import { authHandlers } from '$lib/stores/authStore';
 
     async function handleProviderLogin() {
@@ -15,7 +15,7 @@
 </script>
 
 <button type="button" class="provider-btn clickable" on:click={handleProviderLogin}>    
-    <img src={gmailLogo} alt="" class="provider-logo" />
+    <img src={googleLogo} alt="" class="provider-logo" />
     <span class="provider-text"> Continue com Google </span>
 </button>
 <style>
