@@ -1,7 +1,7 @@
 <script>
-	import { authHandlers, authStore } from '$lib/stores/authStore';
-	import gmailLogo from '$lib/assets/gmail.svg';
-	export let redirectHref = '/perfil';
+	import { authHandlers } from '$lib/stores/authStore';
+	import AuthProviderBtn from '$lib/components/auth_provider_btn.svelte';
+
 	let register = false;
 	let recover = false;
 	let recoverMessage = '';
@@ -12,9 +12,7 @@
 	let email = '';
 	let password = '';
 	let confirmPassword = '';
-	if ($authStore.currentUser) {
-		window.location.href = redirectHref;
-	}
+
 	async function handleSubmit() {
 		if (register && !recover && email && password && name && surname) {
 			if (password === confirmPassword) {
@@ -50,16 +48,6 @@
 			errorMessage = 'Preencha todos os campos';
 		}
 	}
-	async function handleProviderLogin() {
-		if (window.outerWidth <= 700) {
-			window.sessionStorage.setItem('pending', 1);
-			await authHandlers.GoogleMobileSignIn();
-		} else {
-			await authHandlers.GoogleSignIn().catch((error) => {
-				console.log(error.code);
-			});
-		}
-	}
 </script>
 
 <!-- TODO
@@ -71,12 +59,7 @@
 <section class="green-theme login-section">
 	<form on:submit|preventDefault={handleSubmit} class="login-form">
 		<div class="provider-div">
-			<button type="button" class="provider-btn" on:click={handleProviderLogin}
-				><div class="provider-login">
-					<img src={gmailLogo} alt="" width="80%" height="80%" />
-					<span class="provider-text"> Login com Google </span>
-				</div></button
-			>
+			<AuthProviderBtn/>
 		</div>
 
 		<div class="login-data">
@@ -208,23 +191,6 @@
 		font-size: 1vw;
 	}
 
-	.provider-btn {
-		background: whitesmoke;
-		color: black;
-		width: 15vw;
-		height: 7vh;
-	}
-
-	.provider-login {
-		display: grid;
-		grid-template-columns: 20% 80%;
-		justify-content: center;
-		align-items: center;
-	}
-
-	.provider-text {
-		font-size: 1.2vw;
-	}
 	.provider-div {
 		display: flex;
 		justify-content: center;
