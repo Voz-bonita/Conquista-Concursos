@@ -37,7 +37,7 @@
 		<li><a href="/simulados" class="simulado" on:click={resetContest}>Simulados do CNU</a></li>
 		<li><a href="/sobre">Sobre</a></li>
 		{#if $authStore.currentUser}
-			<li><a href="/perfil"><img src={account_icon} alt="" class="account-icon" />{name}</a></li>
+			<li><a href="/perfil"><img src={account_icon} alt="" class="account-icon" />{name ? name : "Atualize a página"}</a></li>
 			<li>
 				<a href="/login" class="logout-btn" on:click|preventDefault={handleLogout}
 					><img src={logout_icon} alt="" class="red-icon" />Sair</a
