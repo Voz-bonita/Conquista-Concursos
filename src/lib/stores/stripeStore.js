@@ -7,7 +7,6 @@ const stripe_public =
 const stripe = await loadStripe(stripe_public);
 
 const functions = getFunctions();
-connectFunctionsEmulator(functions, '127.0.0.1', 5001);
 const createStripeCheckout = httpsCallable(functions, 'createStripeCheckout');
 
 export const stripeHandler = {

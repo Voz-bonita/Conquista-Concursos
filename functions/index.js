@@ -64,7 +64,7 @@ exports.stripeWebhook = onRequest(
 			event = stripe.webhooks.constructEvent(
 				request.rawBody,
 				request.headers['stripe-signature'],
-				'whsec_cf090b333eedcae04d46f0ec95bc0c30e28e31a15127ac8d67fd24b4bdd0f7d6'
+				STRIPE_WEBHOOK.value()
 			);
 		} catch (error) {
 			console.error('O Webhook falhou');
