@@ -83,3 +83,8 @@
 	background-color: #04aa6d;
 	color: white;
 }
+
+.text-only-wrapper {
+	margin: 5vh 1vw 5vh 1vw;
+	text-align: justify;
+}
