@@ -6,6 +6,7 @@
 	import { enhance } from '$app/forms';
 	import { databaseHandler, currentContest } from '$lib/stores/databaseStore.js';
 	import { stripeHandler } from '$lib/stores/stripeStore.js';
+	import { loadingStore } from '$lib/stores/loadingStore';
 
 	export let contest;
 	export let questionListId;
@@ -24,6 +25,9 @@
 	class="container"
 	method="POST"
 	use:enhance={() => {
+		loadingStore.update(() => {
+			return { loading: true }
+		})
 		return async ({ result }) => {
 			const contestDocumentId = result.data.document;
 			await databaseHandler
@@ -33,6 +37,9 @@
 					currentContest.update((current) => {
 						return { ...current, questions: formData.questions };
 					});
+					loadingStore.update(() => {
+						return { loading: false }
+					})
 				})
 				.catch((error) => {
 					if (error.code === 'permission-denied') {
