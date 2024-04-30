@@ -54,7 +54,7 @@
 		</div>
 		<div class="grid-item">
 			<PricingCard plan_class="green-theme" name="Discursiva/Redação">
-				<PricingField name="Preço">R$50,00/Submissão</PricingField>
+				<PricingField name="Preço">R$30,00/Questão</PricingField>
 				<PricingField name="Tipo de Questão">Discursiva com limite de 45 linhas</PricingField>
 				<PricingField name="Uso de IA"
 					>Questões inéditas, padrão de resposta e correção da sua submissão</PricingField
