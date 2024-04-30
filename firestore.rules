@@ -7,7 +7,7 @@ service cloud.firestore {
       allow write: if false;
     }
     match /contests_questions/{contestId} {
-    	allow read: if isSignedIn() && userPaidContestTry(contestId);
+    	allow read: if isSignedIn() && (userPaidContestTry(contestId) || isAdmin());
       allow write: if false;
     }
     match /users/{userId} {
@@ -25,6 +25,9 @@ service cloud.firestore {
     }
     function userPaidContestTry(contestId) {
     	 return get(/databases/$(database)/documents/users/$(request.auth.uid)).data[contestId] == true;
+    }
+    function isAdmin() {
+    	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
     }
   }
 }
