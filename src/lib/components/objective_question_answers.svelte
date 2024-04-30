@@ -2,6 +2,7 @@
 	export let questions;
 	export let index;
 	export let answers;
+	$: discursive_question = questions.length == 1 ? 'discursive-question-answer': ''
 </script>
 
 <div class="question-frame">
@@ -23,7 +24,7 @@
 			</div>
 		{/each}
 	</div>
-	<p class="question-index">Resposta da IA:</p>
+	<p class="question-index {discursive_question}">Resposta da IA:</p>
 	<span class="full-answer">{@html questions[index].full_answer}</span>
 </div>
 
@@ -69,5 +70,9 @@
 	.full-answer {
 		font-size: 1.3vw;
 		white-space: pre-line;
+	}
+	.discursive-question-answer {
+		border-top: 5px dashed black;
+		padding-top: 2vh;
 	}
 </style>

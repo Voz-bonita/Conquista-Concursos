@@ -8,6 +8,7 @@
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment'; 
 	import Spinner from '$lib/components/spinner.svelte';
+	import ContestDiscursive from '$lib/components/contest_discursive.svelte';
 
 	authStore.subscribe((current) => {
 		if (!current.userLogged) {
@@ -58,7 +59,12 @@
 		{:else if pageCurrentState == 'contestStepForm'}
 			<ContestStepPicking contest={choosenContest} />
 		{:else if pageCurrentState == 'contestOnGoing'}
-			<Contest {questions} />
+			{#if questions.length > 1}
+				<Contest {questions} />
+			{:else if questions.length == 1}
+				<ContestDiscursive {questions}/>
+			{/if}
+			
 		{/if}
 	</div>
 {/if}
