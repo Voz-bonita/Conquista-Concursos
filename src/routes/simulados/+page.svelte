@@ -6,12 +6,14 @@
 	import { authStore } from '$lib/stores/authStore';
 	import { loadingStore } from '$lib/stores/loadingStore';
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment'; 
 	import Spinner from '$lib/components/spinner.svelte';
 
-	
 	authStore.subscribe((current) => {
 		if (!current.userLogged) {
-			goto('/login?q=simulados');
+			if(browser) {
+				goto('/login?q=simulados');
+			}
 		} else {
 			loadingStore.update(() => {
 				return { loading: false }
