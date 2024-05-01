@@ -18,7 +18,8 @@
 		});
 	}
 
-	const contestReplicates = 5;
+	const contestIsFree = contest.title.includes("test")
+	const contestReplicates = contestIsFree ? 1 : 5;
 </script>
 
 <form
@@ -58,18 +59,20 @@
 		<ContestIndexRadio {contestReplicates} bind:userSelected={version} />
 	</div>
 
-	<div class="pix-warning">
-		<img src={pix} alt="" class="pix-icon">
-		<p>Deseja pagar por Pix? Entre em contato por WhatsApp com <a
-			href="https://api.whatsapp.com/send/?phone=5561982851618&text=Ol%C3%A1!%20Eu%20gostaria%20de%20comprar%20um%20simulado%20do%20Conquista%20Concursos.%20Pode%20me%20ajudar?&type=phone_number&app_absent=0"
-			target="_blank"
-			rel="noopener noreferrer">(61) 9 8285-1618</a
-		></p>
-	</div>
-	<div class="support-warning">
-		<p>Suporte por WhatsApp somente das 19h às 22h (Segunda a Sexta)</p>
-		<p>Suporte por WhatsApp somente das 9h às 23h (Sábados, Domingos e Feriados)</p>
-	</div>
+	{#if !contestIsFree}
+		<div class="pix-warning">
+			<img src={pix} alt="" class="pix-icon">
+			<p>Deseja pagar por Pix? Entre em contato por WhatsApp com <a
+				href="https://api.whatsapp.com/send/?phone=5561982851618&text=Ol%C3%A1!%20Eu%20gostaria%20de%20comprar%20um%20simulado%20do%20Conquista%20Concursos.%20Pode%20me%20ajudar?&type=phone_number&app_absent=0"
+				target="_blank"
+				rel="noopener noreferrer">(61) 9 8285-1618</a
+			></p>
+		</div>
+		<div class="support-warning">
+			<p>Suporte por WhatsApp somente das 19h às 22h (Segunda a Sexta)</p>
+			<p>Suporte por WhatsApp somente das 9h às 23h (Sábados, Domingos e Feriados)</p>
+		</div>
+	{/if}
 	
 	<div class="directional-btns-div">
 		<button class="back-button directional-btn clickable" on:click|preventDefault={backToListing}
