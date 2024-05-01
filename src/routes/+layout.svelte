@@ -22,25 +22,27 @@
 	});
 </script>
 
-<header>
+<div class="page">
 	<Navbar />
-</header>
-<main>
-	<slot />
-</main>
-<footer>
-	<p>Copyright © 2024 Conquista Concursos</p>
-</footer>
+	<main>
+		<slot />
+	</main>
+	<footer>
+		<p>Copyright © 2024 Conquista Concursos</p>
+	</footer>
+</div>
+
 
 <style>
-	header {
-		justify-content: center;
+	.page {
+		display: flex;
+		flex-direction: column;
 	}
 	main {
 		min-width: 100%;
 		/* Altura da tela - navbar - footer - padding do slot */
 		min-height: 84vh;
-		margin: auto;
+		margin-top: 8vh;
 	}
 	footer {
 		min-height: 8vh;

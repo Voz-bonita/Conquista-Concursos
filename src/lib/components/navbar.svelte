@@ -1,7 +1,8 @@
 <script>
-	import award_star from '$lib/assets/award_star.svg';
+	import logo from '$lib/assets/logo.png';
 	import account_icon from '$lib/assets/account.svg';
 	import logout_icon from '$lib/assets/logout.svg';
+	import menu_icon from '$lib/assets/menu.svg';
 	import { authStore, authHandlers } from '$lib/stores/authStore';
 	import { currentContest } from '$lib/stores/databaseStore.js';
 	import { goto } from '$app/navigation';
@@ -24,201 +25,147 @@
 	}
 </script>
 
-<nav class="top-nav">
-	<div class="nav-title">
-		<img src={award_star} alt="" width="10%" height="10%" />
-		<a href="/">Conquista Concursos</a>
-	</div>
-	<input id="menu-toggle" type="checkbox" />
-	<label class="menu-button-container" for="menu-toggle">
-		<div class="menu-button"></div>
+<header>
+    <a href="/" class="logo"><img src={logo} alt=""/>Conquista Concursos</a>
+	<label for="checkmenu">
+		<input type="checkbox" id="checkmenu" class="input-menu">
+		<img src={menu_icon} alt="" class="menu-icon">
 	</label>
-	<ul class="nav-menu">
-		<li><a href="/simulados" class="simulado" on:click={resetContest}>Simulados do CNU</a></li>
-		<li><a href="/sobre">Sobre</a></li>
+    <nav class="navbar">
+		<a href="/simulados" class="contest" on:click={resetContest}>Simulados do CNU</a>
+		<a href="/sobre">Sobre</a>
 		{#if $authStore.currentUser}
-			<li>
-				<a href="/perfil"
-					><img src={account_icon} alt="" class="account-icon" />{name
-						? name
-						: 'Atualize a página'}</a
-				>
-			</li>
-			<li>
-				<a href="/login" class="logout-btn" on:click|preventDefault={handleLogout}
-					><img src={logout_icon} alt="" class="red-icon" />Sair</a
-				>
-			</li>
+			<a href="/perfil"
+				><img src={account_icon} alt="" class="account-icon" />{name
+					? name
+					: 'Atualize a página'}</a
+			>
+
+			<a href="/login" class="logout-btn" on:click|preventDefault={handleLogout}
+				style="color: red;"><img src={logout_icon} alt="" class="red-icon logout-icon" />Sair</a
+			>
 		{:else}
-			<li><a href="/login">Login</a></li>
+			<a href="/login">Login</a>
 		{/if}
-	</ul>
-</nav>
+    </nav>
+</header>
 
 <style>
-	.top-nav {
+    header {
+        position: absolute;
+        height: 8vh;
+        width: 99.14vw;
 		display: flex;
+		flex-direction: row;
+		align-items: center;
 		justify-content: space-between;
-		flex-direction: row;
-		align-items: center;
-		background: rgb(241, 241, 241);
-		height: 8vh;
-		padding: 0 3vw 0 3vw;
-	}
+    }
 
-	.nav-title {
-		display: flex;
-		align-items: center;
-		justify-content: space-around;
-	}
-
-	.nav-title a {
+	a {
 		text-decoration: none;
 		color: black;
-		font-size: large;
+		display: flex;
+		align-items: center;
+		flex-direction: row;
+		white-space: nowrap;
+	}
+
+	.logo {
+		margin-left: 2vw;
+		font-size: 1.2vw;
 		font-weight: bold;
-		font-size: 2vh;
+		width: 20vw;
 	}
 
-	.nav-menu a {
-		text-decoration: none;
-		padding: 1vh 2.5vw;
-		margin-left: 0.5vw;
-		border-radius: 20px;
-		transition: 0.3s;
-		cursor: pointer;
-		font-size: 1.8vh;
+	.logo > img {
+		width: 15%;
+		height: 15%;
 	}
 
-	ul li a {
-		display: flex;
-		color: black;
+	img {
+		width: 1.5vw;
+		height: 4vh;
+		padding-right: 5px;
 	}
 
-	ul li a:hover {
-		box-shadow: 0 0 0 1px black;
-	}
-
-	.simulado {
-		color: white;
-		background-color: steelblue;
-	}
-
-	.simulado:hover {
-		color: black;
-		background-color: steelblue;
-	}
-
-	.logout-btn {
-		color: red;
-	}
-
-	.nav-menu {
+	.navbar {
+		width: 75%;
 		display: flex;
 		flex-direction: row;
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
+		justify-content: right;
 	}
 
-	.menu-button-container {
+	.navbar > a {
+		padding: 1vh 2vw;
+		font-size: 1vw;
+		border-radius: 20px;
+		margin: 0 1px;
+	}
+
+	.navbar > a:hover {
+		border: 1px solid black;
+		color: black;
+	}
+
+	.contest {
+		background-color: steelblue;
+		color: white;
+	}
+
+	.menu-icon {
 		display: none;
-		max-height: 10px;
-		width: 30px;
-		cursor: pointer;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 	}
-
-	#menu-toggle {
+	.input-menu {
 		display: none;
-	}
-
-	.menu-button,
-	.menu-button::before,
-	.menu-button::after {
-		display: block;
-		background-color: black;
-		position: absolute;
-		height: 0.4vh;
-		width: 6vw;
-		transition: transform 400ms cubic-bezier(0.23, 1, 0.32, 1);
-		border-radius: 2px;
-	}
-
-	.menu-button::before {
-		content: '';
-		margin-top: -30%;
-	}
-
-	.menu-button::after {
-		content: '';
-		margin-top: 30%;
-	}
-
-	#menu-toggle:checked + .menu-button-container .menu-button::before {
-		margin-top: 0px;
-		transform: rotate(405deg);
-	}
-
-	#menu-toggle:checked + .menu-button-container .menu-button {
-		background: rgba(255, 255, 255, 0);
-	}
-
-	#menu-toggle:checked + .menu-button-container .menu-button::after {
-		margin-top: 0px;
-		transform: rotate(-405deg);
 	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
-		.menu-button-container {
+		label:has(.input-menu:checked) + .navbar {
 			display: flex;
 		}
-		.nav-menu {
+		.navbar {
+			display: none;
 			position: absolute;
-			top: 0;
-			margin-top: 8vh;
-			left: 0;
+			top: 100%;
 			flex-direction: column;
-			width: 100%;
-			justify-content: center;
 			align-items: center;
-		}
-		#menu-toggle ~ .nav-menu li {
-			height: 0;
-			margin: 0;
-			padding: 0;
-			border: 0;
-			transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
-		}
-		#menu-toggle:checked ~ .nav-menu li {
-			border: 1px solid #333;
-			height: 5vh;
-			padding: 0.5vh;
-			transition: height 400ms cubic-bezier(0.23, 1, 0.32, 1);
-		}
-		.nav-menu > li {
-			display: flex;
 			justify-content: right;
-			align-items: center;
-			padding-right: 5vw;
-			width: 100%;
-			background-color: #363636;
-			overflow: hidden;
+			background-color: rgb(21, 21, 21);
+			width: 100vw;
 		}
 
-		.nav-menu > li > a {
-			margin-right: 3vw;
+		.navbar > a {
 			color: white;
+			border-radius: 20px;
+			font-size: 2.5vw;
+			margin: 10px;
 		}
 
-		.logout-btn {
-			color: red !important;
+		.navbar > a:hover {
+			border: 1px solid black;
+			color: black;
 		}
-		.nav-menu > li:not(:last-child) {
-			border-bottom: 1px solid #444;
+
+		.logo {
+			font-size: 3vw;
 		}
+
+		.logo > img {
+			width: 30%;
+			height: 30%;
+		}
+
+		.menu-icon {
+			display: block;
+			width: 8vw;
+		}
+
+		img {
+			width: 6vw;
+			height: 4vh;
+			padding-right: 5px;
+		}
+
 		.account-icon {
 			filter: invert(94%) sepia(6%) saturate(0%) hue-rotate(113deg) brightness(105%) contrast(108%);
 		}
