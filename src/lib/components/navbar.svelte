@@ -137,22 +137,22 @@
 		.navbar > a {
 			color: white;
 			border-radius: 20px;
-			font-size: 2.5vw;
+			font-size: 3.5vw;
 			margin: 10px;
 		}
 
 		.navbar > a:hover {
-			border: 1px solid black;
-			color: black;
+			border: 1px solid white;
+			color: white;
 		}
 
 		.logo {
-			font-size: 3vw;
+			font-size: 0;
 		}
 
 		.logo > img {
-			width: 30%;
-			height: 30%;
+			width: 50%;
+			height: 50%;
 		}
 
 		.menu-icon {
