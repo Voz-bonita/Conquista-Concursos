@@ -52,7 +52,7 @@
 >
 	<p class="contest-general">{contest.short_name} - {contest.full_name}</p>
 	<div class="contest-frame">
-		<img src={contest.icon} class={contest.icon_style} alt="" width="4%" height="4%" />
+		<img src={contest.icon} class="contest-icon {contest.icon_style}" alt="" />
 		<p class="contest-title">{contest.title}</p>
 		<p class="contest-subtitle">{contest.subtitle}</p>
 		<ContestRadio steps={contest.steps} bind:userSelected={questionListId} />
@@ -147,6 +147,7 @@
 		width: 80%;
 		display: flex;
 		justify-content: right;
+		margin-bottom: 2vh;
 	}
 	.pix-warning {
 		background: whitesmoke;
@@ -180,10 +181,28 @@
 		padding: 10px;
 		width: 5%;
 	}
+	.contest-icon {
+		width: 3%;
+		height: 3%;
+	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
 		.pix-warning {
 			font-size: 2.2vw;
 		}
+		.directional-btn {
+			font-size: 3vw;
+		}
+		.contest-title {
+			font-size: 4vw;
+		}
+		.contest-subtitle {
+			font-size: 3.5vw;
+		}
+		.contest-icon {
+			width: 10%;
+			height: 10%;
+		}
+
 	}
 </style>

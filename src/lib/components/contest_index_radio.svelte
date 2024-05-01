@@ -54,12 +54,21 @@
 		border: 2px solid black;
 		padding: 1vh;
 		width: 15%;
-		height: 10vh;
+		height: 5vh;
 		font-size: 1.2vw;
 	}
 
 	label:has(> input[type='radio']:checked) {
 		background: rgb(26, 25, 25);
 		color: white;
+	}
+
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.contest-option-name {
+			font-size: 2vw;
+		}
+		.index {
+			height: 2vh;
+		}
 	}
 </style>
