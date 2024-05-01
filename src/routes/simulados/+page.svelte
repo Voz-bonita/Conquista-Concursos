@@ -10,16 +10,9 @@
 	import Spinner from '$lib/components/spinner.svelte';
 	import ContestDiscursive from '$lib/components/contest_discursive.svelte';
 
+	let userLogged
 	authStore.subscribe((current) => {
-		if (!current.userLogged) {
-			if(browser) {
-				goto('/login?q=simulados');
-			}
-		} else {
-			loadingStore.update(() => {
-				return { loading: false }
-			})
-		}
+		userLogged = current.userLogged;
 	});
 
 	export let data;
@@ -41,6 +34,9 @@
 		}
 		if (current.index != null) {
 			choosenContest = contests[current.index];
+			if(!userLogged && !choosenContest.title.includes('test')) {
+				goto("/login?q=simulados")
+			}
 			pageCurrentState = 'contestStepForm';
 		}
 		if (current.questions != null) {
