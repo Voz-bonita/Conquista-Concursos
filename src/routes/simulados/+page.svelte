@@ -6,7 +6,6 @@
 	import { authStore } from '$lib/stores/authStore';
 	import { loadingStore } from '$lib/stores/loadingStore';
 	import { goto } from '$app/navigation';
-	import { browser } from '$app/environment'; 
 	import Spinner from '$lib/components/spinner.svelte';
 	import ContestDiscursive from '$lib/components/contest_discursive.svelte';
 
@@ -17,7 +16,7 @@
 
 	export let data;
 
-	const { contests } = data;
+	const { contests, query } = data;
 
 	contests.forEach((contest) => {
 		contest.icon = new URL(`../../lib/assets/${contest.icon}`, import.meta.url).href;
@@ -26,6 +25,11 @@
 	let choosenContest;
 	let questions;
 
+	if(query !== null && query === 'free') {
+		currentContest.update(() => {
+			return {index: 0, questions: null}
+		})
+	} 
 	const unsubscribe = currentContest.subscribe((current) => {
 		if (current.index === null) {
 			questions = null;

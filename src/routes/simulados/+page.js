@@ -1,6 +1,6 @@
 import { databaseHandler, databaseStore } from '$lib/stores/databaseStore.js';
 
-export async function load() {
+export async function load({ url }) {
 	let col = databaseStore?.contestsCollection;
 	if (col === undefined) {
 		col = databaseHandler.getCollection('available_contests');
@@ -16,5 +16,5 @@ export async function load() {
 		});
 	}
 
-	return { contests: contestsData };
+	return { contests: contestsData, query: url.searchParams.get('q') };
 }

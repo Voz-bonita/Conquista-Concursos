@@ -5,10 +5,17 @@
 	import bolt from '$lib/assets/bolt.svg';
 	import explore from '$lib/assets/explore.svg';
 	import medal from '$lib/assets/medal.svg';
+	import ClickmeButton from '../lib/components/clickme_button.svelte';
+	import { goto } from '$app/navigation'
+
+	function freeContest() {
+		goto("/simulados?q=free")
+	}
 </script>
 
 <div class="feature-display">
-	<section class="grid-template green-theme">
+	<div class="green-theme">
+	<section class="grid-template">
 		<div class="grid-item">
 			<FeatureBox
 				path={bolt}
@@ -30,7 +37,12 @@
 				description="Se o que te faltava para conquistar esse sonho era um bom simulado, então chegou a sua vez!"
 			/>
 		</div>
+		
 	</section>
+	<div class="free-test">
+		<ClickmeButton onClickFunction={freeContest}>Teste Gratuitamente</ClickmeButton>
+	</div>	
+	</div>
 	<section class="grid-pricing white-theme">
 		<div class="grid-item">
 			<PricingCard plan_class="black-white-gradient-theme" name="Conhecimentos Gerais">
@@ -88,6 +100,13 @@
 	.feature-display {
 		display: flex;
 		flex-direction: column;
+	}
+
+	.free-test {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-bottom: 20px;
 	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
