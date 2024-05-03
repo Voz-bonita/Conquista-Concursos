@@ -35,7 +35,7 @@
 		<a href="/simulados" class="contest" on:click={resetContest}>Simulados do CNU</a>
 		<a href="/sobre">Sobre</a>
 		{#if $authStore.currentUser}
-			<a href="/perfil"
+			<a href="/perfil" on:click|preventDefault={() => {}}
 				><img src={account_icon} alt="" class="account-icon" />{name
 					? name
 					: 'Atualize a página'}</a
