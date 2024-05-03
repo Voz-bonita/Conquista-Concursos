@@ -72,13 +72,16 @@
 	.contest-option-grid {
 		display: grid;
 		grid-gap: 10px;
-		grid-template-columns: auto auto;
+		grid-template-columns: auto auto auto auto;
 		justify-content: center;
 		width: 100%;
 		margin: 1vh;
 	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.contest-option-grid {
+			grid-template-columns: auto auto;
+		}
 		.contest-option-name {
 			font-size: 2vw;
 		}

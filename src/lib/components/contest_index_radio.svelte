@@ -6,7 +6,7 @@
 	});
 </script>
 
-<div class="contest-option-row" role="radiogroup">
+<div class="contest-option-grid" role="radiogroup">
 	{#each contests as i}
 		<label for={i} class="index clickable">
 			{#if i == 1}
@@ -35,11 +35,11 @@
 </div>
 
 <style>
-	.contest-option-row {
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: space-evenly;
+	.contest-option-grid {
+		display: grid;
+		grid-gap: 10px;
+		grid-template-columns: auto auto auto auto auto;
+		justify-content: center;
 		width: 100%;
 		margin: 1vh;
 	}
@@ -53,9 +53,8 @@
 		border-radius: 7px;
 		border: 2px solid black;
 		padding: 1vh;
-		width: 15%;
-		height: 5vh;
 		font-size: 1.2vw;
+		padding: 10px 20px;
 	}
 
 	label:has(> input[type='radio']:checked) {
@@ -64,11 +63,15 @@
 	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.contest-option-grid {
+			grid-template-columns: auto auto auto;
+		}
 		.contest-option-name {
 			font-size: 2vw;
 		}
 		.index {
 			height: 2vh;
+			white-space: pre;
 		}
 	}
 </style>
