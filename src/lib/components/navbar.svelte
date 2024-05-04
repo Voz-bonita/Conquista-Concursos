@@ -6,6 +6,7 @@
 	import { authStore, authHandlers } from '$lib/stores/authStore';
 	import { currentContest } from '$lib/stores/databaseStore.js';
 	import { goto } from '$app/navigation';
+	import { browser } from '$app/environment'
 
 	let name;
 	authStore.subscribe((curr) => {
@@ -22,6 +23,18 @@
 		currentContest.update(() => {
 			return { index: null, questions: null };
 		});
+	}
+
+	// Hide navbar when user clicks on a navbar a tag
+	if (browser) {
+		const anchors = document.getElementsByTagName('a')
+		const checkboxMenu = document.getElementById('checkmenu')
+		checkboxMenu.checked = false;
+		for (let i = 0; i < anchors.length; i++) {
+			anchors[i].addEventListener('click', () => {
+				checkboxMenu.checked = false;
+			})
+		}
 	}
 </script>
 
