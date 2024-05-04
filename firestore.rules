@@ -7,7 +7,7 @@ service cloud.firestore {
       allow write: if false;
     }
     match /contests_questions/{contestId} {
-    	allow read: if isSignedIn() && (userPaidContestTry(contestId) || isAdmin());
+    	allow read: if userCanAccessContest(contestId);
       allow write: if false;
     }
     match /users/{userId} {
@@ -28,6 +28,15 @@ service cloud.firestore {
     }
     function isAdmin() {
     	return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true;
+    }
+    function contestIsFree(contestId) {
+    	return get(/databases/$(database)/documents/contests_questions/$(contestId)).data.metadata.price == 0;
+    }
+    function userCanAccessPaidContest(contestId) {
+    	return isSignedIn() && (userPaidContestTry(contestId) || isAdmin());
+    }
+    function userCanAccessContest(contestId) {
+    	return contestIsFree(contestId) || userCanAccessPaidContest(contestId)
     }
   }
 }
