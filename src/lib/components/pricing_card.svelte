@@ -17,11 +17,10 @@
 
 <style>
 	.card {
-		min-width: 15vw;
+		width: 20vw;
 		min-height: 30vh;
 		border: 1px solid;
 		border-color: black;
-		/* border-style: inset; */
 		border-radius: max(1vw, 10px);
 		margin: 20px;
 		display: flex;
