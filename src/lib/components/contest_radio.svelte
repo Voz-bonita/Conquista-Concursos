@@ -68,7 +68,7 @@
 	}
 	.contest-option-grid {
 		display: grid;
-		grid-gap: 10px;
+		gap: 10px;
 		grid-template-columns: auto auto auto auto;
 		justify-content: center;
 		width: 100%;
