@@ -132,6 +132,7 @@
 			justify-content: right;
 			background-color: rgb(21, 21, 21);
 			width: 100vw;
+			z-index: 999;
 		}
 
 		.navbar > a {
