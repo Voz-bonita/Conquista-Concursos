@@ -17,8 +17,7 @@
 					value={alternative.slice(1, 2)}
 					bind:group={userSelected}
 				/>
-				<label class="alternative-index" for={i}>{alternative.slice(0, 3)}</label>
-				<label class="alternative-body" for={i}>{alternative.slice(3)}</label>
+				<label class="alternative" for={i}><strong>{alternative.slice(0, 3)}</strong> {alternative.slice(3)}</label>
 			</label>
 		{/each}
 	</div>
@@ -46,17 +45,21 @@
 	}
 	.alternative-frame {
 		cursor: pointer;
-		padding: 0 1vw 0 1vw;
+		padding: 1em 1em;
 		border-radius: 20px;
 		border: 1px solid black;
 		margin: 5px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 1);
+		line-height: 1.5em;
+		display: flex;
+		align-items: center;
+		
+		&:hover {
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+			
+		}
 	}
-	.alternative-index {
-		font-size: 1.5vw;
-		font-weight: bold;
-		cursor: pointer;
-	}
-	.alternative-body {
+	.alternative {
 		font-size: 1.5vw;
 		cursor: pointer;
 	}
@@ -65,7 +68,22 @@
 		color: black;
 	}
 	.radio-group {
-		display: flex;
-		flex-direction: column;
+		display: grid;
+		grid-auto-rows: 1fr;
+	}
+
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.alternative-frame {
+			line-height: 0.8em;
+		}
+		.question-index {
+			font-size: 2.5vw;
+		}
+		.question-body {
+			font-size: 3vw;
+		}
+		.alternative {
+			font-size: 2.5vw;
+		}
 	}
 </style>
