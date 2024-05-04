@@ -1,9 +1,6 @@
 <script>
 	export let steps;
 	export let userSelected = steps[0].id;
-	const widthPercent = Math.min((0.8 / steps.length) * 100, 20);
-	const styleWidth = `width: 16rem;`;
-	console.log(steps)
 </script>
 
 <div class="contest-option-grid" role="radiogroup">
