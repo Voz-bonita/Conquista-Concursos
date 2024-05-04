@@ -17,7 +17,7 @@
 						? 'wrong-choice'
 						: ''}"
 			>
-				<p class="alternative-body" for={index}>
+				<p class="alternative" for={index}>
 					<strong>{alternative.slice(0, 3)}</strong>
 					{alternative.slice(3)}
 				</p>
@@ -37,7 +37,7 @@
 		background-color: whitesmoke;
 		border: 1px solid black;
 		border-radius: 20px;
-		padding: 0 2vw 3vh 2vw;
+		padding: 1em 1.5em;
 		margin: 5vh 0 1vh 0;
 	}
 	.question-index {
@@ -55,12 +55,12 @@
 	.alternative-container {
 		display: flex;
 		flex-direction: row;
-		padding: 0 1vw 0 1vw;
+		padding: 0 1vw;
 		border-radius: 20px;
 		border: 1px solid black;
 		margin: 5px;
 	}
-	.alternative-body {
+	.alternative {
 		font-size: 1.2vw;
 		cursor: pointer;
 	}
@@ -74,5 +74,22 @@
 	.discursive-question-answer {
 		border-top: 5px dashed black;
 		padding-top: 2vh;
+	}
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.alternative-container {
+			line-height: 0.8em;
+		}
+		.question-index {
+			font-size: 3vw;
+		}
+		.question-body {
+			font-size: 3vw;
+		}
+		.alternative {
+			font-size: 2.5vw;
+		}
+		.full-answer {
+		font-size: 3vw;
+	}
 	}
 </style>
