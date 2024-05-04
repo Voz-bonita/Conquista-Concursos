@@ -8,6 +8,7 @@
     :root {
         --bottom-offset: 10px;
         --negative-bottom-offeset: -10px;
+        --secondary-color: rgb(255, 191, 73);
     }
     .clickme {
         display: flex;
@@ -15,9 +16,9 @@
         justify-content: center;
         text-align: center;
         background-color: rgb(21, 21, 21);
-        color: rgb(255, 191, 73);
+        color: var(--secondary-color);
         cursor: pointer;
-        border: 2px solid rgb(255, 191, 73);
+        border: 2px solid var(--secondary-color);
         border-radius: 7px;
         font-size: 1.2vw;
         animation: pulse 1s linear infinite;
