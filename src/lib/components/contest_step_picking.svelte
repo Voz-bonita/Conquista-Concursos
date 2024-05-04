@@ -59,7 +59,7 @@
 		<ContestIndexRadio {contestReplicates} bind:userSelected={version} />
 	</div>
 
-	{#if !contestIsFree}
+	<!-- {#if !contestIsFree}
 		<div class="pix-warning">
 			<img src={pix} alt="" class="pix-icon">
 			<p>Deseja pagar por Pix? Entre em contato por WhatsApp com <a
@@ -72,7 +72,7 @@
 			<p>Suporte por WhatsApp somente das 19h às 22h (Segunda a Sexta)</p>
 			<p>Suporte por WhatsApp somente das 9h às 23h (Sábados, Domingos e Feriados)</p>
 		</div>
-	{/if}
+	{/if} -->
 	
 	<div class="directional-btns-div">
 		<button class="back-button directional-btn clickable" on:click|preventDefault={backToListing}
@@ -125,8 +125,10 @@
 		margin-top: 2vh;
 	}
 	.contest-subtitle {
+		max-width: 70%;
 		font-size: 1.4vw;
 		margin: 6px;
+		text-align: center;
 	}
 	.start-button {
 		background: steelblue;
@@ -202,6 +204,9 @@
 		.contest-icon {
 			width: 10%;
 			height: 10%;
+		}
+		.contest-general {
+			font-size: 3vw;
 		}
 
 	}

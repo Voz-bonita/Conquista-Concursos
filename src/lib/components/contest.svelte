@@ -120,4 +120,10 @@
 		margin-top: 2vh;
 		border: 1px solid black;
 	}
+
+	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+		.navigattion-btn {
+			font-size: 2.8vw;
+		}
+	}
 </style>
