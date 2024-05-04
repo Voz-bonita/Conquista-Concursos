@@ -5,6 +5,10 @@
 <button class="clickme" on:click={onClickFunction}><slot></slot></button>
 
 <style>
+    :root {
+        --bottom-offset: 10px;
+        --negative-bottom-offeset: -10px;
+    }
     .clickme {
         display: flex;
         align-items: center;
@@ -20,9 +24,11 @@
         padding: 10px 20px;
 
         transition: 0.2s;
+        box-shadow: 0px var(--bottom-offset) 5px rgba(0, 0, 0, 1);
         &:hover {
-            box-shadow: 0 0 0 2px rgb(255, 191, 73);
-            transform: scale(1.05);
+            box-shadow: 0 0 1px rgba(0, 0, 0, 1);
+            margin-top: var(--bottom-offset);
+            margin-bottom: var(--negative-bottom-offeset);
         }
     }
 
