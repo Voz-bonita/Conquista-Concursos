@@ -66,7 +66,7 @@
 <style>
     header {
         position: absolute;
-        height: 8vh;
+        height: 5rem;
         width: 99.14vw;
 		display: flex;
 		flex-direction: row;
@@ -85,19 +85,19 @@
 
 	.logo {
 		margin-left: 2vw;
-		font-size: 1.2vw;
+		font-size: 1.5rem;
 		font-weight: bold;
 		width: 20vw;
 	}
 
 	.logo > img {
-		width: 15%;
-		height: 15%;
+		width: auto;
+		height: 4rem;
 	}
 
-	img {
-		width: 1.5vw;
-		height: 4vh;
+	.navbar > a > img {
+		width: 1.8rem;
+		height: 1.8rem;
 		padding-right: 5px;
 	}
 
@@ -109,8 +109,8 @@
 	}
 
 	.navbar > a {
-		padding: 1vh 2vw;
-		font-size: 1vw;
+		padding: 0.4rem 2rem;
+		font-size: 1.2rem;
 		border-radius: 20px;
 		margin: 0 1px;
 	}
@@ -132,7 +132,7 @@
 		display: none;
 	}
 
-	@media screen and (orientation: portrait), screen and (max-width: 700px) {
+	@media screen and (orientation: portrait), screen and (max-width: 1200px) {
 		label:has(.input-menu:checked) + .navbar {
 			display: flex;
 		}
@@ -150,8 +150,6 @@
 
 		.navbar > a {
 			color: white;
-			border-radius: 20px;
-			font-size: 3.5vw;
 			margin: 10px;
 		}
 
@@ -164,20 +162,10 @@
 			font-size: 0;
 		}
 
-		.logo > img {
-			width: 50%;
-			height: 50%;
-		}
-
 		.menu-icon {
 			display: block;
-			width: 8vw;
-		}
-
-		img {
-			width: 6vw;
-			height: 4vh;
-			padding-right: 5px;
+			width: 5rem;
+			height: 4rem;
 		}
 
 		.account-icon {

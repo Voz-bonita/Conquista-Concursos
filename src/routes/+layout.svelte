@@ -42,7 +42,7 @@
 		min-width: 100%;
 		/* Altura da tela - navbar - footer - padding do slot */
 		min-height: 84vh;
-		margin-top: 8vh;
+		margin-top: 5rem;
 	}
 	footer {
 		min-height: 8vh;
