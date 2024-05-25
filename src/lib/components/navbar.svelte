@@ -45,7 +45,7 @@
 		<img src={menu_icon} alt="" class="menu-icon">
 	</label>
     <nav class="navbar">
-		<a href="/simulados" class="contest" on:click={resetContest}>Simulados do CNU</a>
+		<a href="/simulados" class="contest" on:click={resetContest} data-sveltekit-preload-data="tap">Simulados do CNU</a>
 		<a href="/sobre">Sobre</a>
 		{#if $authStore.currentUser}
 			<a href="/perfil" on:click|preventDefault={() => {}}

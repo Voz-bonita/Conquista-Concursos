@@ -3,22 +3,37 @@
 	import { goto } from '$app/navigation'
 	import FeatureList from '$lib/components/feature_list.svelte';
 	import PricingList from '$lib/components/pricing_list.svelte';
-	PricingList
-
+	import Spinner from '$lib/components/spinner.svelte';
+	import { loadingStore } from '$lib/stores/loadingStore.js';
+	
+	
 	function freeContest() {
+		loadingStore.update(() => {
+			return {loading: true}
+		})
 		goto("/simulados?q=free")
 	}
+
+	let isLoading = false;
+	loadingStore.subscribe((curr) => {
+		isLoading = curr.loading;
+	})
 </script>
 
-<div class="feature-display">
-	<div class="green-theme feature-body">
-		<FeatureList />
-		<div class="free-test">
-			<ClickmeButton onClickFunction={freeContest}>Teste Gratuitamente</ClickmeButton>
-		</div>	
+{#if isLoading}
+	<Spinner/>
+{:else}
+	<div class="feature-display">
+		<div class="green-theme feature-body">
+			<FeatureList />
+			<div class="free-test">
+				<ClickmeButton onClickFunction={freeContest}>Teste Gratuitamente</ClickmeButton>
+			</div>	
+		</div>
+		<PricingList />
 	</div>
-	<PricingList />
-</div>
+{/if}
+
 
 <style>
 	.feature-display {
