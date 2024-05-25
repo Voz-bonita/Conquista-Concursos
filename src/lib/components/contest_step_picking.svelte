@@ -56,7 +56,7 @@
 		<p class="contest-title">{contest.title}</p>
 		<p class="contest-subtitle">{contest.subtitle}</p>
 		<ContestRadio steps={contest.steps} bind:userSelected={questionListId} />
-		<ContestIndexRadio {contestReplicates} bind:userSelected={version} />
+		<!-- <ContestIndexRadio {contestReplicates} bind:userSelected={version} /> -->
 	</div>
 
 	<!-- {#if !contestIsFree}
@@ -98,7 +98,7 @@
 		border-radius: 7px;
 		width: 80%;
 		margin-top: 2vh;
-		padding-bottom: 2vh;
+		padding-bottom: 4vh;
 		padding-top: 2vh;
 		display: flex;
 		flex-direction: column;
