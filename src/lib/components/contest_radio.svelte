@@ -1,11 +1,11 @@
 <script>
 	export let steps;
-	export let userSelected = steps[0].id;
+	export let userSelected = steps[1].id;
 </script>
 
 <div class="contest-option-grid" role="radiogroup">
 	{#each steps as step}
-		<label for={step.name} class="card clickable">
+		<label for={step.name} class="card">
 			<input
 				id={step.name}
 				type="radio"
@@ -43,9 +43,19 @@
 		justify-content: center;
 		color: black;
 		border: 2px solid black;
-		border-radius: 7px;
+		border-radius: 10%;
 		padding: 1vw;
-		background-color: rgb(220, 220, 220);
+		background: linear-gradient(145deg, #2085d8, #3230b6);
+		cursor: pointer;
+		box-shadow: 0 0 1px rgba(0, 0, 0, 1);
+		margin-top: 10px;
+		margin-bottom: -10px;
+		transition: 0.2s;
+		&:hover {
+			box-shadow: 0px 10px 5px rgba(0, 0, 0, 1);
+			margin-top: 0px;
+			margin-bottom: 0px;
+        }
 	}
 
 	.card:hover {
@@ -63,8 +73,10 @@
 		cursor: pointer;
 	}
 	label:has(> input[type='radio']:checked) {
-		background: linear-gradient(90deg, #5e12eb, #a92be4);
 		color: black;
+		box-shadow: 0px 10px 5px rgba(0, 0, 0, 1);
+		margin-top: 0px;
+		margin-bottom: 0px;
 	}
 	.contest-option-grid {
 		display: grid;
