@@ -30,6 +30,7 @@ exports.createStripeCheckout = onCall({ secrets: [STRIPE_SECRET] }, async ({ dat
 	const stripe = stripe_module.Stripe(STRIPE_SECRET.value());
 
 	const session = await stripe.checkout.sessions.create({
+		allow_promotion_codes: true,
 		customer_email: auth.token.email,
 		payment_method_types: ['card'],
 		mode: 'payment',
