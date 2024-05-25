@@ -34,6 +34,7 @@
         .grid-template {
             display: grid;
             grid-auto-rows: 1fr;
+            justify-content: center;
             gap: 10px;
         }
     }
