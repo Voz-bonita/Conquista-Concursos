@@ -43,6 +43,7 @@
 	.feature-body {
 		padding-top: 5vh;
 		padding-bottom: 2vh;
+		width: 100%;
 	}
 	.free-test {
 		display: flex;

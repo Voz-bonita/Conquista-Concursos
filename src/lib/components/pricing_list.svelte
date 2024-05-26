@@ -35,6 +35,7 @@
         display: flex;
         align-items: stretch;
         justify-content: center;
+        width: 100%;
     }
     
     @media screen and (orientation: portrait), screen and (max-width: 700px) {
