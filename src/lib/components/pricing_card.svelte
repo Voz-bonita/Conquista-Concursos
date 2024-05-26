@@ -1,6 +1,20 @@
 <script>
+	import { currentContest } from '$lib/stores/databaseStore.js';
+	import { loadingStore } from '$lib/stores/loadingStore.js';
+	import { goto } from '$app/navigation';
+
 	export let name = '';
 	export let plan_class = '';
+
+	function resetContest() {
+		loadingStore.update(() => {
+			return { loading: true };
+		})
+		currentContest.update(() => {
+			return { index: null, questions: null };
+		});
+		goto("/simulados");
+	}
 </script>
 
 <div class="card">
@@ -10,9 +24,7 @@
 	<ul>
 		<slot />
 	</ul>
-	<a href="/simulados" class="anchor-contest-page"
-		><button class="{plan_class} call-btn">Simulados</button></a
-	>
+	<button class="anchor-contest-page {plan_class}" on:click={resetContest}>Simulados</button>
 </div>
 
 <style>
@@ -66,24 +78,20 @@
 	}
 
 	.anchor-contest-page {
-		margin: auto auto 0px auto;
-		width: 70%;
-	}
-
-	.call-btn {
-		margin-bottom: 4%;
-		width: 100%;
-		min-height: 4vh;
-		border-radius: 20px;
-		border-width: 1px;
-		border-color: black;
 		cursor: pointer;
+		margin: auto auto 0px auto;
+		text-decoration: none;
+		text-align: center;
 		font-size: 1vw;
+		width: 70%;
+		border-radius: 20px;
+		margin-bottom: 4%;
+		padding: 2% 0%;
+		&:hover {
+			box-shadow: 0 0 0 1px black;
+		}
 	}
 
-	.call-btn:hover {
-		box-shadow: 0 0 0 1px black;
-	}
 
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
 		.card {
@@ -105,9 +113,8 @@
 			margin: 4%;
 		}
 
-		.call-btn {
+		.anchor-contest-page {
 			font-size: 4vw;
-			width: 100%;
 		}
 	}
 </style>
