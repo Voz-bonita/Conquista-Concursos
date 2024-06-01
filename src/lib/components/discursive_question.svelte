@@ -1,18 +1,24 @@
 <script>
     import ContentDiv from "$lib/components/content_div.svelte";
     import ShowHide from "$lib/components/show_hide.svelte";
+    import { startChat, getChatResponse } from "$lib/stores/geminiStore.js"
     
     export let body;
+    export let topic;
+    export let answer;
 
-    function submitSolution() {
-        if (character_count >= 1000 & character_count < 1500) {
+    async function submitSolution() {
+        if (character_count >= 0 & character_count < 1500) {
             userSubmited = true;
+            const chat = startChat(body, topic, answer);
+            modelResponse = await getChatResponse(chat, userAnswer);
         }
     }
     
     let userSubmited = false;
-    let answer = "";
-    $: character_count = answer.length;
+    let userAnswer = "";
+    let modelResponse = "";
+    $: character_count = userAnswer.length;
 </script>
 
 {#if !userSubmited}
@@ -23,7 +29,7 @@
     </ContentDiv>
     <ContentDiv>
         <label for="user-answer"><h3>Escreva sua resposta</h3></label>
-        <textarea id="user-answer" maxlength="1500" class="user-answer" rows="10" bind:value={answer}/>
+        <textarea id="user-answer" maxlength="1500" class="user-answer" rows="10" bind:value={userAnswer}/>
         <span class="character-count">{character_count} / 1000 (Mínimo) ------------- {character_count} / 1500 (Máximo)</span>
     </ContentDiv>
 
@@ -41,7 +47,13 @@
     <ShowHide title="Sua Resposta" id="user-answer">
         <ContentDiv>
             <h3>Sua resposta</h3>
-            <span class="question-body">{answer}</span>
+            <span class="question-body">{userAnswer}</span>
+        </ContentDiv>
+    </ShowHide>
+    <ShowHide title="Correção" id="model-answer">
+        <ContentDiv>
+            <h3>Correção da IA</h3>
+            <span class="question-body">{@html modelResponse}</span>
         </ContentDiv>
     </ShowHide>
 {/if}
