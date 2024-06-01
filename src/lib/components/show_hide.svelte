@@ -1,11 +1,12 @@
 <script>
-
+    export let title = "";
+    export let id;
 </script>
 
 
 <div class="show-hide-container">
-    <label for="show-hide-question-body" class="show-hide-btn">Enunciado
-        <input id="show-hide-question-body" type="checkbox" style="display: none;" checked>
+    <label for={id} class="show-hide-btn">{title}
+        <input id={id} type="checkbox" style="display: none;" checked>
     </label>
     <div class="show-hide-content-div"><slot></slot></div>
 </div>
@@ -22,6 +23,7 @@
         background: linear-gradient(145deg, #2085d8, #3230b6);
         border-radius: 1rem;
         display: block;
+        cursor: pointer;
     }
 
     .show-hide-container {
