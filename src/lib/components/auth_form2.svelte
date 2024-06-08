@@ -1,12 +1,15 @@
 <script>
-	import FormField from "./form_field.svelte";
+	import FormField from "$lib/components/form_field.svelte";
     import { enhance } from '$app/forms';
+	import ActionRequired from "$lib/components/action_required.svelte";
+    
+    let form;  
 
-    const emailField = {type: "email", name: "E-mail", id: "email"}
-    const nameField = {type: "text", name: "Primeiro nome", minlength: 2, id: "name"}
-    const surnameField = {type: "text", name: "Último nome", minlength: 2, id: "surname"}
-    const passwordField = {type: "password", name: "Senha", minlength: 6, id: "password"}
-    const confirmPasswordField = {type: "password", name: "Confirme a senha", minlength: 6, id: "cpassword"}
+    $: emailField = {type: "email", lab_text: "E-mail", minlength: 4, id: "email", name: "email", value: form?.email ?? ''}
+    $: nameField = {type: "text", lab_text: "Primeiro nome", minlength: 2, id: "name", name: "name", value: form?.name ?? ''}
+    $: surnameField = {type: "text", lab_text: "Último nome", minlength: 2, id: "surname", name: "surname", value: form?.surname ?? ''}
+    $: passwordField = {type: "password", lab_text: "Senha", minlength: 6, id: "password", name: "password", value: form?.password ?? ''}
+    $: confirmPasswordField = {type: "password", lab_text: "Confirme a senha", minlength: 6, id: "cpassword", id: "cpassword", value: form?.cpassword ?? ''}
 
     let state = "login";
 
@@ -21,7 +24,13 @@
     }
 </script>
 
-<form method="POST" class="auth-form" action="?/{state}">
+<form method="POST" class="auth-form" action="?/{state}" use:enhance={() => {
+    return async ({ result }) => {
+        if(result.type === "failure") {
+            form = result.data;
+        }
+    }
+}}>
     <FormField inputProps={emailField}/>
     {#if state == "register"}
         <FormField inputProps={nameField}/>
@@ -44,6 +53,7 @@
         </div>
     {/if}
     <button class="form-btn basic-black-theme" type="submit">Enviar</button>
+    {#if form?.shortPassword}<ActionRequired>A senha deve conter no mínimo 6 carácteres</ActionRequired>{/if}
 </form>
 
 <style>
