@@ -22,7 +22,8 @@
 
     .field {
         width: 100%;
-        font-size: 1.8rem;
+        height: 2rem;
+        font-size: 1.4rem;
         border-radius: 0.3rem;
         border: 1px solid black;
         margin: 0.2rem;
