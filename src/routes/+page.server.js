@@ -22,16 +22,18 @@ export const actions = {
 			return fail(400, { email, fillEveryField: true });
 		}
 
-		await signInWithEmailAndPassword(email, password)
-			.then(() => {
-				return { success: true };
-			})
-			.catch((err) => {
-				if (err.code === 'auth/invalid-credential') {
-					return fail(403, { invalidCredentials: true });
-				}
-				return fail(500, { unknownError: true });
-			});
+		try {
+			await signInWithEmailAndPassword(auth, email, password);
+			return { success: true };
+		} catch (err) {
+			if (err.code === 'auth/invalid-credential') {
+				return fail(403, { invalidCredentials: true });
+			} else if (err.code === 'auth/invalid-email') {
+				return fail(403, { invalidEmail: true });
+			}
+		}
+
+		return fail(500, { unknownError: true });
 	},
 	register: async ({ request }) => {
 		const data = await request.formData();
@@ -55,23 +57,21 @@ export const actions = {
 
 		const fullName = `${name} ${surname}`;
 
-		await createUserWithEmailAndPassword(auth, email, password)
-			.then((userCredential) => {
+		try {
+			await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
 				const user = userCredential.user;
-				updateProfile(user, { displayName: fullName })
-					.then(() => {
-						return { success: true };
-					})
-					.catch(() => {
-						return fail(500, { unknownError: true });
-					});
-			})
-			.catch((err) => {
-				if (err.code === 'auth/email-already-in-use') {
-					return fail(403, { name, surname, takenEmail: true });
-				}
-				return fail(500, { unknownError: true });
+				updateProfile(user, { displayName: fullName });
 			});
+			return { success: true };
+		} catch (err) {
+			if (err.code === 'auth/email-already-in-use') {
+				return fail(403, { name, surname, takenEmail: true });
+			} else if (err.code === 'auth/invalid-email') {
+				return fail(403, { invalidEmail: true });
+			}
+		}
+
+		return fail(500, { unknownError: true });
 	},
 	recover: async ({ request }) => {
 		const data = await request.formData();
@@ -83,11 +83,13 @@ export const actions = {
 
 		try {
 			await sendPasswordResetEmail(auth, email);
+			return fail(499, { email, checkCode: true });
 		} catch (err) {
-			return fail(500, { unknownError: true });
+			if (err.code === 'auth/invalid-email') {
+				return fail(403, { invalidEmail: true });
+			}
 		}
-
-		return fail(499, { email, checkCode: true });
+		return fail(500, { unknownError: true });
 	},
 	recoverCheck: async ({ request }) => {
 		const data = await request.formData();
@@ -100,16 +102,19 @@ export const actions = {
 			return fail(400, { password, cpassword, code: recoverCode, fillEveryField: true });
 		}
 
+		if (password.length < 6) {
+			return fail(400, { email, shortPassword: true });
+		}
+
 		if (password != cpassword) {
 			return fail(400, { code: recoverCode, matchPassword: true });
 		}
 
-		await confirmPasswordReset(auth, recoverCode, password)
-			.then(() => {
-				return { success: true };
-			})
-			.catch(() => {
-				return fail(500, { unknownError: true });
-			});
+		try {
+			await confirmPasswordReset(auth, recoverCode, password);
+			return { success: true };
+		} catch (err) {
+			return fail(500, { unknownError: true });
+		}
 	}
 };
