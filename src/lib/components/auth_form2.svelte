@@ -43,26 +43,30 @@
         <FormField inputProps={surnameField}/>
         <FormField inputProps={passwordField}/>
         <FormField inputProps={confirmPasswordField}/>
+        <button class="form-btn blue-theme submit-btn" type="submit">Criar</button>
         <div class="form-state-btns-div">
-            <button class="form-btn blue-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
+            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
         </div>
     {:else if state == "login"}
         <FormField inputProps={passwordField}/>
+        <button class="form-btn blue-theme submit-btn" type="submit">Entrar</button>
         <div class="form-state-btns-div">
-            <button class="form-btn blue-theme" on:click|preventDefault={changeToRecoverState}>Recuperar senha</button>
-            <button class="form-btn blue-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
+            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRecoverState}>Recuperar senha</button>
+            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
         </div>
     {:else if state == "recover"}
+        <button class="form-btn blue-theme submit-btn" type="submit">Recuperar</button>
         <div class="form-state-btns-div">
-            <button class="form-btn blue-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
-            <button class="form-btn blue-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
+            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
+            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
         </div>
     {:else if state == "recoverCheck"}
         <FormField inputProps={recoverCodeField}/>
         <FormField inputProps={passwordField}/>
         <FormField inputProps={confirmPasswordField}/>
+        <button class="form-btn blue-theme submit-btn" type="submit">Confirmar</button>
     {/if}
-    <button class="form-btn basic-black-theme" type="submit">Enviar</button>
+    
     {#if form?.shortPassword}<ActionRequired>A senha deve conter no mínimo 6 carácteres</ActionRequired>{/if}
     {#if form?.matchPassword}<ActionRequired>As senhas não concidem</ActionRequired>{/if}
     {#if form?.fillEveryField}<ActionRequired>Por favor, preencha todos os campos</ActionRequired>{/if}
@@ -82,17 +86,41 @@
 
     .form-btn {
         font-size: 1.2rem;
-        border-radius: 1rem;
+        border-radius: 0.3rem;
         cursor: pointer;
         padding: 0.4rem 1.6rem;
-        margin: auto;
+        text-align: center;
+        min-width: fit-content;
+        flex: 1;
     }
 
     .form-state-btns-div {
-        width: 35%;
+        width: min(25rem, 80vw);
 		display: flex;
         align-items: stretch;
-        justify-content: space-between;
+        justify-content: center;
+        gap: 1rem;
         margin: 2rem;
+    }
+
+    .submit-btn {
+        margin-top: 1rem;
+        width: min(20rem, 70vw);
+        height: 3rem;
+        border: 0.1rem solid rgb(27, 78, 99);
+        box-shadow: 0rem 0.3rem 5px rgb(53, 84, 187);
+        transition: 200ms;
+        &:hover {
+            box-shadow: 0rem 0.5rem 5px rgb(53, 84, 187);
+        }
+    }
+
+    @media screen and (max-width: 600px) {
+        .form-state-btns-div {
+            display: grid;
+            grid-auto-rows: 1fr;
+            justify-content: center;
+            gap: 1rem;
+        }
     }
 </style>

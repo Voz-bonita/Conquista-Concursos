@@ -21,29 +21,25 @@
 
 <style>
 	.provider-btn {
-		background: whitesmoke;
+		background-color: azure;
 		color: black;
-		height: 5vh;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		border-radius: 20px;
-		min-width: 20vw;
-		padding: 0px 20px 0px 20px;
+		border-radius: 0.5rem;
+		padding: 0rem 1rem;
+		width: min(25rem, 70vw);
+		margin-bottom: 2rem;
+		min-width: fit-content;
 	}
 	.provider-logo {
-		height: 80%;
-		padding: 10px;
+		height: 2.2rem;
+		padding: 0rem 0.5rem 0rem 1rem;
 	}
 
 	.provider-text {
-		font-size: 1vw;
-	}
-
-	@media screen and (orientation: portrait), screen and (max-width: 700px) {
-		.provider-text {
-			font-size: 3vw;
-		}
+		font-size: 1.2rem;
+		padding: 0.1rem 1rem 0.1rem 0.5rem;
 	}
 </style>
