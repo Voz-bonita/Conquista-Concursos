@@ -10,8 +10,8 @@
     $: nameField = {type: "text", lab_text: "Primeiro nome", minlength: 2, id: "name", name: "name", value: form?.name ?? ''}
     $: surnameField = {type: "text", lab_text: "Último nome", minlength: 2, id: "surname", name: "surname", value: form?.surname ?? ''}
     $: passwordField = {type: "password", lab_text: "Senha", minlength: 6, id: "password", name: "password", value: form?.password ?? ''}
-    $: confirmPasswordField = {type: "password", lab_text: "Confirme a senha", minlength: 6, id: "cpassword", value: form?.cpassword ?? ''}
-    $: recoverCodeField = {type: "text", lab_text: "Código de confirmação", minlength: 1, id: "cpassword", id: "recover-code", value: form?.recoverCode ?? ''}
+    $: confirmPasswordField = {type: "password", lab_text: "Confirme a senha", minlength: 6, id: "cpassword", name: "cpassword", value: form?.cpassword ?? ''}
+    $: recoverCodeField = {type: "text", lab_text: "Código de confirmação", minlength: 1, id: "recover-code", name: "recover-code", value: form?.recoverCode ?? ''}
 
     let state = "login";
 
