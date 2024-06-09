@@ -15,8 +15,10 @@
         justify-content: center;
         background-color: rgb(255, 62, 62);
         width: 100%;
-        margin: 1rem 0rem;
+        margin: 2rem 0rem;
         padding: 0.1rem 0.1rem;
+        border: 0.1rem solid rgb(160, 44, 44);
+        border-radius: 0.3rem;
     }
 
     .action-symbol {
