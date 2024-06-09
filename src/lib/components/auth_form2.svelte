@@ -10,7 +10,8 @@
     $: nameField = {type: "text", lab_text: "Primeiro nome", minlength: 2, id: "name", name: "name", value: form?.name ?? ''}
     $: surnameField = {type: "text", lab_text: "Último nome", minlength: 2, id: "surname", name: "surname", value: form?.surname ?? ''}
     $: passwordField = {type: "password", lab_text: "Senha", minlength: 6, id: "password", name: "password", value: form?.password ?? ''}
-    $: confirmPasswordField = {type: "password", lab_text: "Confirme a senha", minlength: 6, id: "cpassword", id: "cpassword", value: form?.cpassword ?? ''}
+    $: confirmPasswordField = {type: "password", lab_text: "Confirme a senha", minlength: 6, id: "cpassword", value: form?.cpassword ?? ''}
+    $: recoverCodeField = {type: "text", lab_text: "Código de confirmação", minlength: 1, id: "cpassword", id: "recover-code", value: form?.recoverCode ?? ''}
 
     let state = "login";
 
@@ -29,6 +30,9 @@
     return async ({ result }) => {
         if(result.type === "failure") {
             form = result.data;
+            if (result.status == 499) {
+                state = "recoverCheck";
+            }
         }
     }
 }}>
@@ -53,6 +57,10 @@
             <button class="form-btn blue-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
             <button class="form-btn blue-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
         </div>
+    {:else if state == "recoverCheck"}
+        <FormField inputProps={recoverCodeField}/>
+        <FormField inputProps={passwordField}/>
+        <FormField inputProps={confirmPasswordField}/>
     {/if}
     <button class="form-btn basic-black-theme" type="submit">Enviar</button>
     {#if form?.shortPassword}<ActionRequired>A senha deve conter no mínimo 6 carácteres</ActionRequired>{/if}
