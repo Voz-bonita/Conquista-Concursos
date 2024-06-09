@@ -2,6 +2,7 @@
 	import FormField from "$lib/components/form_field.svelte";
     import { enhance } from '$app/forms';
 	import ActionRequired from "$lib/components/action_required.svelte";
+	import AuthProviderBtn from "$lib/components/auth_provider_btn.svelte";
     
     let form;  
 
@@ -31,6 +32,7 @@
         }
     }
 }}>
+    <AuthProviderBtn />
     <FormField inputProps={emailField}/>
     {#if state == "register"}
         <FormField inputProps={nameField}/>
