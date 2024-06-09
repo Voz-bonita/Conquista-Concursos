@@ -1,9 +1,11 @@
 <script>
 	import FormField from "$lib/components/form_field.svelte";
     import { enhance } from '$app/forms';
+    import { auth } from '$lib/firebase';
+    import { signInWithEmailAndPassword } from 'firebase/auth';
 	import ActionRequired from "$lib/components/action_required.svelte";
 	import AuthProviderBtn from "$lib/components/auth_provider_btn.svelte";
-    
+
     let form;  
 
     $: emailField = {type: "email", lab_text: "E-mail", minlength: 4, id: "email", name: "email", value: form?.email ?? ''}
@@ -26,13 +28,19 @@
     }
 </script>
 
-<form method="POST" class="auth-form" action="?/{state}" use:enhance={() => {
-    return async ({ result }) => {
+<form method="POST" class="auth-form" action="?/{state}" use:enhance={({ formData }) => {
+    console.log();
+    return async ({ result, update }) => {
         if(result.type === "failure") {
             form = result.data;
             if (result.status == 499) {
                 state = "recoverCheck";
             }
+        } else {
+            const email = formData.get("email");
+            const password = formData.get("password");
+            await signInWithEmailAndPassword(auth, email, password);
+            update();
         }
     }
 }}>
