@@ -68,6 +68,7 @@
     {#if form?.fillEveryField}<ActionRequired>Por favor, preencha todos os campos</ActionRequired>{/if}
     {#if form?.takenEmail}<ActionRequired>O e-mail informado já foi registrado</ActionRequired>{/if}
     {#if form?.invalidCredentials}<ActionRequired>E-mail e/ou senha incorretos</ActionRequired>{/if}
+    {#if form?.invalidEmail}<ActionRequired>Por favor, digite um e-mail válido</ActionRequired>{/if}
     {#if form?.unknownError}<ActionRequired>Um erro desconhecido ocorreu</ActionRequired>{/if}
 </form>
 
