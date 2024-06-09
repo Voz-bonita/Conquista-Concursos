@@ -54,6 +54,11 @@
     {/if}
     <button class="form-btn basic-black-theme" type="submit">Enviar</button>
     {#if form?.shortPassword}<ActionRequired>A senha deve conter no mínimo 6 carácteres</ActionRequired>{/if}
+    {#if form?.matchPassword}<ActionRequired>As senhas não concidem</ActionRequired>{/if}
+    {#if form?.fillEveryField}<ActionRequired>Por favor, preencha todos os campos</ActionRequired>{/if}
+    {#if form?.takenEmail}<ActionRequired>O e-mail informado já foi registrado</ActionRequired>{/if}
+    {#if form?.invalidCredentials}<ActionRequired>E-mail e/ou senha incorretos</ActionRequired>{/if}
+    {#if form?.unknownError}<ActionRequired>Um erro desconhecido ocorreu</ActionRequired>{/if}
 </form>
 
 <style>
