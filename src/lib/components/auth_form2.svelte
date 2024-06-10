@@ -3,12 +3,14 @@
     import { enhance } from '$app/forms';
     import { auth } from '$lib/firebase';
     import { signInWithEmailAndPassword } from 'firebase/auth';
+	import Spinner from "$lib/components/spinner.svelte";
 	import ActionRequired from "$lib/components/action_required.svelte";
 	import AuthProviderBtn from "$lib/components/auth_provider_btn.svelte";
 	import { GoogleProvider } from "$lib/stores/authStore.js";
 	import googleLogo from '$lib/assets/google.svg';
 
-    let form;  
+    let form;
+    let loading = false;
 
     $: emailField = {type: "email", minlength: 4, id: "email", name: "email", value: form?.email ?? ''}
     $: nameField = {type: "text", minlength: 2, id: "name", name: "name", value: form?.name ?? ''}
@@ -29,57 +31,62 @@
     }
 </script>
 
-<form method="POST" class="auth-form" action="?/{state}" use:enhance={({ formData }) => {
-    console.log();
-    return async ({ result, update }) => {
-        if(result.type === "failure") {
-            form = result.data;
-        } else if (result.data?.checkEmail) {
-            form = result.data;
-            state = "login";
-        } else {
-            const email = formData.get("email");
-            const password = formData.get("password");
-            await signInWithEmailAndPassword(auth, email, password);
-            update();
+{#if loading}
+    <Spinner />
+{:else}
+    <form method="POST" class="auth-form" action="?/{state}" use:enhance={({ formData }) => {
+        loading = true;
+        return async ({ result, update }) => {
+            if(result.type === "failure") {
+                form = result.data;
+            } else if (result.data?.checkEmail) {
+                form = result.data;
+                state = "login";
+            } else {
+                const email = formData.get("email");
+                const password = formData.get("password");
+                await signInWithEmailAndPassword(auth, email, password);
+                update();
+            }
+            loading = false;
         }
-    }
-}}>
-    <AuthProviderBtn logo={googleLogo} provider={GoogleProvider}>Continue com Google</AuthProviderBtn>
-    <FormField inputProps={emailField}>E-mail</FormField>
-    {#if state == "register"}
-        <FormField inputProps={nameField}>Primeiro nome</FormField>
-        <FormField inputProps={surnameField}>Último nome</FormField>
-        <FormField inputProps={passwordField}>Senha</FormField>
-        <FormField inputProps={confirmPasswordField}>Confirme a senha</FormField>
-        <button class="form-btn blue-theme submit-btn" type="submit">Criar</button>
-        <div class="form-state-btns-div">
-            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
-        </div>
-    {:else if state == "login"}
-        <FormField inputProps={passwordField}>Senha</FormField>
-        <button class="form-btn blue-theme submit-btn" type="submit">Entrar</button>
-        <div class="form-state-btns-div">
-            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRecoverState}>Recuperar senha</button>
-            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
-        </div>
-    {:else if state == "recover"}
-        <button class="form-btn blue-theme submit-btn" type="submit">Recuperar</button>
-        <div class="form-state-btns-div">
-            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
-            <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
-        </div>
-    {/if}
-    
-    {#if form?.checkEmail}<ActionRequired actionType="success">Foi enviado um e-mail com um link de recuperação de senha para {form.email}</ActionRequired>{/if}
-    {#if form?.shortPassword}<ActionRequired>A senha deve conter no mínimo 6 carácteres</ActionRequired>{/if}
-    {#if form?.matchPassword}<ActionRequired>As senhas não concidem</ActionRequired>{/if}
-    {#if form?.fillEveryField}<ActionRequired>Por favor, preencha todos os campos</ActionRequired>{/if}
-    {#if form?.takenEmail}<ActionRequired>O e-mail informado já foi registrado</ActionRequired>{/if}
-    {#if form?.invalidCredentials}<ActionRequired>E-mail e/ou senha incorretos</ActionRequired>{/if}
-    {#if form?.invalidEmail}<ActionRequired>Por favor, digite um e-mail válido</ActionRequired>{/if}
-    {#if form?.unknownError}<ActionRequired>Um erro desconhecido ocorreu</ActionRequired>{/if}
-</form>
+    }}>
+        <AuthProviderBtn logo={googleLogo} provider={GoogleProvider}>Continue com Google</AuthProviderBtn>
+        <FormField inputProps={emailField}>E-mail</FormField>
+        {#if state == "register"}
+            <FormField inputProps={nameField}>Primeiro nome</FormField>
+            <FormField inputProps={surnameField}>Último nome</FormField>
+            <FormField inputProps={passwordField}>Senha</FormField>
+            <FormField inputProps={confirmPasswordField}>Confirme a senha</FormField>
+            <button class="form-btn blue-theme submit-btn" type="submit">Criar</button>
+            <div class="form-state-btns-div">
+                <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
+            </div>
+        {:else if state == "login"}
+            <FormField inputProps={passwordField}>Senha</FormField>
+            <button class="form-btn blue-theme submit-btn" type="submit">Entrar</button>
+            <div class="form-state-btns-div">
+                <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRecoverState}>Recuperar senha</button>
+                <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
+            </div>
+        {:else if state == "recover"}
+            <button class="form-btn blue-theme submit-btn" type="submit">Recuperar</button>
+            <div class="form-state-btns-div">
+                <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
+                <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
+            </div>
+        {/if}
+        
+        {#if form?.checkEmail}<ActionRequired actionType="success">Foi enviado um e-mail com um link de recuperação de senha para {form.email}</ActionRequired>{/if}
+        {#if form?.shortPassword}<ActionRequired>A senha deve conter no mínimo 6 carácteres</ActionRequired>{/if}
+        {#if form?.matchPassword}<ActionRequired>As senhas não concidem</ActionRequired>{/if}
+        {#if form?.fillEveryField}<ActionRequired>Por favor, preencha todos os campos</ActionRequired>{/if}
+        {#if form?.takenEmail}<ActionRequired>O e-mail informado já foi registrado</ActionRequired>{/if}
+        {#if form?.invalidCredentials}<ActionRequired>E-mail e/ou senha incorretos</ActionRequired>{/if}
+        {#if form?.invalidEmail}<ActionRequired>Por favor, digite um e-mail válido</ActionRequired>{/if}
+        {#if form?.unknownError}<ActionRequired>Um erro desconhecido ocorreu</ActionRequired>{/if}
+    </form>
+{/if}
 
 <style>
     .auth-form {
