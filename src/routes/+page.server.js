@@ -26,8 +26,9 @@ export const actions = {
 			await signInWithEmailAndPassword(auth, email, password);
 			return { success: true };
 		} catch (err) {
+			console.log(err);
 			if (err.code === 'auth/invalid-credential') {
-				return fail(403, { invalidCredentials: true });
+				return fail(403, { email, invalidCredentials: true });
 			} else if (err.code === 'auth/invalid-email') {
 				return fail(403, { invalidEmail: true });
 			}
@@ -65,7 +66,7 @@ export const actions = {
 			return { success: true };
 		} catch (err) {
 			if (err.code === 'auth/email-already-in-use') {
-				return fail(403, { name, surname, takenEmail: true });
+				return fail(403, { name, surname, password, cpassword, takenEmail: true });
 			} else if (err.code === 'auth/invalid-email') {
 				return fail(403, { invalidEmail: true });
 			}
