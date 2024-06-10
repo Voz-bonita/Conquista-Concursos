@@ -1,22 +1,18 @@
 <script>
-	import googleLogo from '$lib/assets/google.svg';
-	import { authHandlers } from '$lib/stores/authStore';
+	import { auth } from '$lib/firebase';
+	import { signInWithPopup } from 'firebase/auth';
+
+	export let logo;
+	export let provider;
 
 	async function handleProviderLogin() {
-		if (window.outerWidth <= 700) {
-			window.sessionStorage.setItem('pending', 1);
-			await authHandlers.GoogleMobileSignIn();
-		} else {
-			await authHandlers.GoogleSignIn().catch((error) => {
-				console.log(error.code);
-			});
-		}
+		await signInWithPopup(auth, provider);
 	}
 </script>
 
 <button type="button" class="provider-btn clickable" on:click={handleProviderLogin}>
-	<img src={googleLogo} alt="" class="provider-logo" />
-	<span class="provider-text"> Continue com Google </span>
+	<img src={logo} alt="" class="provider-logo" />
+	<span class="provider-text"> <slot></slot> </span>
 </button>
 
 <style>
