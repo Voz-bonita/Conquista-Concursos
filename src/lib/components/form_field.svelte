@@ -1,10 +1,9 @@
 <script>
     export let inputProps;
-    const text = inputProps.lab_text;
 </script>
 
 <div class="field-div">
-    <label class="field-label" for={inputProps.id}>{text}</label>
+    <label class="field-label" for={inputProps.id}><slot></slot></label>
     <input {...inputProps} class="field" >
 </div>
 

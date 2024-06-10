@@ -8,11 +8,11 @@
 
     let form;  
 
-    $: emailField = {type: "email", lab_text: "E-mail", minlength: 4, id: "email", name: "email", value: form?.email ?? ''}
-    $: nameField = {type: "text", lab_text: "Primeiro nome", minlength: 2, id: "name", name: "name", value: form?.name ?? ''}
-    $: surnameField = {type: "text", lab_text: "Último nome", minlength: 2, id: "surname", name: "surname", value: form?.surname ?? ''}
-    $: passwordField = {type: "password", lab_text: "Senha", minlength: 6, id: "password", name: "password", value: form?.password ?? ''}
-    $: confirmPasswordField = {type: "password", lab_text: "Confirme a senha", minlength: 6, id: "cpassword", name: "cpassword", value: form?.cpassword ?? ''}
+    $: emailField = {type: "email", minlength: 4, id: "email", name: "email", value: form?.email ?? ''}
+    $: nameField = {type: "text", minlength: 2, id: "name", name: "name", value: form?.name ?? ''}
+    $: surnameField = {type: "text", minlength: 2, id: "surname", name: "surname", value: form?.surname ?? ''}
+    $: passwordField = {type: "password", minlength: 6, id: "password", name: "password", value: form?.password ?? ''}
+    $: confirmPasswordField = {type: "password", minlength: 6, id: "cpassword", name: "cpassword", value: form?.cpassword ?? ''}
     $: recoverCodeField = {type: "text", lab_text: "Código de confirmação", minlength: 1, id: "recover-code", name: "recover-code", value: form?.recoverCode ?? ''}
 
     let state = "login";
@@ -45,18 +45,18 @@
     }
 }}>
     <AuthProviderBtn />
-    <FormField inputProps={emailField}/>
+    <FormField inputProps={emailField}>E-mail</FormField>
     {#if state == "register"}
-        <FormField inputProps={nameField}/>
-        <FormField inputProps={surnameField}/>
-        <FormField inputProps={passwordField}/>
-        <FormField inputProps={confirmPasswordField}/>
+        <FormField inputProps={nameField}>Primeiro nome</FormField>
+        <FormField inputProps={surnameField}>Último nome</FormField>
+        <FormField inputProps={passwordField}>Senha</FormField>
+        <FormField inputProps={confirmPasswordField}>Confirme a senha</FormField>
         <button class="form-btn blue-theme submit-btn" type="submit">Criar</button>
         <div class="form-state-btns-div">
             <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
         </div>
     {:else if state == "login"}
-        <FormField inputProps={passwordField}/>
+        <FormField inputProps={passwordField}>Senha</FormField>
         <button class="form-btn blue-theme submit-btn" type="submit">Entrar</button>
         <div class="form-state-btns-div">
             <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRecoverState}>Recuperar senha</button>
