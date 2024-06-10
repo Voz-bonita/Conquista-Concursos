@@ -13,7 +13,6 @@
     $: surnameField = {type: "text", minlength: 2, id: "surname", name: "surname", value: form?.surname ?? ''}
     $: passwordField = {type: "password", minlength: 6, id: "password", name: "password", value: form?.password ?? ''}
     $: confirmPasswordField = {type: "password", minlength: 6, id: "cpassword", name: "cpassword", value: form?.cpassword ?? ''}
-    $: recoverCodeField = {type: "text", lab_text: "Código de confirmação", minlength: 1, id: "recover-code", name: "recover-code", value: form?.recoverCode ?? ''}
 
     let state = "login";
 
