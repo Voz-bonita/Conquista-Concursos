@@ -33,9 +33,9 @@
     return async ({ result, update }) => {
         if(result.type === "failure") {
             form = result.data;
-            if (result.status == 499) {
-                state = "recoverCheck";
-            }
+        } else if (result.data?.checkEmail) {
+            form = result.data;
+            state = "login";
         } else {
             const email = formData.get("email");
             const password = formData.get("password");
@@ -68,13 +68,9 @@
             <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
             <button class="form-btn basic-black-theme" on:click|preventDefault={changeToRegisterState}>Criar conta</button>
         </div>
-    {:else if state == "recoverCheck"}
-        <FormField inputProps={recoverCodeField}/>
-        <FormField inputProps={passwordField}/>
-        <FormField inputProps={confirmPasswordField}/>
-        <button class="form-btn blue-theme submit-btn" type="submit">Confirmar</button>
     {/if}
     
+    {#if form?.checkEmail}<ActionRequired actionType="success">Foi enviado um e-mail com um link de recuperação de senha para {form.email}</ActionRequired>{/if}
     {#if form?.shortPassword}<ActionRequired>A senha deve conter no mínimo 6 carácteres</ActionRequired>{/if}
     {#if form?.matchPassword}<ActionRequired>As senhas não concidem</ActionRequired>{/if}
     {#if form?.fillEveryField}<ActionRequired>Por favor, preencha todos os campos</ActionRequired>{/if}
