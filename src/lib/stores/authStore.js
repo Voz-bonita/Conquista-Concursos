@@ -1,56 +1,16 @@
 import { writable } from 'svelte/store';
 import { auth } from '$lib/firebase';
-import {
-	createUserWithEmailAndPassword,
-	sendPasswordResetEmail,
-	signInWithEmailAndPassword,
-	signOut,
-	updateEmail,
-	updatePassword,
-	GoogleAuthProvider,
-	signInWithPopup,
-	signInWithRedirect,
-	updateProfile
-} from 'firebase/auth';
+import { signOut, GoogleAuthProvider } from 'firebase/auth';
 
-const provider = new GoogleAuthProvider();
+export const GoogleProvider = new GoogleAuthProvider();
+
 export const authStore = writable({
 	currentUser: null,
 	userLogged: false
 });
 
 export const authHandlers = {
-	signUp: async (name, email, password) => {
-		try {
-			await createUserWithEmailAndPassword(auth, email, password).then((userCredential) => {
-				const user = userCredential.user;
-				updateProfile(user, { displayName: name }).then(() => {
-					return '200';
-				});
-			});
-		} catch (err) {
-			return err;
-		}
-	},
-	signIn: async (email, password) => {
-		await signInWithEmailAndPassword(auth, email, password);
-	},
 	signOut: async () => {
 		await signOut(auth);
-	},
-	resetPassword: async (email) => {
-		await sendPasswordResetEmail(auth, email);
-	},
-	updateEmail: async (email) => {
-		await updateEmail(email);
-	},
-	updatePassword: async (email) => {
-		await updatePassword(auth, email);
-	},
-	GoogleSignIn: async () => {
-		await signInWithPopup(auth, provider);
-	},
-	GoogleMobileSignIn: async () => {
-		await signInWithRedirect(auth, provider);
 	}
 };

@@ -5,6 +5,8 @@
     import { signInWithEmailAndPassword } from 'firebase/auth';
 	import ActionRequired from "$lib/components/action_required.svelte";
 	import AuthProviderBtn from "$lib/components/auth_provider_btn.svelte";
+	import { GoogleProvider } from "$lib/stores/authStore.js";
+	import googleLogo from '$lib/assets/google.svg';
 
     let form;  
 
@@ -43,7 +45,7 @@
         }
     }
 }}>
-    <AuthProviderBtn />
+    <AuthProviderBtn logo={googleLogo} provider={GoogleProvider}>Continue com Google</AuthProviderBtn>
     <FormField inputProps={emailField}>E-mail</FormField>
     {#if state == "register"}
         <FormField inputProps={nameField}>Primeiro nome</FormField>
