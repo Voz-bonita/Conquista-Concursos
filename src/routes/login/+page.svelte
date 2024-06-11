@@ -12,4 +12,6 @@
 	});
 </script>
 
-<AuthForm />
+<div style="border-top: 1px solid black">
+	<AuthForm />
+</div>
