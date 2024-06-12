@@ -1,4 +1,4 @@
-<div class="center green-theme">
+<div class="center">
 	<div class="ring"></div>
 	<span class="loading">Carregando...</span>
 </div>
@@ -13,13 +13,10 @@
 	}
 	.ring {
 		position: absolute;
-		width:25vw;
-		height: 25vw;
+		width: 25%;
+		padding-top: 25%;
 		border-radius: 50%;
         border-top: 5px solid;
-        border-bottom: 5px dashed;
-        border-left: 5px dashed;
-        border-right: 5px dashed;
         border-color: #000000;
         animation: spin 1s linear infinite;
 	}
@@ -55,7 +52,7 @@
 			color: black;
 		}
 		50% {
-			color: transparent;
+			color: #0000001F;
 		}
 		100% {
 			color: black;
