@@ -123,7 +123,9 @@
         box-shadow: 0rem 0.3rem 5px rgb(53, 84, 187);
         transition: 200ms;
         &:hover {
-            box-shadow: 0rem 0.5rem 5px rgb(53, 84, 187);
+            margin-top: calc(1rem - 3px);
+            margin-bottom: 3px;
+            box-shadow: 0rem calc(0.3rem + 3px) 5px rgb(53, 84, 187);
         }
     }
 
