@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
-import { db } from '$lib/firebase';
-import { collection, getDocs, doc, getDoc } from 'firebase/firestore';
+import { auth, db } from '$lib/firebase';
+import { collection, getDocs, doc, getDoc, setDoc } from 'firebase/firestore';
 
 export const currentContest = writable({
 	index: null,
@@ -38,5 +38,10 @@ export const databaseHandler = {
 	},
 	getAllDocs: async (collectionReference) => {
 		return await getDocs(collectionReference);
+	},
+	saveDiscursiveAnswer: async (contest, userAnswer, modelAnswer) => {
+		const docPath = `contest_user_answers/${auth.currentUser.uid}/${contest}/answer`;
+		const docReference = doc(db, docPath);
+		return await setDoc(docReference, { user_answer: userAnswer, model_answer: modelAnswer });
 	}
 };

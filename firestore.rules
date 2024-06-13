@@ -16,6 +16,9 @@ service cloud.firestore {
     match /contests/{document=**} {
     	allow write: if false;
     }
+    match /contest_user_answers/{userId}/{contestId}/answer {
+    	allow read, create: if userCanAccessContest(contestId) && isOwnData(userId);
+    }
     
     function isSignedIn() {
     	return request.auth != null;
