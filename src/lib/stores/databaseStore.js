@@ -42,6 +42,23 @@ export const databaseHandler = {
 	saveDiscursiveAnswer: async (contest, userAnswer, modelAnswer) => {
 		const docPath = `contest_user_answers/${auth.currentUser.uid}/${contest}/answer`;
 		const docReference = doc(db, docPath);
-		return await setDoc(docReference, { user_answer: userAnswer, model_answer: modelAnswer });
+		await setDoc(docReference, { user_answer: userAnswer, model_answer: modelAnswer });
+	},
+	getDiscursiveAnswer: async (contest) => {
+		if (auth.currentUser.uid === null) {
+			return {};
+		}
+
+		const docPath = `contest_user_answers/${auth.currentUser.uid}/${contest}/answer`;
+		const docReference = doc(db, docPath);
+
+		let answer = {};
+		await getDoc(docReference)
+			.then((snapshot) => {
+				answer = snapshot.data();
+			})
+			.catch(() => {});
+
+		return answer;
 	}
 };
