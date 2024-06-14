@@ -6,25 +6,31 @@
     import { auth } from '$lib/firebase.js'
 	import AuthFormModal from "$lib/components/auth_form_modal.svelte";
     import { authStore } from '$lib/stores/authStore';
+    import { setLoading, unsetLoading } from '$lib/stores/loadingStore';
 
     export let contest;
     export let question;
     const body = question.body;
     const answer = question.full_answer;
 
+    setLoading()
+
     let userSubmited = false;
     let userTriedSubmit = false;
+    let modelResponse = "";
 
     async function submitSolution() {
         userTriedSubmit = true;
         const answerIsValid = character_count >= 1 & character_count < 3500;
         if (answerIsValid & auth.currentUser != null) {
+            setLoading();
             userSubmited = true;
             // const chat = startChat(body, answer)
-            // const modelResponse = await getChatResponse(chat, userAnswer);
-            // await databaseHandler.saveDiscursiveAnswer(contest, userAnswer, modelResponse);
-            // userSubmited = true;
-            // return
+            // modelResponse = await getChatResponse(chat, userAnswer);
+            await databaseHandler.saveDiscursiveAnswer(contest, userAnswer, modelResponse);
+            userSubmited = true;
+            unsetLoading();
+            return
         }
         if (auth.currentUser === null) {
             promptUserToLogIn = true;
@@ -33,15 +39,39 @@
 
     authStore.subscribe((current) => {
         if(current.userLogged && userTriedSubmit) {
-            submitSolution()
+            setLoading();
+            databaseHandler.getDiscursiveAnswer(contest).then((existingAnswer) => {
+            if (Object.keys(existingAnswer).length != 0) {
+                userAnswer = existingAnswer["user_answer"];
+                modelResponse = existingAnswer["model_answer"];
+                userTriedSubmit = false;
+                userSubmited = true;
+                unsetLoading();
+                return;
+            }}).catch(() => {
+                unsetLoading();
+                submitSolution();
+            })
         }
     })
     
     let promptUserToLogIn = false;
     
     let userAnswer = "";
-    let modelResponse = "";
     $: character_count = userAnswer.length;
+
+    databaseHandler.getDiscursiveAnswer(contest).then((existingAnswer) => {
+        if (Object.keys(existingAnswer).length != 0) {
+            userAnswer = existingAnswer["user_answer"];
+            modelResponse = existingAnswer["model_answer"];
+            userTriedSubmit = false;
+            userSubmited = true;
+        }
+        unsetLoading();
+    }).catch(() => {
+        unsetLoading();
+    })
+    
 </script>
 
 <AuthFormModal bind:active={promptUserToLogIn}/>
