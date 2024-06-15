@@ -1,7 +1,7 @@
 <script>
     import ContentDiv from "$lib/components/content_div.svelte";
     import ShowHide from "$lib/components/show_hide.svelte";
-    import { startChat, getChatResponse } from "$lib/stores/geminiStore.js"
+    import { startChat, getChatResponse, cleanModelResponse } from "$lib/stores/geminiStore.js"
     import { databaseHandler } from '$lib/stores/databaseStore.js'
     import { auth } from '$lib/firebase.js'
 	import AuthFormModal from "$lib/components/auth_form_modal.svelte";
@@ -21,12 +21,11 @@
 
     async function submitSolution() {
         userTriedSubmit = true;
-        const answerIsValid = character_count >= 1 & character_count < 3500;
+        const answerIsValid = character_count >= 2450 & character_count < 3500;
         if (answerIsValid & auth.currentUser != null) {
             setLoading();
-            userSubmited = true;
-            // const chat = startChat(body, answer)
-            // modelResponse = await getChatResponse(chat, userAnswer);
+            const chat = startChat(body, answer)
+            modelResponse = await getChatResponse(chat, userAnswer);
             await databaseHandler.saveDiscursiveAnswer(contest, userAnswer, modelResponse);
             userSubmited = true;
             unsetLoading();
@@ -107,7 +106,7 @@
     <ShowHide title="Correção" id="model-answer">
         <ContentDiv>
             <h2>Correção da IA</h2>
-            <span class="question-body">{@html modelResponse}</span>
+            <span class="question-body">{@html cleanModelResponse(modelResponse)}</span>
         </ContentDiv>
     </ShowHide>
     {/if}

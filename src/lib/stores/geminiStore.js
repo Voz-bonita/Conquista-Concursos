@@ -60,3 +60,8 @@ export const getChatResponse = async (chat, userAnswer) => {
 	}
 	return modelResponse;
 };
+
+export const cleanModelResponse = (modelAnswer) => {
+	const regexBold = /\*\*((.|\n)+?)\*\*/g;
+	return modelAnswer.replace(regexBold, '<strong>$1</strong>');
+};
