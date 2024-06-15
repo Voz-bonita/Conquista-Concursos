@@ -8,6 +8,16 @@
 	color: black;
 }
 
+.blue-gradient-theme {
+	background: linear-gradient(145deg, #2085d8, #3230b6);
+	color: white;
+}
+
+.blue-theme {
+	background-color: #2085d8;
+	color: white;
+}
+
 .purple-theme {
 	background: linear-gradient(90deg, #5e12eb, #a92be4);
 	color: #eaecc6;
