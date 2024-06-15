@@ -10,7 +10,7 @@
 
 	export let contest;
 	export let questionListId;
-	export let version;
+	export let step = "";
 
 	function backToListing() {
 		currentContest.update(() => {
@@ -30,9 +30,9 @@
 			return { loading: true }
 		})
 		return async ({ result }) => {
-			const contestDocumentId = result.data.document;
+			step = result.data.document;
 			await databaseHandler
-				.getContestById(contestDocumentId)
+				.getContestById(step)
 				.then((snapshot) => {
 					const formData = snapshot.data();
 					currentContest.update((current) => {
@@ -44,7 +44,7 @@
 				})
 				.catch((error) => {
 					if (error.code === 'permission-denied') {
-						stripeHandler.checkout(contestDocumentId);
+						stripeHandler.checkout(step);
 					}
 				});
 		};

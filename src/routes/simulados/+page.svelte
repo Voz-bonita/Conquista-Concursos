@@ -7,7 +7,7 @@
 	import { loadingStore } from '$lib/stores/loadingStore';
 	import { goto } from '$app/navigation';
 	import Spinner from '$lib/components/spinner.svelte';
-	import ContestDiscursive from '$lib/components/contest_discursive.svelte';
+	import DiscursiveQuestion from '$lib/components/discursive_question.svelte';
 
 	let userLogged
 	authStore.subscribe((current) => {
@@ -48,26 +48,25 @@
 			pageCurrentState = 'contestOnGoing';
 		}
 	});
+	let choosenStep = ""
 </script>
 
 {#if $loadingStore.loading}
 	<Spinner/>
-{:else}
-	<div class="green-theme main-div">
-		{#if pageCurrentState == 'contestList'}
-			<ContestList {contests} />
-		{:else if pageCurrentState == 'contestStepForm'}
-			<ContestStepPicking contest={choosenContest} />
-		{:else if pageCurrentState == 'contestOnGoing'}
-			{#if questions.length > 1}
-				<Contest {questions} />
-			{:else if questions.length == 1}
-				<ContestDiscursive {questions}/>
-			{/if}
-			
-		{/if}
-	</div>
 {/if}
+<div class="green-theme main-div" style="display: {$loadingStore.loading ? 'none' : 'block'};">
+	{#if pageCurrentState == 'contestList'}
+		<ContestList {contests} />
+	{:else if pageCurrentState == 'contestStepForm'}
+		<ContestStepPicking contest={choosenContest} bind:step={choosenStep}/>
+	{:else if pageCurrentState == 'contestOnGoing'}
+		{#if questions.length > 1}
+			<Contest {questions} />
+		{:else if questions.length == 1}
+			<DiscursiveQuestion question={questions[0]} contest={choosenStep}/>
+		{/if}
+	{/if}
+</div>
 
 
 <style>
