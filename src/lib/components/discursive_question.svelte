@@ -97,6 +97,12 @@
             <span class="question-body">{@html body}</span>
         </ContentDiv>
     </ShowHide>
+    <ShowHide title="Padrão de Resposta" id="question-answer">
+        <ContentDiv>
+            <h2>Padrão de Resposta</h2>
+            <span class="question-body">{@html answer}</span>
+        </ContentDiv>
+    </ShowHide>
     <ShowHide title="Sua Resposta" id="user-answer">
         <ContentDiv>
             <h2>Sua resposta</h2>
