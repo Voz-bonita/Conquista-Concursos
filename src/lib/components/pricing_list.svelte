@@ -24,7 +24,7 @@
         <PricingField name="Preço">R$30,00/Questão</PricingField>
         <PricingField name="Tipo de Questão">Discursiva com limite de 45 linhas</PricingField>
         <PricingField name="Uso de IA"
-            >Questões inéditas, padrão de resposta e correção da sua submissão (Correção ainda não implementada)</PricingField
+            >Questões inéditas, padrão de resposta e correção da sua submissão</PricingField
         >
         <PricingField name="Análise de Preformance">Correção da IA</PricingField>
     </PricingCard>
