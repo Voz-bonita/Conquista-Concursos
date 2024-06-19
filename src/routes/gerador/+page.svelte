@@ -1,6 +1,7 @@
 <script>
     import ContentDiv from '$lib/components/content_div.svelte'
     import FormField from '$lib/components/form_field.svelte'
+	import FormRadio from '$lib/components/form_radio.svelte';
 
     export let form;
     let questionType = "objetiva"
@@ -19,18 +20,9 @@
             <FormField inputProps={apiField}>Chave da API</FormField>
             <FormField inputProps={topicField}>Assunto da Questão</FormField>
             <div class="radio-type" role="radiogroup">
-                <label for="objetiva" class="type-label">
-                    <input type="radio" id="objetiva" name="objetiva" bind:group={questionType} value="objetiva"/>
-                    <label for="objetiva" style="cursor: pointer;">Objetiva</label>
-                </label>
-                <label for="discursiva" class="type-label">
-                    <input type="radio" id="discursiva" name="discursiva" bind:group={questionType} value="discursiva"/>
-                    <label for="discursiva" style="cursor: pointer;">Discursiva</label>
-                </label>
-                <label for="discursiva" class="type-label">
-                    <input type="radio" id="correcao" name="correcao" bind:group={questionType} value="correcao"/>
-                    <label for="correcao" style="cursor: pointer;">Correção</label>
-                </label>
+                <FormRadio id="objetiva" bind:groupValue={questionType}>Objetiva</FormRadio>
+                <FormRadio id="discursiva" bind:groupValue={questionType}>Discursiva</FormRadio>
+                <FormRadio id="correcao" bind:groupValue={questionType}>Correção</FormRadio>
             </div>
             {#if questionType == "correcao"}
                 <label for="question-body"><h2>Enunciado</h2></label>
@@ -72,28 +64,6 @@
         align-items: center;
         gap: 1rem;
         padding: 0.2rem;
-    }
-
-    .type-label {
-        font-size: 1.5rem;
-        padding: 0.3rem 1rem;
-        border-radius: 0.3rem;
-        border: 1px solid black;
-        cursor: pointer;
-        box-shadow: 0 0.3rem 0.3rem black;
-    }
-
-    label:has(> input[type='radio']:checked) {
-        background: linear-gradient(145deg, #2085d8, #3230b6);
-        color: white;
-        box-shadow: 0 0.4rem 0.4rem black;
-        margin-top: -0.2rem;
-        margin-bottom: 0.2rem;
-        transition: 150ms;
-	}
-
-    .radio-type > label > input{
-        display: none;
     }
     
     .submit-btn {
