@@ -60,5 +60,18 @@ export const databaseHandler = {
 			.catch(() => {});
 
 		return answer;
+	},
+	getBaselineDiscursive: async () => {
+		const docPath = 'sample_questions/discursive_sample';
+		const docReference = doc(db, docPath);
+
+		let question = {};
+		await getDoc(docReference)
+			.then((snapshot) => {
+				question = snapshot.data();
+			})
+			.catch(() => {});
+
+		return question;
 	}
 };
