@@ -4,9 +4,9 @@
 	import FormRadio from '$lib/components/form_radio.svelte';
 
     export let form;
-    let questionType = "objetiva"
+    $: questionType = form?.questionType ?? 'objetiva'
     $: apiField = {type: "text", minlength: 8, id: "api-key", name: "api-key", value: form?.apiKey ?? ''};
-    $: topicField = {type: "text", minlength: 6, id: "topic", name: "topic", value: form?.topic ?? ''};
+    $: subjectField = {type: "text", minlength: 6, id: "subject", name: "subject", value: form?.subject ?? ''};
 
     let questionBody = "";
     let questionAnswer = "";
@@ -18,8 +18,8 @@
     <ContentDiv>
         <form class="form-generator">
             <FormField inputProps={apiField}>Chave da API</FormField>
-            <FormField inputProps={topicField}>Assunto da Questão</FormField>
-            <div class="radio-type" role="radiogroup">
+            <FormField inputProps={subjectField}>Assunto da Questão</FormField>
+            <div class="radio-type" role="radiogroup" name="question-type">
                 <FormRadio id="objetiva" bind:groupValue={questionType}>Objetiva</FormRadio>
                 <FormRadio id="discursiva" bind:groupValue={questionType}>Discursiva</FormRadio>
                 <FormRadio id="correcao" bind:groupValue={questionType}>Correção</FormRadio>

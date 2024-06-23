@@ -9,10 +9,10 @@ import { databaseHandler } from '$lib/stores/databaseStore.js';
 
 export async function POST({ url }) {
 	const apiKey = url.searchParams.get('api-key');
-	const questionTopic = url.searchParams.get('topic');
-	const questionType = url.searchParams.get('question-type');
-	let questionBody = url.searchParams.get('question-body');
-	let questionAnswer = url.searchParams.get('question-answer');
+	const questionSubject = url.searchParams.get('assunto');
+	const questionType = url.searchParams.get('tipo');
+	let questionBody = url.searchParams.get('enunciado');
+	let questionAnswer = url.searchParams.get('resposta');
 	if (questionType === 'correcao' && questionBody != null && questionAnswer != null) {
 		const AIPerfectAnswer = expectedResponse(questionBody);
 		const AIScoreToUser = scoreAnswer(questionBody, AIPerfectAnswer, questionAnswer);
@@ -21,13 +21,13 @@ export async function POST({ url }) {
 			questionAnswer: AIPerfectAnswer,
 			questionScore: AIScoreToUser
 		});
-	} else if (questionType === 'discursiva' && questionTopic != null) {
+	} else if (questionType === 'discursiva' && questionSubject != null) {
 		const baselineQuestion = await databaseHandler.getBaselineDiscursive();
 		const baselineQuestionBody = baselineQuestion.question_body;
 
 		const { newQuestionBody, newQuestionAnswer } = await generateDiscursive(
 			baselineQuestionBody,
-			questionTopic
+			questionSubject
 		);
 
 		return json({
@@ -35,14 +35,14 @@ export async function POST({ url }) {
 			questionAnswer: newQuestionAnswer,
 			questionScore: ''
 		});
-	} else if (questionType === 'objetiva' && questionTopic != null) {
+	} else if (questionType === 'objetiva' && questionSubject != null) {
 		const baselineQuestionObject = await databaseHandler.getBaselineObjective();
 		const baselineQuestionBody = baselineQuestionObject.question_body;
 		const baselineQuestionAlternatives = baselineQuestionObject.question_alternatives;
 		const baselineQuestionAnswer = baselineQuestionObject.question_answer;
 		const baselineQuestion = `${baselineQuestionBody}\n\n@@@@@\n\n${baselineQuestionAlternatives}\n\nResposta correta:${baselineQuestionAnswer}`;
 
-		const newQuestion = await generateObjective(baselineQuestion, questionTopic);
+		const newQuestion = await generateObjective(baselineQuestion, questionSubject);
 		return json({
 			questionBody: newQuestion,
 			questionAnswer: '',
