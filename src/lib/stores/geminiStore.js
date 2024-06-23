@@ -1,6 +1,6 @@
 import { model } from '$lib/firebase.js';
 
-export const expectedResponse = (questionBody) => {
+export const expectedResponse = async (questionBody) => {
 	const chat = model.startChat({
 		history: [
 			{
@@ -25,10 +25,10 @@ export const expectedResponse = (questionBody) => {
 		]
 	});
 
-	return getChatResponse(chat, questionBody);
+	return await getChatResponse(chat, questionBody);
 };
 
-export const scoreAnswer = (questionBody, questionAnswer, userAnswer) => {
+export const scoreAnswer = async (questionBody, questionAnswer, userAnswer) => {
 	const chat = model.startChat({
 		history: [
 			{
@@ -76,7 +76,7 @@ export const scoreAnswer = (questionBody, questionAnswer, userAnswer) => {
 		]
 	});
 
-	return getChatResponse(chat, userAnswer);
+	return await getChatResponse(chat, userAnswer);
 };
 
 export const generateDiscursive = async (questionBodyBaseline, topic) => {
@@ -117,10 +117,10 @@ export const generateDiscursive = async (questionBodyBaseline, topic) => {
 	});
 
 	const newQuestion = await getChatResponse(chat, topic);
-	// const answer = expectedResponse(newQuestion);
+	const answer = await expectedResponse(newQuestion);
 
-	return { newQuestionBody: newQuestion };
-	// return { newQuestionBody: newQuestion, newQuestionAnswer: answer };
+	// return { newQuestionBody: newQuestion };
+	return { newQuestionBody: newQuestion, newQuestionAnswer: answer };
 };
 
 export const startChat = (questionBody, questionAnswer) => {

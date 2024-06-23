@@ -20,11 +20,14 @@ export async function POST({ url }) {
 		const baselineQuestion = await databaseHandler.getBaselineDiscursive();
 		const baselineQuestionBody = baselineQuestion.question_body;
 
-		const newQuestion = await generateDiscursive(baselineQuestionBody, questionTopic);
+		const { newQuestionBody, newQuestionAnswer } = await generateDiscursive(
+			baselineQuestionBody,
+			questionTopic
+		);
 
 		return json({
-			questionBody: newQuestion,
-			questionAnswer: '',
+			questionBody: newQuestionBody,
+			questionAnswer: newQuestionAnswer,
 			questionScore: ''
 		});
 	}
