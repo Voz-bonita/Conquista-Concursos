@@ -73,5 +73,18 @@ export const databaseHandler = {
 			.catch(() => {});
 
 		return question;
+	},
+	getBaselineObjective: async () => {
+		const docPath = 'sample_questions/objective_sample';
+		const docReference = doc(db, docPath);
+
+		let question = {};
+		await getDoc(docReference)
+			.then((snapshot) => {
+				question = snapshot.data();
+			})
+			.catch(() => {});
+
+		return question;
 	}
 };
