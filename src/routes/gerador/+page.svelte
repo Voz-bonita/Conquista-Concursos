@@ -1,4 +1,6 @@
 <script>
+    import { enhance, deserialize } from '$app/forms';
+    
     import ContentDiv from '$lib/components/content_div.svelte'
     import FormField from '$lib/components/form_field.svelte'
 	import FormRadio from '$lib/components/form_radio.svelte';
@@ -16,7 +18,16 @@
 
 <div class="form-container green-theme">
     <ContentDiv>
-        <form class="form-generator">
+        <form class="form-generator" method="POST" action="?/generateQuestion" use:enhance={() => {
+            return async ({ result }) => {
+                if (result.type === 'success') {
+                    const newQuestionResponse = await fetch(result.data.fetchCall, {
+                        method: 'POST'
+                    });
+                    const newQuestionData = deserialize(await newQuestionResponse.text());
+                }
+            }
+        }}>
             <FormField inputProps={apiField}>Chave da API</FormField>
             <FormField inputProps={subjectField}>Assunto da Questão</FormField>
             <div class="radio-type" role="radiogroup" name="question-type">
