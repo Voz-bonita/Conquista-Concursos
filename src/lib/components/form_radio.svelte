@@ -16,6 +16,7 @@
         border: 1px solid black;
         cursor: pointer;
         box-shadow: 0 0.3rem 0.3rem black;
+        text-align: center;
     }
 
     label:has(> input[type='radio']:checked) {
@@ -29,5 +30,12 @@
 
     input {
         display: none;
+    }
+
+    @media screen and (max-width: 600px) {
+        .type-label {
+            font-size: 1rem;
+            padding: 0.15rem 1rem;
+        }
     }
 </style>
