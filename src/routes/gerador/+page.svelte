@@ -88,4 +88,13 @@
         columns: 10;
         width: 80%;
     }
+
+    @media screen and (max-width: 600px) {
+        .radio-type {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            justify-content: center;
+            gap: 1rem;
+        }
+    }
 </style>
