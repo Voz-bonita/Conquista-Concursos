@@ -4,6 +4,7 @@
     import ContentDiv from '$lib/components/content_div.svelte'
     import FormField from '$lib/components/form_field.svelte'
 	import FormRadio from '$lib/components/form_radio.svelte';
+	import ShowHide from '$lib/components/show_hide.svelte';
 
     export let form;
     $: questionType = form?.questionType ?? 'objetiva'
@@ -14,9 +15,13 @@
     let questionAnswer = "";
     $: questionBodyLength = questionBody.length;
     $: questionAnswerLength = questionAnswer.length;
+
+    let generatorState = 'generator'
+    let body, answer, score;
 </script>
 
 <div class="form-container green-theme">
+    {#if generatorState == "generator"}
     <ContentDiv>
         <form class="form-generator" method="POST" action="?/generateQuestion" use:enhance={() => {
             return async ({ result }) => {
@@ -25,6 +30,10 @@
                         method: 'POST'
                     });
                     const newQuestionData = deserialize(await newQuestionResponse.text());
+                    body = newQuestionData.questionBody;
+                    answer = newQuestionData.questionAnswer;
+                    score = newQuestionData.questionScore;
+                    generatorState = "generated";
                 }
             }
         }}>
@@ -50,6 +59,32 @@
             
         </form>
     </ContentDiv>
+    {:else if generatorState=="generated"}
+        {#if body}
+            <ShowHide title="Enunciado" id="question-body">
+                <ContentDiv>
+                    <h2>Enunciado</h2>
+                    <span class="question-body">{@html body}</span>
+                </ContentDiv>
+            </ShowHide>
+        {/if}
+        {#if answer}        
+            <ShowHide title="Resposta" id="question-answer">
+                <ContentDiv>
+                    <h2>Resposta da IA</h2>
+                    <span class="question-body">{@html answer}</span>
+                </ContentDiv>
+            </ShowHide>
+        {/if}
+        {#if score}
+            <ShowHide title="Pontuação" id="questio-score">
+                <ContentDiv>
+                    <h2>Avaliação da IA</h2>
+                    <span class="question-body">{@html score}</span>
+                </ContentDiv>
+            </ShowHide>
+        {/if}
+    {/if}
 </div>
 
 <style>
@@ -98,6 +133,11 @@
         font-size: 1.5rem;
         columns: 10;
         width: 80%;
+    }
+
+    .question-body {
+        font-size: 1.5rem;
+        white-space: pre-line;
     }
 
     @media screen and (max-width: 600px) {
