@@ -6,6 +6,13 @@
 	import FormRadio from '$lib/components/form_radio.svelte';
 	import ShowHide from '$lib/components/show_hide.svelte';
 
+    function clearGenerator() {
+        generatorState = 'generator';
+        body = '';
+        answer = '';
+        score = '';
+    }
+
     export let form;
     $: questionType = form?.questionType ?? 'objetiva'
     $: apiField = {type: "text", minlength: 8, id: "api-key", name: "api-key", value: form?.apiKey ?? ''};
@@ -84,6 +91,7 @@
                 </ContentDiv>
             </ShowHide>
         {/if}
+        <button class="clear-generator" on:click|preventDefault={clearGenerator}>Gerar outra questão</button>
     {/if}
 </div>
 
@@ -138,6 +146,24 @@
     .question-body {
         font-size: 1.5rem;
         white-space: pre-line;
+    }
+
+    .clear-generator {
+        font-size: 1.3rem;
+        min-width: fit-content;
+        padding: 0.5rem 1rem;
+        border-radius: 0.3rem;
+        background-color: #2085d8;
+        color: white;
+        text-align: center;
+        cursor: pointer;
+        box-shadow: 0 0.2rem 0.3rem black;
+        transition: 200ms;
+        &:hover {
+            margin-top: -0.1rem;
+            margin-bottom: 0.1rem;
+            box-shadow: 0 0.3rem 0.4rem black;
+        }
     }
 
     @media screen and (max-width: 600px) {
