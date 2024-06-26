@@ -40,7 +40,7 @@ export async function POST({ url }) {
 		const baselineQuestionBody = baselineQuestionObject.question_body;
 		const baselineQuestionAlternatives = baselineQuestionObject.question_alternatives;
 		const baselineQuestionAnswer = baselineQuestionObject.question_answer;
-		const baselineQuestion = `${baselineQuestionBody}\n\n@@@@@\n\n${baselineQuestionAlternatives}\n\nResposta correta:${baselineQuestionAnswer}`;
+		const baselineQuestion = `${baselineQuestionBody}\n\n@@@@@\n\n${baselineQuestionAlternatives}\n\n@@@@@\n\nResposta correta:${baselineQuestionAnswer}`;
 
 		const newQuestion = await generateObjective(baselineQuestion, questionSubject);
 		return json({
