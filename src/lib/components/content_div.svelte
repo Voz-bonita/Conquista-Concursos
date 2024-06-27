@@ -14,7 +14,7 @@
 		border: 1px solid black;
 		border-radius: 20px;
 		padding: 1em 1.5em;
-		margin: 0vh 0 1vh 0;
+		margin: 1vh 0 1vh 0;
 	}
 	
 	@media screen and (orientation: portrait), screen and (max-width: 700px) {
