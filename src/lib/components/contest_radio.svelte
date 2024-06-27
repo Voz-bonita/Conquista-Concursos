@@ -1,6 +1,6 @@
 <script>
 	export let steps;
-	export let userSelected = steps[1].id;
+	export let userSelected = steps[0].id;
 </script>
 
 <div class="contest-option-grid" role="radiogroup">
