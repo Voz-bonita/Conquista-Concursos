@@ -14,7 +14,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: center;
-        min-width: fit-content;
+        width: fit-content;
         margin: 2rem 0rem;
         padding: 0.1rem 1rem;
         border-radius: 0.3rem;
