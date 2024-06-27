@@ -6,6 +6,7 @@
 	import FormRadio from '$lib/components/form_radio.svelte';
 	import ShowHide from '$lib/components/show_hide.svelte';
 	import Spinner from '$lib/components/spinner.svelte';
+	import ActionRequired from '$lib/components/action_required.svelte';
 
     function clearGenerator() {
         generatorState = 'generator';
@@ -17,7 +18,7 @@
     export let form;
     $: questionType = form?.questionType ?? 'objetiva'
     $: apiField = {type: "text", minlength: 8, id: "api-key", name: "api-key", value: form?.apiKey ?? ''};
-    $: subjectField = {type: "text", minlength: 3, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
+    $: subjectField = {type: "text", minlength: 4, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
 
     let questionBody = "";
     let questionAnswer = "";
@@ -32,9 +33,10 @@
     {#if generatorState == "generator"}
     <ContentDiv>
         <form class="form-generator" method="POST" action="?/generateQuestion" use:enhance={() => {
-            generatorState = "loading";
             return async ({ result }) => {
+                form = result.data;
                 if (result.type === 'success') {
+                    generatorState = "loading";
                     const newQuestionResponse = await fetch(result.data.fetchCall, {
                         method: 'POST'
                     });
@@ -45,6 +47,7 @@
                     generatorState = "generated";
                 }
                 else {
+                    console.log(form)
                     generatorState = "generator";
                 }
             }
@@ -68,7 +71,9 @@
             {:else}
                 <button class="submit-btn" type="submit">Gerar</button>
             {/if}
-            
+            {#if form?.shortSubject}<ActionRequired>O Assunto da questão deve conter no mínimo 4 carácteres</ActionRequired>{/if}
+            {#if form?.longSubject}<ActionRequired>O Assunto da questão não pode conter mais de 30 carácteres</ActionRequired>{/if}
+            {#if form?.unselectedType}<ActionRequired>Por favor, selecione um tipo de questão</ActionRequired>{/if}
         </form>
     </ContentDiv>
     {:else if generatorState=="generated"}
