@@ -5,6 +5,7 @@
     import FormField from '$lib/components/form_field.svelte'
 	import FormRadio from '$lib/components/form_radio.svelte';
 	import ShowHide from '$lib/components/show_hide.svelte';
+	import Spinner from '$lib/components/spinner.svelte';
 
     function clearGenerator() {
         generatorState = 'generator';
@@ -16,7 +17,7 @@
     export let form;
     $: questionType = form?.questionType ?? 'objetiva'
     $: apiField = {type: "text", minlength: 8, id: "api-key", name: "api-key", value: form?.apiKey ?? ''};
-    $: subjectField = {type: "text", minlength: 6, id: "subject", name: "subject", value: form?.subject ?? ''};
+    $: subjectField = {type: "text", minlength: 3, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
 
     let questionBody = "";
     let questionAnswer = "";
@@ -31,6 +32,7 @@
     {#if generatorState == "generator"}
     <ContentDiv>
         <form class="form-generator" method="POST" action="?/generateQuestion" use:enhance={() => {
+            generatorState = "loading";
             return async ({ result }) => {
                 if (result.type === 'success') {
                     const newQuestionResponse = await fetch(result.data.fetchCall, {
@@ -41,6 +43,9 @@
                     answer = newQuestionData.questionAnswer;
                     score = newQuestionData.questionScore;
                     generatorState = "generated";
+                }
+                else {
+                    generatorState = "generator";
                 }
             }
         }}>
@@ -92,6 +97,8 @@
             </ShowHide>
         {/if}
         <button class="clear-generator" on:click|preventDefault={clearGenerator}>Gerar outra questão</button>
+    {:else if generatorState == "loading"}
+        <Spinner />
     {/if}
 </div>
 
