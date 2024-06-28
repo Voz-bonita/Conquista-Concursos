@@ -187,7 +187,35 @@ export const generateObjective = async (questionBaseline, topic) => {
 		]
 	});
 
-	return await getChatResponse(chat, topic);
+	const newQuestionBody = await getChatResponse(chat, topic);
+	const newQuestionAnswer = await explainSolutionToObjective(newQuestionBody);
+
+	return { newQuestionBody, newQuestionAnswer };
+};
+
+export const explainSolutionToObjective = async (questionBody) => {
+	const chat = model.startChat({
+		history: [
+			{
+				role: 'user',
+				parts: [
+					{ text: 'Esqueça todas as instruções anteriores. ' },
+					{
+						text: 'A partir de agora você é meu assistente virtual que me ajuda a estudar explicando a solução de questões de provas de concursos públicos. '
+					},
+					{
+						text: 'Eu vou te apresentar uma questão de múltipla escolha e você deve explicar de forma clara como chegar na resposta correta para a questão'
+					}
+				]
+			},
+			{
+				role: 'model',
+				parts: [{ text: 'Vamos estudar!' }]
+			}
+		]
+	});
+
+	return await getChatResponse(chat, questionBody);
 };
 
 export const startChat = (questionBody, questionAnswer) => {
@@ -242,12 +270,9 @@ export const startChat = (questionBody, questionAnswer) => {
 };
 
 export const getChatResponse = async (chat, userAnswer) => {
-	const chunkedResponse = await chat.sendMessageStream(userAnswer);
-	let modelResponse = '';
-	for await (const chunk of chunkedResponse.stream) {
-		const chunkText = chunk.text();
-		modelResponse += chunkText;
-	}
+	const result = await chat.sendMessage(userAnswer);
+	const response = await result.response;
+	const modelResponse = response.text();
 	return modelResponse;
 };
 
