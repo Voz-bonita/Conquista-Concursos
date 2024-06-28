@@ -13,6 +13,21 @@ export async function POST({ url }) {
 	const questionType = url.searchParams.get('tipo');
 	let questionBody = url.searchParams.get('enunciado');
 	let questionAnswer = url.searchParams.get('resposta');
+
+	if (!['objetiva', 'discursiva', 'correcao'].includes(questionType)) {
+		return json({
+			message:
+				"O tipo de questão informado não é válido. Os tipos possíveis são 'objetiva', 'discursiva' e 'correcao'"
+		});
+	}
+
+	if (questionType === 'correcao' && (questionBody === null || questionAnswer === null)) {
+		return json({
+			message:
+				"É necessário incluir 'enunciado' e 'resposta' nos parâmetros da sua requisição para que uma correção seja possível"
+		});
+	}
+
 	if (questionType === 'correcao' && questionBody != null && questionAnswer != null) {
 		const AIPerfectAnswer = expectedResponse(questionBody);
 		const AIScoreToUser = scoreAnswer(questionBody, AIPerfectAnswer, questionAnswer);
