@@ -13,10 +13,11 @@
         body = '';
         answer = '';
         score = '';
+        questionType = 'objetiva'
     }
 
     export let form;
-    $: questionType = form?.questionType ?? 'objetiva'
+    let questionType = 'objetiva'
     $: apiField = {type: "text", minlength: 8, id: "api-key", name: "api-key", value: form?.apiKey ?? ''};
     $: subjectField = {type: "text", minlength: 4, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
 
@@ -47,7 +48,6 @@
                     generatorState = "generated";
                 }
                 else {
-                    console.log(form)
                     generatorState = "generator";
                 }
             }
