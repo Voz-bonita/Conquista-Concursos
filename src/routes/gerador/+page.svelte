@@ -94,7 +94,7 @@
             </ShowHide>
         {/if}
         {#if score}
-            <ShowHide title="Pontuação" id="questio-score">
+            <ShowHide title="Pontuação" id="question-score">
                 <ContentDiv>
                     <h2>Avaliação da IA</h2>
                     <span class="question-body">{@html score}</span>
