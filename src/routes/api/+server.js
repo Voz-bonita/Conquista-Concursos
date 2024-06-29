@@ -29,8 +29,8 @@ export async function POST({ url }) {
 	}
 
 	if (questionType === 'correcao' && questionBody != null && questionAnswer != null) {
-		const AIPerfectAnswer = expectedResponse(questionBody);
-		const AIScoreToUser = scoreAnswer(questionBody, AIPerfectAnswer, questionAnswer);
+		const AIPerfectAnswer = await expectedResponse(questionBody);
+		const AIScoreToUser = await scoreAnswer(questionBody, AIPerfectAnswer, questionAnswer);
 		return json({
 			questionBody: questionBody,
 			questionAnswer: AIPerfectAnswer,
