@@ -8,6 +8,7 @@
 	import AuthProviderBtn from "$lib/components/auth_provider_btn.svelte";
 	import { GoogleProvider } from "$lib/stores/authStore.js";
 	import googleLogo from '$lib/assets/google.svg';
+	import FormCheckbox from "$lib/components/form_checkbox.svelte";
 
     let form;
     let loading = false;
@@ -58,6 +59,12 @@
             <FormField inputProps={surnameField}>Último nome</FormField>
             <FormField inputProps={passwordField}>Senha</FormField>
             <FormField inputProps={confirmPasswordField}>Confirme a senha</FormField>
+            <FormCheckbox id="terms-of-use" name="terms-of-use">
+                Declaro que li e concordo com os <a href="/termosDeUso">Termos de Uso e Serviço</a>
+            </FormCheckbox>
+            <FormCheckbox id="privacy-policy" name="privacy-policy">
+                Declaro que li e concordo com a <a href="/politicasDePrivacidade">Política de Privacidade</a>
+            </FormCheckbox>
             <button class="form-btn blue-theme submit-btn" type="submit">Criar</button>
             <div class="form-state-btns-div">
                 <button class="form-btn basic-black-theme" on:click|preventDefault={changeToLoginState}>Já tenho uma conta</button>
