@@ -1,4 +1,4 @@
-<div>
+<div style="padding: 1rem;">
 	<h1>Política de Privacidade</h1>
 
 	<p>

@@ -1,4 +1,4 @@
-<div>
+<div style="padding: 1rem;">
 	<h1>Termos de Uso e de Serviço</h1>
 	<p>
 		Estes Termos de Uso e de Serviço ("Termos") regem o uso do site Conquista Concursos ("Site"), um
