@@ -28,7 +28,9 @@
 		<slot />
 	</main>
 	<footer>
-		<p>Copyright © 2024 Conquista Concursos</p>
+		<p>Copyright © 2024 Conquista Concursos - Todos os direitos reservados</p>
+		<a href="/termosDeUso">Termos de Uso e Serviço</a>
+		<a href="/politicasDePrivacidade">Política de Privacidade</a>
 	</footer>
 </div>
 
@@ -48,10 +50,13 @@
 		min-height: 8vh;
 		width: 100%;
 		display: flex;
+		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 		text-align: center;
 		color: white;
+		padding-bottom: 2rem;
+		gap: 0.1rem;
 		background-color: rgb(0, 12, 23);
 	}
 </style>
