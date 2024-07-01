@@ -11,7 +11,7 @@
 	<p>
 		O conteúdo deste Site é fornecido para uso pessoal e para fins de estudo. O uso comercial do
 		conteúdo é estritamente proibido. Você não deve vender, alugar, licenciar, distribuir ou exibir
-		publicamente o conteúdo deste Site fora do ambiente de estudo para o qual o Site é destinado.
+		publicamente o conteúdo deste Site fora do ambiente de estudo para o qual o Site é destinado, exceto se você for um de nossos parceiros comerciais.
 		Qualquer uso não autorizado do conteúdo pode resultar em suspensão ou cancelamento de sua conta,
 		além de outras consequências legais.
 	</p>
@@ -47,22 +47,26 @@
 		usamos e protegemos suas informações pessoais. Ao usar o Site, você concorda com os termos da
 		Política de Privacidade.
 	</p>
+	<h3>6. Simulados de Concursos Públicos</h3>
+	<p>
+		Os simulados de concursos públicos oferecidos no Site estão disponíveis até a data de realização do concurso correspondente. Após essa data, os simulados serão descontinuados e não estarão mais acessíveis, mesmo que você tenha pagado por eles. Essa medida é necessária para garantir a relevância e atualização dos materiais disponíveis no Site.
+	</p>
 
-	<h3>6. Modificações nos Termos</h3>
+	<h3>7. Modificações nos Termos</h3>
 	<p>
 		O Site reserva-se o direito de modificar estes Termos a qualquer momento. Notificações sobre
 		alterações serão publicadas no Site ou enviadas por e-mail para usuários registrados. O uso
 		contínuo do Site após a publicação de modificações constitui aceitação das mudanças.
 	</p>
 
-	<h3>7. Lei Aplicável</h3>
+	<h3>8. Lei Aplicável</h3>
 	<p>
 		Estes Termos são regidos pelas leis do Brasil, sem levar em consideração conflitos de leis.
 		Qualquer disputa relacionada a estes Termos ou ao uso do Site será resolvida pelos tribunais
 		competentes do Brasil.
 	</p>
 
-	<h3>8. Contato</h3>
+	<h3>9. Contato</h3>
 	<p>
 		Se tiver dúvidas sobre estes Termos ou precisar de assistência, entre em contato conosco pelo
 		e-mail suporte@conquista-concursos.com ou pelo formulário de contato no Site.
