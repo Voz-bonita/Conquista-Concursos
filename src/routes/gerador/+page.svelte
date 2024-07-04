@@ -18,13 +18,16 @@
 
     export let form;
     let questionType = 'objetiva'
+    let examiningBoard = 'cesgranrio'
     $: apiField = {type: "text", minlength: 8, id: "api-key", name: "api-key", value: form?.apiKey ?? ''};
     $: subjectField = {type: "text", minlength: 4, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
 
     let questionBody = "";
     let questionAnswer = "";
+    let baselineQuestionBody = "";
     $: questionBodyLength = questionBody.length;
     $: questionAnswerLength = questionAnswer.length;
+    $: baselineQuestionBodyLength = baselineQuestionBody.length;
 
     let generatorState = 'generator'
     let body, answer, score;
@@ -54,7 +57,18 @@
         }}>
             <FormField inputProps={apiField}>Chave da API</FormField>
             <FormField inputProps={subjectField}>Assunto da Questão</FormField>
-            <div class="radio-type" role="radiogroup" name="question-type">
+            <label for="examining-board" class="field-label">Banca Elaboradora</label>
+            <div class="radio-type" role="radiogroup" name="examining-board" id="examining-board">
+                <FormRadio id="cesgranrio" bind:groupValue={examiningBoard}>Cesgranrio</FormRadio>
+                <FormRadio id="custom" bind:groupValue={examiningBoard}>Customizada</FormRadio>
+            </div>
+            {#if examiningBoard == "custom"}
+                <label for="baseline-question-body"><h2>Enunciado de uma questão da banca desejada</h2></label>
+                <textarea class="user-text" rows="10" bind:value={baselineQuestionBody} id="baseline-question-body" name="baseline-question-body"></textarea>
+                <span class="character-count">{baselineQuestionBodyLength} / 300 (Mínimo) ------------- {baselineQuestionBodyLength} / 3500 (Máximo)</span>
+            {/if}
+            <label for="question-type" class="field-label">Tipo de Questão</label>
+            <div class="radio-type" role="radiogroup" name="question-type" id=""question-type>
                 <FormRadio id="objetiva" bind:groupValue={questionType}>Objetiva</FormRadio>
                 <FormRadio id="discursiva" bind:groupValue={questionType}>Discursiva</FormRadio>
                 <FormRadio id="correcao" bind:groupValue={questionType}>Correção</FormRadio>
@@ -74,6 +88,7 @@
             {#if form?.shortSubject}<ActionRequired>O Assunto da questão deve conter no mínimo 4 carácteres</ActionRequired>{/if}
             {#if form?.longSubject}<ActionRequired>O Assunto da questão não pode conter mais de 30 carácteres</ActionRequired>{/if}
             {#if form?.unselectedType}<ActionRequired>Por favor, selecione um tipo de questão</ActionRequired>{/if}
+            {#if form?.unknownBaseline}<ActionRequired>Por favor, apresente uma questão para ser utilizada como linha de base</ActionRequired>{/if}
         </form>
     </ContentDiv>
     {:else if generatorState=="generated"}
@@ -176,6 +191,10 @@
             margin-bottom: 0.1rem;
             box-shadow: 0 0.3rem 0.4rem black;
         }
+    }
+    .field-label {
+        font-size: 1rem;
+        color: grey;
     }
 
     @media screen and (max-width: 600px) {

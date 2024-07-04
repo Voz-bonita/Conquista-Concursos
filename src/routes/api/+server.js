@@ -13,6 +13,7 @@ export async function POST({ url }) {
 	const questionType = url.searchParams.get('tipo');
 	let questionBody = url.searchParams.get('enunciado');
 	let questionAnswer = url.searchParams.get('resposta');
+	const userBaselineQuestion = url.searchParams.get('amostra');
 
 	if (!['objetiva', 'discursiva', 'correcao'].includes(questionType)) {
 		return json({
@@ -37,7 +38,8 @@ export async function POST({ url }) {
 			questionScore: AIScoreToUser
 		});
 	} else if (questionType === 'discursiva' && questionSubject != null) {
-		const baselineQuestion = await databaseHandler.getBaselineDiscursive();
+		const baselineQuestion =
+			userBaselineQuestion ?? (await databaseHandler.getBaselineDiscursive());
 		const baselineQuestionBody = baselineQuestion.question_body;
 
 		const { newQuestionBody, newQuestionAnswer } = await generateDiscursive(
@@ -51,7 +53,8 @@ export async function POST({ url }) {
 			questionScore: ''
 		});
 	} else if (questionType === 'objetiva' && questionSubject != null) {
-		const baselineQuestionObject = await databaseHandler.getBaselineObjective();
+		const baselineQuestionObject =
+			userBaselineQuestion ?? (await databaseHandler.getBaselineObjective());
 		const baselineQuestionBody = baselineQuestionObject.question_body;
 		const baselineQuestionAlternatives = baselineQuestionObject.question_alternatives;
 		const baselineQuestionAnswer = baselineQuestionObject.question_answer;
