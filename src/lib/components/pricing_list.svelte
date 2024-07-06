@@ -5,7 +5,7 @@
 
 <section class="pricing white-theme">
     <PricingCard plan_class="black-white-gradient-theme" name="Conhecimentos Gerais">
-        <PricingField name="Preço">R$10,00</PricingField>
+        <PricingField name="Preço">Gratuito até 31/08/2024</PricingField>
         <PricingField name="Tipo de Questão">Múltipla escolha de (A) a (E)</PricingField>
         <PricingField name="Uso de IA">Questões inéditas e suas soluções</PricingField>
         <PricingField name="Análise de Preformance"
@@ -13,7 +13,7 @@
         >
     </PricingCard>
     <PricingCard plan_class="purple-theme" name="Conhecimentos Específicos">
-        <PricingField name="Preço">R$20,00</PricingField>
+        <PricingField name="Preço">Gratuito até 31/08/2024</PricingField>
         <PricingField name="Tipo de Questão">Múltipla escolha de (A) a (E)</PricingField>
         <PricingField name="Uso de IA">Questões inéditas e suas soluções</PricingField>
         <PricingField name="Análise de Preformance"
@@ -21,7 +21,7 @@
         >
     </PricingCard>
     <PricingCard plan_class="green-theme" name="Discursiva/Redação">
-        <PricingField name="Preço">R$30,00/Questão</PricingField>
+        <PricingField name="Preço">Gratuito até 31/08/2024</PricingField>
         <PricingField name="Tipo de Questão">Discursiva com limite de 45 linhas</PricingField>
         <PricingField name="Uso de IA"
             >Questões inéditas, padrão de resposta e correção da sua submissão</PricingField
