@@ -7,6 +7,7 @@
 	import ShowHide from '$lib/components/show_hide.svelte';
 	import Spinner from '$lib/components/spinner.svelte';
 	import ActionRequired from '$lib/components/action_required.svelte';
+	import ContestTextArea from '$lib/components/contest_text_area.svelte';
 
     function clearGenerator() {
         generatorState = 'generator';
@@ -25,9 +26,6 @@
     let questionBody = "";
     let questionAnswer = "";
     let baselineQuestionBody = "";
-    $: questionBodyLength = questionBody.length;
-    $: questionAnswerLength = questionAnswer.length;
-    $: baselineQuestionBodyLength = baselineQuestionBody.length;
 
     let generatorState = 'generator'
     let body, answer, score;
@@ -63,9 +61,7 @@
                 <FormRadio id="custom" bind:groupValue={examiningBoard}>Customizada</FormRadio>
             </div>
             {#if examiningBoard == "custom"}
-                <label for="baseline-question-body"><h2>Enunciado de uma questão da banca desejada</h2></label>
-                <textarea class="user-text" rows="10" bind:value={baselineQuestionBody} id="baseline-question-body" name="baseline-question-body"></textarea>
-                <span class="character-count">{baselineQuestionBodyLength} / 300 (Mínimo) ------------- {baselineQuestionBodyLength} / 3500 (Máximo)</span>
+                <ContestTextArea id="baseline-question-body" bind:userText={questionBody}>Uma ou mais questões da banca desejada</ContestTextArea>
             {/if}
             <label for="question-type" class="field-label">Tipo de Questão</label>
             <div class="radio-type" role="radiogroup" name="question-type" id=""question-type>
@@ -74,13 +70,8 @@
                 <FormRadio id="correcao" bind:groupValue={questionType}>Correção</FormRadio>
             </div>
             {#if questionType == "correcao"}
-                <label for="question-body"><h2>Enunciado</h2></label>
-                <textarea class="user-text" rows="10" bind:value={questionBody} id="question-body" name="question-body"></textarea>
-                <span class="character-count">{questionBodyLength} / 2450 (Mínimo) ------------- {questionBodyLength} / 3500 (Máximo)</span>
-
-                <label for="question-answer"><h2>Resposta</h2></label>
-                <textarea class="user-text" rows="10" bind:value={questionAnswer} id="question-answer" name="question-answer"></textarea>
-                <span class="character-count">{questionAnswerLength} / 2450 (Mínimo) ------------- {questionAnswerLength} / 3500 (Máximo)</span>
+                <ContestTextArea id="question-body" bind:userText={questionBody}>Enunciado</ContestTextArea>
+                <ContestTextArea id="question-answer" bind:userText={questionAnswer}>Resposta</ContestTextArea>
                 <button class="submit-btn" type="submit">Corrigir</button>
             {:else}
                 <button class="submit-btn" type="submit">Gerar</button>
