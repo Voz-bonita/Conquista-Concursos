@@ -1,7 +1,10 @@
 import { fail } from '@sveltejs/kit';
 
 function checkTextLength(text) {
-	return text != null && text.length <= 5000 && text.length >= 2450;
+	if (text != null) {
+		return text.length <= 5000 && text.length >= 2450;
+	}
+	return true;
 }
 
 export const actions = {

@@ -8,7 +8,10 @@ import {
 import { databaseHandler } from '$lib/stores/databaseStore.js';
 
 function checkTextLength(text) {
-	return text != null && text.length <= 5000 && text.length >= 2450;
+	if (text != 'null' && text != null) {
+		return text.length <= 5000 && text.length >= 2450;
+	}
+	return true;
 }
 
 export async function POST({ url }) {
