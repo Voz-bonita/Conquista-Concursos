@@ -20,6 +20,10 @@ service cloud.firestore {
     	allow read, create: if userCanAccessContest(contestId) && isOwnData(userId);
     }
     
+    match /sample_questions/{document=**} {
+    	allow read: if true;
+    }
+    
     function isSignedIn() {
     	return request.auth != null;
     }
