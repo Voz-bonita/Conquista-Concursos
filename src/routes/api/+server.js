@@ -7,6 +7,10 @@ import {
 } from '$lib/stores/geminiStore.js';
 import { databaseHandler } from '$lib/stores/databaseStore.js';
 
+function checkTextLength(text) {
+	return text != null && text.length <= 5000 && text.length >= 2450;
+}
+
 export async function POST({ url }) {
 	const apiKey = url.searchParams.get('api-key');
 	const questionSubject = url.searchParams.get('assunto');
@@ -26,6 +30,16 @@ export async function POST({ url }) {
 		return json({
 			message:
 				"É necessário incluir 'enunciado' e 'resposta' nos parâmetros da sua requisição para que uma correção seja possível"
+		});
+	}
+
+	if (
+		!checkTextLength(questionBody) ||
+		!checkTextLength(questionAnswer) ||
+		!checkTextLength(userBaselineQuestion)
+	) {
+		return json({
+			message: 'Todos os textos enviados devem conter entre 2450 e 5000 carácteres'
 		});
 	}
 

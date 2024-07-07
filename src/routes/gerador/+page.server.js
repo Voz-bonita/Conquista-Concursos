@@ -1,5 +1,9 @@
 import { fail } from '@sveltejs/kit';
 
+function checkTextLength(text) {
+	return text != null && text.length <= 5000 && text.length >= 2450;
+}
+
 export const actions = {
 	generateQuestion: async ({ request }) => {
 		const data = await request.formData();
@@ -15,6 +19,20 @@ export const actions = {
 		}
 		if (subject.length > 30 && questionType != 'correcao') {
 			return fail(400, { questionType, subject, longSubject: true });
+		}
+		if (
+			!checkTextLength(questionBody) ||
+			!checkTextLength(questionAnswer) ||
+			!checkTextLength(baselineQuestionBody)
+		) {
+			return fail(400, {
+				questionType,
+				subject,
+				questionBody,
+				questionAnswer,
+				baselineQuestionBody,
+				invalidTextField: true
+			});
 		}
 		if (questionType === null) {
 			return fail(400, { subject, unselectedType: true });
