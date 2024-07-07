@@ -53,7 +53,7 @@
                 }
             }
         }}>
-            <FormField inputProps={apiField}>Chave da API</FormField>
+            <!-- <FormField inputProps={apiField}>Chave da API</FormField> -->
             <FormField inputProps={subjectField}>Assunto da Questão</FormField>
             <label for="examining-board" class="field-label">Banca Elaboradora</label>
             <div class="radio-type" role="radiogroup" name="examining-board" id="examining-board">
