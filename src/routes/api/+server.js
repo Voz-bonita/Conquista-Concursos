@@ -8,7 +8,7 @@ import {
 import { databaseHandler } from '$lib/stores/databaseStore.js';
 
 function checkTextLength(text) {
-	if (text != 'null' && text != null) {
+	if (text != null) {
 		return text.length <= 5000 && text.length >= 2450;
 	}
 	return true;
@@ -20,7 +20,10 @@ export async function POST({ url }) {
 	const questionType = url.searchParams.get('tipo');
 	let questionBody = url.searchParams.get('enunciado');
 	let questionAnswer = url.searchParams.get('resposta');
-	const userBaselineQuestion = url.searchParams.get('amostra');
+	let userBaselineQuestion = url.searchParams.get('amostra');
+	questionBody = questionBody === 'null' ? null : questionBody;
+	questionAnswer = questionAnswer === 'null' ? null : questionAnswer;
+	userBaselineQuestion = userBaselineQuestion === 'null' ? null : userBaselineQuestion;
 
 	if (!['objetiva', 'discursiva', 'correcao'].includes(questionType)) {
 		return json({
@@ -56,12 +59,14 @@ export async function POST({ url }) {
 				questionScore: AIScoreToUser
 			});
 		} else if (questionType === 'discursiva' && questionSubject != null) {
-			const baselineQuestion =
-				userBaselineQuestion ?? (await databaseHandler.getBaselineDiscursive());
-			const baselineQuestionBody = baselineQuestion.question_body;
+			let baselineQuestion = userBaselineQuestion;
+			if (userBaselineQuestion === null) {
+				const baselineQuestionObject = await databaseHandler.getBaselineDiscursive();
+				baselineQuestion = baselineQuestionObject.question_body;
+			}
 
 			const { newQuestionBody, newQuestionAnswer } = await generateDiscursive(
-				baselineQuestionBody,
+				baselineQuestion,
 				questionSubject
 			);
 
@@ -71,12 +76,14 @@ export async function POST({ url }) {
 				questionScore: ''
 			});
 		} else if (questionType === 'objetiva' && questionSubject != null) {
-			const baselineQuestionObject =
-				userBaselineQuestion ?? (await databaseHandler.getBaselineObjective());
-			const baselineQuestionBody = baselineQuestionObject.question_body;
-			const baselineQuestionAlternatives = baselineQuestionObject.question_alternatives;
-			const baselineQuestionAnswer = baselineQuestionObject.question_answer;
-			const baselineQuestion = `${baselineQuestionBody}\n\n@@@@@\n\n${baselineQuestionAlternatives}\n\n@@@@@\n\nResposta correta:${baselineQuestionAnswer}`;
+			let baselineQuestion = userBaselineQuestion;
+			if (userBaselineQuestion === null) {
+				const baselineQuestionObject = await databaseHandler.getBaselineObjective();
+				const baselineQuestionBody = baselineQuestionObject.question_body;
+				const baselineQuestionAlternatives = baselineQuestionObject.question_alternatives;
+				const baselineQuestionAnswer = baselineQuestionObject.question_answer;
+				baselineQuestion = `${baselineQuestionBody}\n\n@@@@@\n\n${baselineQuestionAlternatives}\n\n@@@@@\n\nResposta correta:${baselineQuestionAnswer}`;
+			}
 
 			const { newQuestionBody, newQuestionAnswer } = await generateObjective(
 				baselineQuestion,
