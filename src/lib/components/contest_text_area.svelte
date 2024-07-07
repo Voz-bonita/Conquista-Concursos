@@ -3,7 +3,7 @@
     export let max = 5000;
     export let id;
 
-    export let userText = "";
+    let userText = "";
     $: quserTextLength = userText.length;
 </script>
 

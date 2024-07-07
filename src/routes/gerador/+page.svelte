@@ -23,10 +23,6 @@
     $: apiField = {type: "text", minlength: 8, id: "api-key", name: "api-key", value: form?.apiKey ?? ''};
     $: subjectField = {type: "text", minlength: 4, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
 
-    let questionBody = "";
-    let questionAnswer = "";
-    let baselineQuestionBody = "";
-
     let generatorState = 'generator'
     let body, answer, score;
 </script>
@@ -61,7 +57,7 @@
                 <FormRadio id="custom" bind:groupValue={examiningBoard}>Customizada</FormRadio>
             </div>
             {#if examiningBoard == "custom"}
-                <ContestTextArea id="baseline-question-body" bind:userText={baselineQuestionBody}>Uma ou mais questões da banca desejada</ContestTextArea>
+                <ContestTextArea id="baseline-question-body">Uma ou mais questões da banca desejada</ContestTextArea>
             {/if}
             <label for="question-type" class="field-label">Tipo de Questão</label>
             <div class="radio-type" role="radiogroup" name="question-type" id=""question-type>
@@ -70,8 +66,8 @@
                 <FormRadio id="correcao" bind:groupValue={questionType}>Correção</FormRadio>
             </div>
             {#if questionType == "correcao"}
-                <ContestTextArea id="question-body" bind:userText={questionBody}>Enunciado</ContestTextArea>
-                <ContestTextArea id="question-answer" bind:userText={questionAnswer}>Resposta</ContestTextArea>
+                <ContestTextArea id="question-body">Enunciado</ContestTextArea>
+                <ContestTextArea id="question-answer">Resposta</ContestTextArea>
                 <button class="submit-btn" type="submit">Corrigir</button>
             {:else}
                 <button class="submit-btn" type="submit">Gerar</button>
