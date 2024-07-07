@@ -155,12 +155,6 @@
         }
     }
 
-    .user-text {
-        font-size: 1.5rem;
-        columns: 10;
-        width: 80%;
-    }
-
     .question-body {
         font-size: 1.5rem;
         white-space: pre-line;
