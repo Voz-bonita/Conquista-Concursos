@@ -29,48 +29,53 @@ export async function POST({ url }) {
 		});
 	}
 
-	if (questionType === 'correcao' && questionBody != null && questionAnswer != null) {
-		const AIPerfectAnswer = await expectedResponse(questionBody);
-		const AIScoreToUser = await scoreAnswer(questionBody, AIPerfectAnswer, questionAnswer);
-		return json({
-			questionBody: questionBody,
-			questionAnswer: AIPerfectAnswer,
-			questionScore: AIScoreToUser
-		});
-	} else if (questionType === 'discursiva' && questionSubject != null) {
-		const baselineQuestion =
-			userBaselineQuestion ?? (await databaseHandler.getBaselineDiscursive());
-		const baselineQuestionBody = baselineQuestion.question_body;
+	try {
+		if (questionType === 'correcao' && questionBody != null && questionAnswer != null) {
+			const AIPerfectAnswer = await expectedResponse(questionBody);
+			const AIScoreToUser = await scoreAnswer(questionBody, AIPerfectAnswer, questionAnswer);
+			return json({
+				questionBody: questionBody,
+				questionAnswer: AIPerfectAnswer,
+				questionScore: AIScoreToUser
+			});
+		} else if (questionType === 'discursiva' && questionSubject != null) {
+			const baselineQuestion =
+				userBaselineQuestion ?? (await databaseHandler.getBaselineDiscursive());
+			const baselineQuestionBody = baselineQuestion.question_body;
 
-		const { newQuestionBody, newQuestionAnswer } = await generateDiscursive(
-			baselineQuestionBody,
-			questionSubject
-		);
+			const { newQuestionBody, newQuestionAnswer } = await generateDiscursive(
+				baselineQuestionBody,
+				questionSubject
+			);
 
-		return json({
-			questionBody: newQuestionBody,
-			questionAnswer: newQuestionAnswer,
-			questionScore: ''
-		});
-	} else if (questionType === 'objetiva' && questionSubject != null) {
-		const baselineQuestionObject =
-			userBaselineQuestion ?? (await databaseHandler.getBaselineObjective());
-		const baselineQuestionBody = baselineQuestionObject.question_body;
-		const baselineQuestionAlternatives = baselineQuestionObject.question_alternatives;
-		const baselineQuestionAnswer = baselineQuestionObject.question_answer;
-		const baselineQuestion = `${baselineQuestionBody}\n\n@@@@@\n\n${baselineQuestionAlternatives}\n\n@@@@@\n\nResposta correta:${baselineQuestionAnswer}`;
+			return json({
+				questionBody: newQuestionBody,
+				questionAnswer: newQuestionAnswer,
+				questionScore: ''
+			});
+		} else if (questionType === 'objetiva' && questionSubject != null) {
+			const baselineQuestionObject =
+				userBaselineQuestion ?? (await databaseHandler.getBaselineObjective());
+			const baselineQuestionBody = baselineQuestionObject.question_body;
+			const baselineQuestionAlternatives = baselineQuestionObject.question_alternatives;
+			const baselineQuestionAnswer = baselineQuestionObject.question_answer;
+			const baselineQuestion = `${baselineQuestionBody}\n\n@@@@@\n\n${baselineQuestionAlternatives}\n\n@@@@@\n\nResposta correta:${baselineQuestionAnswer}`;
 
-		const { newQuestionBody, newQuestionAnswer } = await generateObjective(
-			baselineQuestion,
-			questionSubject
-		);
+			const { newQuestionBody, newQuestionAnswer } = await generateObjective(
+				baselineQuestion,
+				questionSubject
+			);
+			return json({
+				questionBody: newQuestionBody,
+				questionAnswer: newQuestionAnswer,
+				questionScore: ''
+			});
+		}
+	} catch (error) {
 		return json({
-			questionBody: newQuestionBody,
-			questionAnswer: newQuestionAnswer,
-			questionScore: ''
+			questionBody: 'Ocorreu um erro, tente novamente',
+			questionAnswer: 'Ocorreu um erro, tente novamente',
+			questionScore: 'Ocorreu um erro, tente novamente'
 		});
 	}
-	return json({
-		content: 'some-content'
-	});
 }
