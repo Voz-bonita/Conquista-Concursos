@@ -24,6 +24,10 @@
     $: subjectField = {type: "text", minlength: 4, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
 
     let generatorState = 'generator'
+    $: questionBody = form?.questionBody ?? "";
+    $: questionAnswer = form?.questionAnswer ?? "";
+    $: baselineQuestionBody = form?.baselineQuestionBody ?? "";
+
     let body, answer, score;
 </script>
 
@@ -57,7 +61,7 @@
                 <FormRadio id="custom" bind:groupValue={examiningBoard}>Customizada</FormRadio>
             </div>
             {#if examiningBoard == "custom"}
-                <ContestTextArea id="baseline-question-body">Uma ou mais questões da banca desejada</ContestTextArea>
+                <ContestTextArea id="baseline-question-body" bind:userText={baselineQuestionBody}>Uma ou mais questões da banca desejada</ContestTextArea>
             {/if}
             <label for="question-type" class="field-label">Tipo de Questão</label>
             <div class="radio-type" role="radiogroup" name="question-type" id=""question-type>
@@ -66,8 +70,8 @@
                 <FormRadio id="correcao" bind:groupValue={questionType}>Correção</FormRadio>
             </div>
             {#if questionType == "correcao"}
-                <ContestTextArea id="question-body">Enunciado</ContestTextArea>
-                <ContestTextArea id="question-answer">Resposta</ContestTextArea>
+                <ContestTextArea id="question-body" bind:userText={questionBody}>Enunciado</ContestTextArea>
+                <ContestTextArea id="question-answer" bind:userText={questionAnswer}>Resposta</ContestTextArea>
                 <button class="submit-btn" type="submit">Corrigir</button>
             {:else}
                 <button class="submit-btn" type="submit">Gerar</button>
@@ -76,6 +80,7 @@
             {#if form?.longSubject}<ActionRequired>O Assunto da questão não pode conter mais de 30 carácteres</ActionRequired>{/if}
             {#if form?.unselectedType}<ActionRequired>Por favor, selecione um tipo de questão</ActionRequired>{/if}
             {#if form?.unknownBaseline}<ActionRequired>Por favor, apresente uma questão para ser utilizada como linha de base</ActionRequired>{/if}
+            {#if form?.invalidTextField}<ActionRequired>Todos os campos de texto devem ter entre 2450 e 5000 carácteres</ActionRequired>{/if}
         </form>
     </ContentDiv>
     {:else if generatorState=="generated"}
