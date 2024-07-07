@@ -61,7 +61,7 @@
                 <FormRadio id="custom" bind:groupValue={examiningBoard}>Customizada</FormRadio>
             </div>
             {#if examiningBoard == "custom"}
-                <ContestTextArea id="baseline-question-body" bind:userText={questionBody}>Uma ou mais questões da banca desejada</ContestTextArea>
+                <ContestTextArea id="baseline-question-body" bind:userText={baselineQuestionBody}>Uma ou mais questões da banca desejada</ContestTextArea>
             {/if}
             <label for="question-type" class="field-label">Tipo de Questão</label>
             <div class="radio-type" role="radiogroup" name="question-type" id=""question-type>
