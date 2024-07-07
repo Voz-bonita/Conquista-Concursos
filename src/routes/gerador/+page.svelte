@@ -24,9 +24,9 @@
     $: subjectField = {type: "text", minlength: 4, maxlength: 30, id: "subject", name: "subject", value: form?.subject ?? ''};
 
     let generatorState = 'generator'
-    $: questionBody = form?.questionBody ?? "";
-    $: questionAnswer = form?.questionAnswer ?? "";
-    $: baselineQuestionBody = form?.baselineQuestionBody ?? "";
+    let questionBody = "";
+    let questionAnswer = "";
+    let baselineQuestionBody = "";
 
     let body, answer, score;
 </script>
